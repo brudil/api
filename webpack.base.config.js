@@ -51,17 +51,17 @@ module.exports = {
     loaders: [
       {test: /\.js$/, loaders: ['babel-loader', 'eslint-loader'], exclude: /node_modules/},
       {test: /\.css/, loader: 'style-loader!css-loader!postcss-loader'},
-      {test: /\.svg$/, loader: 'file'}
+      {test: /\.svg|\.png$/, loader: 'file'}
     ],
 
     noParse: /\.min\.js/
   },
   postcss: function (webpack) {
     return [
-      require('postcss-cssnext'),
       postcssImport({
         addDependencyTo: webpack
-      })
+      }),
+      require('postcss-cssnext')
     ];
   }
 
