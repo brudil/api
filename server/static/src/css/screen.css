@@ -1,0 +1,5 @@
+/* core */
+@import 'core/variables.css';
+
+/* components */
+@import 'components/body.css';
