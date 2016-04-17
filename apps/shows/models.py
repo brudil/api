@@ -71,8 +71,8 @@ class ShowPage(Page):
         related_name='+'
     )
 
-    social_facebook_handle = models.TextField(blank=True, null=True)
-    social_twitter_handle = models.TextField(blank=True, null=True)
+    facebook_url = models.TextField(blank=True, null=True)
+    twitter_handle = models.TextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('description', classname="full")
@@ -86,8 +86,8 @@ class ShowPage(Page):
             FieldPanel('accent_color', widget=forms.TextInput(attrs={'type': 'color', 'style': 'height: 50px'}))
         ], 'Show branding'),
         MultiFieldPanel([
-            FieldPanel('social_facebook_handle'),
-            FieldPanel('social_twitter_handle')
+            FieldPanel('facebook_url'),
+            FieldPanel('twitter_handle')
         ], 'Social Pages')
     ]
 

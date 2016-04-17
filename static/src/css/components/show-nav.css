@@ -1,0 +1,29 @@
+.show-nav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 1.3rem;
+
+  &__item {
+    margin-bottom: 0.2rem;
+
+    & > a {
+      display: block;
+      text-decoration: none;
+      padding: 0.25rem 0;
+    }
+
+  }
+
+  &__social-facebook {
+    & > a {
+      color: facebook-color;
+    }
+  }
+
+  &__social-twitter {
+    & > a {
+      color: twitter-color;
+    }
+  }
+}

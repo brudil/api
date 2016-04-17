@@ -63,6 +63,7 @@ module.exports = {
       }),
       require('postcss-cssnext'),
       require('lost'),
+      require('postcss-brand-colors')
     ];
   }
 

@@ -11,7 +11,10 @@
 @import 'components/header-nav.css';
 
 @import 'components/shows-grid.css';
+
+@import 'components/show-header.css';
 @import 'components/show-card.css';
+@import 'components/show-nav.css';
 
 @import 'components/footer.css';
 @import 'components/footer-nav.css';

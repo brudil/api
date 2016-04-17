@@ -19,9 +19,11 @@
     {% wagtailuserbar %}
     {% include 'header.html' %}
 
-    <div class="container core__content">
-      {% block content %}{% endblock %}
-    </div>
+    {% block bespoke_content %}
+      <div class="container core__content">
+        {% block content %}{% endblock %}
+      </div>
+    {% endblock %}
 
     {% include 'footer.html' %}
 

@@ -2,15 +2,19 @@
   background: #ffffff;
   box-shadow: 0 2px 6px rgba(30, 30, 30, 0.4);
   box-sizing: border-box;
-  padding: 0.5rem;
+  padding: 1.4rem;
   overflow: hidden;
+  display: flex;
+  flex: 1;
 
   &__sidebar {
-    width: 120px;
-    float: left;
+    width: 150px;
+    border-right: 1px solid var(--ui-grey);
+    margin-right: 1.4rem;
+    padding-right: 1.4rem;
   }
 
   &__content {
-    float: left;
+    flex: 1;
   }
 }

@@ -1,28 +1,55 @@
 {% extends "base.html" %}
 
+{% load wagtailimages_tags %}
 {% load wagtailcore_tags %}
 {% load show_tags %}
 
-{% block content %}
+{% block bespoke_content %}
 {% get_show page as show %}
-<div class="show-header">
-  <h1>{{ show.title }}</h1>
-  <p>{{ show.description|richtext }}</p>
-  <p>On: {{ show.get_human_time }}</p>
-</div>
-<div class="show-card">
-  <div class="show-card__sidebar">
-    <ul class="show-card__nav">
-      {% for child in show.get_children %}
-        <li>
-          <a href="{{ child.url }}">{{ child.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div class="show-card__content">
-      {% block card_content %}{% endblock %}
-  </div>
-</div>
+<div class="core__content" style="{{ show.generate_branding_style }}">
+  <div class="container core__content TODO-THISISWEIRD">
+    <div class="show-header">
 
+      {% if show.logo %}
+        {% image show.logo width-400 as show_logo %}
+        <h1 class="show-header__title show-header__title--logo"><img src="{{ show_logo.url }}" alt="{{ show.title }}"></h1>
+      {% else %}
+        <h1 class="show-header__title show-header__title--text">{{ show.title }}</h1>
+      {% endif %}
+      <div class="show-header__details">
+        <div class="show-header__short-description">{{ show.description|richtext }}</div>
+        <div class="show-header__schedule">{{ show.get_human_time }}</div>
+      </div>
+    </div>
+    <div class="show-card">
+      <div class="show-card__sidebar">
+        <ul class="show-nav">
+          {% for child in show.get_children %}
+            <li class="show-nav__item">
+              <a href="{{ child.url }}">{{ child.title }}</a>
+            </li>
+          {% endfor %}
+
+          {% if show.twitter_handle %}
+            <li class="show-nav__item show-nav__social-twitter">
+              <a href="https://twitter.com/{{ show.twitter_handle }}">Follow the show</a>
+            </li>
+          {% endif %}
+
+          {% if show.facebook_url %}
+          <li class="show-nav__item show-nav__social-facebook">
+            <a href="{{ show.facebook_url }}">Like the show</a>
+          </li>
+          {% endif %}
+
+
+
+        </ul>
+      </div>
+      <div class="show-card__content">
+          {% block card_content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
