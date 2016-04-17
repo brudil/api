@@ -24,6 +24,9 @@
     <div class="show-card">
       <div class="show-card__sidebar">
         <ul class="show-nav">
+          <li class="show-nav__item">
+            <a href="{{ show.url }}">About</a>
+          </li>
           {% for child in show.get_children %}
             <li class="show-nav__item">
               <a href="{{ child.url }}">{{ child.title }}</a>
