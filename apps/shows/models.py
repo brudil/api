@@ -1,3 +1,4 @@
+from apps.shows.utils import dark_tone_from_accent
 from django.conf.urls import url
 from django.db import models
 from django import forms
@@ -111,6 +112,15 @@ class ShowPage(Page):
 
         return ';'.join(styles)
 
+    def has_accent_color(self):
+        return self.accent_color is not None and self.accent_color != '#000000'
+
+    def tone_from_accent(self):
+        if self.has_accent_color() is False:
+            return 'dark'
+
+        dark_tone = dark_tone_from_accent(self.accent_color[1:])
+        return 'dark' if dark_tone else 'light'
 
 class SingletonPage(object):
     @classmethod

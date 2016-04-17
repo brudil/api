@@ -3,10 +3,30 @@
   padding-top: 2rem;
   padding-bottom: 1.5rem;
 
+  &--tone-dark {
+    color: rgba(0, 0, 0, 1);
+
+    & .show-header__title a {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+
+  &--tone-light {
+    color: rgba(255, 255, 255, 1);
+
+    & .show-header__title a {
+      color: rgba(255, 255, 255, 1);
+    }
+  }
+
   &__title {
     width: 200px;
     margin-top: 0;
     margin-bottom: 0;
+
+    & > a {
+      text-decoration: none;
+    }
   }
 
   &__title--logo {

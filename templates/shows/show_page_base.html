@@ -8,13 +8,19 @@
 {% get_show page as show %}
 <div class="core__content" style="{{ show.generate_branding_style }}">
   <div class="container core__content TODO-THISISWEIRD">
-    <div class="show-header">
+    <div class="show-header show-header--tone-{{ show.tone_from_accent }}">
 
       {% if show.logo %}
         {% image show.logo width-400 as show_logo %}
-        <h1 class="show-header__title show-header__title--logo"><img src="{{ show_logo.url }}" alt="{{ show.title }}"></h1>
+        <h1 class="show-header__title show-header__title--logo">
+          <a href="{{ show.url }}">
+            <img src="{{ show_logo.url }}" alt="{{ show.title }}">
+          </a>
+        </h1>
       {% else %}
-        <h1 class="show-header__title show-header__title--text">{{ show.title }}</h1>
+        <h1 class="show-header__title show-header__title--text">
+          <a href="{{ show.url }}">{{ show.title }}</a>
+        </h1>
       {% endif %}
       <div class="show-header__details">
         <div class="show-header__short-description">{{ show.description|richtext }}</div>
