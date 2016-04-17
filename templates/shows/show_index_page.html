@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<h1>{{ page.title }}</h1>
+<div>
+    {{ page.intro|richtext }}
+</div>
+
+<ul class="shows-grid">
+
+  {% for show in page.shows %}
+    <li class="shows-grid__item">
+      <a class="shows-grid__anchor" href="{{ show.url }}" style="{{ show.generate_branding_style }}">
+          {% if show.logo %}
+            {% image show.logo width-400 as show_logo %}
+            <img class="shows-grid__logo" src="{{ show_logo.url }}" alt="{{ show.title }}">
+          {% else %}
+            <h1 class="shows-grid__title">{{ show.title }}</h1>
+          {% endif %}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+.header-nav {
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 2rem;
+  padding-bottom: 0.8rem;
+  margin: 0;
+  list-style: none;
+  overflow: hidden;
+  font-size: 1.4rem;
+
+  &__item {
+    float: left;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+  }
+
+  &__link {
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--header-grey);
+  }
+}

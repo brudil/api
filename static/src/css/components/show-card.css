@@ -1,0 +1,16 @@
+.show-card {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(30, 30, 30, 0.4);
+  box-sizing: border-box;
+  padding: 0.5rem;
+  overflow: hidden;
+
+  &__sidebar {
+    width: 120px;
+    float: left;
+  }
+
+  &__content {
+    float: left;
+  }
+}

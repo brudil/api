@@ -1,0 +1,17 @@
+@import 'normalize.css';
+
+/* core */
+@import 'core/variables.css';
+
+/* components */
+@import 'components/core.css';
+@import 'components/body.css';
+@import 'components/container.css';
+@import 'components/header.css';
+@import 'components/header-nav.css';
+
+@import 'components/shows-grid.css';
+@import 'components/show-card.css';
+
+@import 'components/footer.css';
+@import 'components/footer-nav.css';

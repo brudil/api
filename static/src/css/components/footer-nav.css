@@ -1,0 +1,17 @@
+.footer-nav {
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    lost-column: 1/5;
+   }
+
+  &__item {
+
+    & > a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+  }
+}

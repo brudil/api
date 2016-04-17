@@ -20,7 +20,7 @@ _.assign(env, {
 module.exports = {
   target: 'web',
 
-  entry: './server/static/src/entry.js',
+  entry: './static/src/entry.js',
 
   output: {
     path: path.join(__dirname, '/build'),
@@ -35,7 +35,7 @@ module.exports = {
       'node_modules',
       './src/images'
     ],
-    extentions: ['js', 'scss', 'svg']
+    extentions: ['js', 'css', 'svg']
   },
 
   plugins: [
@@ -61,7 +61,8 @@ module.exports = {
       postcssImport({
         addDependencyTo: webpack
       }),
-      require('postcss-cssnext')
+      require('postcss-cssnext'),
+      require('lost'),
     ];
   }
 

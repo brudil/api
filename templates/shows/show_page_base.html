@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+{% load show_tags %}
+
+{% block content %}
+{% get_show page as show %}
+<div class="show-header">
+  <h1>{{ show.title }}</h1>
+  <p>{{ show.description|richtext }}</p>
+  <p>On: {{ show.get_human_time }}</p>
+</div>
+<div class="show-card">
+  <div class="show-card__sidebar">
+    <ul class="show-card__nav">
+      {% for child in show.get_children %}
+        <li>
+          <a href="{{ child.url }}">{{ child.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="show-card__content">
+      {% block card_content %}{% endblock %}
+  </div>
+</div>
+
+{% endblock %}
