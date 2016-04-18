@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from apps.server.models import SingletonPage
 from apps.shows.utils import dark_tone_from_accent
 from django.conf.urls import url
 from django.db import models
@@ -132,12 +133,6 @@ class ShowPage(Page):
 
         dark_tone = dark_tone_from_accent(self.accent_color[1:])
         return 'dark' if dark_tone else 'light'
-
-class SingletonPage(object):
-    @classmethod
-    def can_exist_under(cls, parent):
-        has_singleton_already = cls in [child.specific_class for child in parent.get_children()]
-        return cls in parent.specific_class.allowed_subpage_models() and not has_singleton_already
 
 
 class ShowEpisodePage(Page):
