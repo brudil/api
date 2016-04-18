@@ -5,6 +5,7 @@ from apps.shows.utils import dark_tone_from_accent
 from django.conf.urls import url
 from django.db import models
 from django import forms
+
 from django.shortcuts import render
 from django.template.response import TemplateResponse
 
@@ -18,7 +19,8 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, Inli
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 from wagtail.wagtailsearch import index
-
+import django.db.models.options as options
+options.DEFAULT_NAMES = options.DEFAULT_NAMES + ('description',)
 
 DAY_CHOICES = (
     (0, 'Monday'),
@@ -62,7 +64,8 @@ class ShowSlot(Slot):
 
 class ShowPage(Page):
     class Meta:
-        verbose_name = "Show"
+        verbose_name = 'Show'
+        description = 'A show microsite'
 
     description = RichTextField()
     accent_color = models.CharField(max_length=7, blank=True, null=True)
@@ -96,7 +99,7 @@ class ShowPage(Page):
     ]
 
     parent_page_types = ['shows.ShowIndexPage']
-    subpage_types = ['shows.ShowEpisodeIndexPage', 'shows.ShowContentPage']
+    subpage_types = ['shows.ShowAudioSeriesIndexPage', 'shows.ShowContentPage']
 
     def get_human_time(self):
         slots = self.slots.all()
@@ -135,9 +138,9 @@ class ShowPage(Page):
         return 'dark' if dark_tone else 'light'
 
 
-class ShowEpisodePage(Page):
+class ShowAudioSeriesEpisodePage(Page):
     class Meta:
-        verbose_name = "Show Episode"
+        verbose_name = "Show Audio Series Episode"
 
     description = RichTextField()
 
@@ -149,11 +152,7 @@ class ShowEpisodePage(Page):
         MultiFieldPanel(Page.promote_panels, "Common page configuration")
     ]
 
-    parent_page_types = ['shows.ShowEpisodeIndexPage']
-
-    def route(self, request, path_components):
-        print(path_components)
-        return super().route(request, path_components)
+    parent_page_types = ['shows.ShowAudioSeriesIndexPage']
 
 
 class ShowContentPage(Page):
@@ -172,14 +171,15 @@ class ShowContentPage(Page):
     ]
 
 
-class ShowEpisodeIndexPage(SingletonPage, Page):
+class ShowAudioSeriesIndexPage(SingletonPage, Page):
     class Meta:
-        verbose_name = "Show Episode Listings"
+        verbose_name = 'Show Audio Series Listing'
+        description = 'A chronological list of audio files; for podcasts or previous episodes'
 
     content_panels = Page.content_panels + [
-    ]
+        ]
 
-    subpage_types = ['shows.ShowEpisodePage']
+    subpage_types = ['shows.ShowAudioSeriesEpisodePage']
 
     def shows(self):
         return ShowPage.objects.all()
