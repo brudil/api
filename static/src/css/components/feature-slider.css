@@ -1,0 +1,28 @@
+.feature-slider {
+
+  &__slides {
+    width: 100%;
+  }
+
+  &__slide {
+    height: 280px;
+    width: 100%;
+  }
+
+  &__navigation {
+    position: relative;
+    top: 120px;
+  }
+
+  &__prev {
+    left: 0;
+    position: absolute;
+    z-index: 100;
+  }
+
+  &__next {
+    right: 0;
+    position: absolute;
+    z-index: 100;
+  }
+}

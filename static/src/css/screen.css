@@ -7,6 +7,7 @@
 @import 'components/core.css';
 @import 'components/body.css';
 @import 'components/container.css';
+
 @import 'components/header.css';
 @import 'components/header-nav.css';
 
@@ -18,3 +19,6 @@
 
 @import 'components/footer.css';
 @import 'components/footer-nav.css';
+
+@import 'components/slider.css';
+@import 'components/feature-slider.css';
