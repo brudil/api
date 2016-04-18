@@ -9,6 +9,7 @@
 
   &__sidebar {
     width: 150px;
+    flex: 0 0 150px;
     border-right: 1px solid var(--ui-grey);
     margin-right: 1.4rem;
     padding-right: 1.4rem;
@@ -16,5 +17,23 @@
 
   &__content {
     flex: 1;
+    min-width: 0;
+
+    & .block-heading {
+
+    }
+
+    & .block-image {
+      padding: 1rem;
+      box-sizing: border-box;
+
+      & > img {
+        width: auto;
+        max-width: 100%;
+        display: block;
+        height: auto;
+        margin: 0 auto;
+      }
+    }
   }
 }

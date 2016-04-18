@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from apps.shows.utils import dark_tone_from_accent
 from django.conf.urls import url
 from django.db import models
@@ -100,7 +102,16 @@ class ShowPage(Page):
         slots_human = []
 
         for slot in slots:
-            slots_human.append('every {day} at {hour}'.format(day=slot.day, hour=slot.hour))
+            time_display = slot.day
+            relative = ((slot.day - datetime.now().weekday()) + 7) % 7
+            relative_word = 'Every'
+            print(relative)
+            if relative == 0:
+                relative_word = 'Today, and every'
+            elif relative == 1:
+                relative_word = 'Tomorrow, and every'
+
+            slots_human.append('{} {day} at {time}'.format(relative_word, day=slot.get_day_display(), time=time_display))
 
         return ', '.join(slots_human)
 
