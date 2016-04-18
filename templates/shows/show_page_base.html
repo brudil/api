@@ -33,7 +33,7 @@
           <li class="show-nav__item">
             <a href="{{ show.url }}">About</a>
           </li>
-          {% for child in show.get_children %}
+          {% for child in show.get_children.live %}
             <li class="show-nav__item">
               <a href="{{ child.url }}">{{ child.title }}</a>
             </li>
