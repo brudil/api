@@ -2,4 +2,8 @@
   --background: #f6f6f6;
   --header-grey: #4A4A4A;
   --ui-grey: #e6e6e6;
+
+
+  --show-tone-light: rgba(255, 255, 255, 1);
+  --show-tone-dark: rgba(0, 0, 0, 1);
 }

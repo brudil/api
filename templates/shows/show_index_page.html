@@ -12,7 +12,7 @@
 <ul class="shows-grid">
 
   {% for show in page.shows %}
-    <li class="shows-grid__item">
+    <li class="shows-grid__item shows-grid__item--tone-{{ show.tone_from_accent }}">
       <a class="shows-grid__anchor" href="{{ show.url }}" style="{{ show.generate_branding_style }}">
           {% if show.logo %}
             {% image show.logo width-400 as show_logo %}
