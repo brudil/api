@@ -11,6 +11,17 @@
       display: block;
       text-decoration: none;
       padding: 0.25rem 0;
+      color: #212121;
+    }
+
+    &--active {
+      & > a {
+        font-weight: 600;
+      }
+    }
+
+    &--active-child {
+      font-weight: 600;
     }
 
   }

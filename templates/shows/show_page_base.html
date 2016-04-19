@@ -30,30 +30,31 @@
     <div class="show-card">
       <div class="show-card__sidebar">
         <ul class="show-nav">
-          <li class="show-nav__item">
+          <li class="show-nav__item {% if page.url == show.url %} show-nav__item--active{% endif %}">
             <a href="{{ show.url }}">About</a>
           </li>
           {% for child in show.get_children.live %}
-            <li class="show-nav__item">
+            <li class="show-nav__item {% if page.url == child.url %} show-nav__item--active{% endif %}">
               <a href="{{ child.url }}">{{ child.title }}</a>
             </li>
           {% endfor %}
-
-          {% if show.twitter_handle %}
-            <li class="show-nav__item show-nav__social-twitter">
-              <a href="https://twitter.com/{{ show.twitter_handle }}">Follow the show</a>
-            </li>
-          {% endif %}
-
-          {% if show.facebook_url %}
-          <li class="show-nav__item show-nav__social-facebook">
-            <a href="{{ show.facebook_url }}">Like the show</a>
-          </li>
-          {% endif %}
-
-
-
         </ul>
+
+          {% if show.twitter_handle or show.facebook_url %}
+            <ul class="show-nav">
+              {% if show.twitter_handle %}
+                <li class="show-nav__item show-nav__social-twitter">
+                  <a href="https://twitter.com/{{ show.twitter_handle }}">Follow the show</a>
+                </li>
+              {% endif %}
+
+              {% if show.facebook_url %}
+              <li class="show-nav__item show-nav__social-facebook">
+                <a href="{{ show.facebook_url }}">Like the show</a>
+              </li>
+              {% endif %}
+            </ul>
+          {% endif %}
       </div>
       <div class="show-card__content">
           {% block card_content %}{% endblock %}
