@@ -32,7 +32,32 @@ DAY_CHOICES = (
     (6, 'Sunday')
 )
 
-HOUR_CHOICES = tuple((hour, '{}{}'.format(hour % 12, 'am' if hour < 12 else 'pm')) for hour in range(24))
+HOUR_CHOICES = (
+    (0, '12 midnight'),
+    (1, '1am'),
+    (2, '2am'),
+    (3, '3am'),
+    (4, '4am'),
+    (5, '5am'),
+    (6, '6am'),
+    (7, '7am'),
+    (8, '8am'),
+    (9, '9am'),
+    (10, '10am'),
+    (11, '11am'),
+    (12, '12pm'),
+    (13, '1pm'),
+    (14, '2pm'),
+    (15, '3pm'),
+    (16, '4pm'),
+    (17, '5pm'),
+    (18, '6pm'),
+    (19, '7pm'),
+    (20, '8pm'),
+    (21, '9pm'),
+    (22, '10pm'),
+    (23, '11pm'),
+)
 
 MINUTES_CHOICES = (
     (0, '0'),
@@ -128,16 +153,23 @@ class ShowPage(Page):
         slots_human = []
 
         for slot in slots:
-            time_display = slot.day
+            time_display = '{hour}{mins}{period}'.format(
+                hour=slot.hour % 12,
+                mins=':{}'.format((0, 15, 30, 45)[slot.minutes]) if slot.minutes != 0 else '',
+                period='am' if slot.hour < 12 else 'pm'
+            )
             relative = ((slot.day - datetime.now().weekday()) + 7) % 7
             relative_word = 'Every'
-            print(relative)
             if relative == 0:
                 relative_word = 'Today, and every'
             elif relative == 1:
                 relative_word = 'Tomorrow, and every'
 
-            slots_human.append('{} {day} at {time}'.format(relative_word, day=slot.get_day_display(), time=time_display))
+            slots_human.append('{} {day}{relative_coma} at {time}'.format(
+                relative_word,
+                day=slot.get_day_display(),
+                relative_coma=',' if relative == 1 or relative == 0 else '',
+                time=time_display))
 
         return ', '.join(slots_human)
 
