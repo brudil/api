@@ -17,6 +17,7 @@
 
   <body class="core {% block body_class %}{% endblock %}">
     {% wagtailuserbar %}
+    {% include 'global-announcement.html' %}
     {% include 'header.html' %}
 
     {% block bespoke_content %}

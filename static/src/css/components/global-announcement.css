@@ -1,0 +1,18 @@
+.global-announcement {
+  padding: 0.5rem;
+  background-color: #2e9a7f;
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+  display: none;
+  font-size: 1.4rem;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  box-sizing: border-box;
+  z-index: 100;
+
+  &--visible {
+    display: block;
+  }
+}

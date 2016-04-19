@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'apps.home',
     'apps.search',
     'apps.shows',
+    'apps.globalannouncement',
 
     'wagtail.wagtailforms',
     'wagtail.wagtailredirects',
