@@ -62,13 +62,34 @@ class ShowSlot(Slot):
     page = ParentalKey('ShowPage', related_name='slots')
 
 
+class ShowIndexPage(Page):
+    class Meta:
+        verbose_name = "Show Listings"
+
+    intro = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('intro', classname="full")
+    ]
+
+    subpage_types = ['shows.ShowPage']
+
+    def shows(self):
+        return ShowPage.objects.all()
+
+
 class ShowPage(Page):
     class Meta:
         verbose_name = 'Show'
         description = 'A show microsite'
 
-    description = RichTextField()
+    description = models.CharField(max_length=140, help_text='Describe the show in a tweet (140 characters)')
     accent_color = models.CharField(max_length=7, blank=True, null=True)
+
+    about_content = StreamField([
+        ('paragraph', blocks.RichTextBlock()),
+        ('image', ImageChooserBlock())
+    ])
 
     logo = models.ForeignKey(
         'wagtailimages.Image',
@@ -82,7 +103,8 @@ class ShowPage(Page):
     twitter_handle = models.TextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('description', classname="full")
+        FieldPanel('description', classname="full"),
+        StreamFieldPanel('about_content')
     ]
 
     promote_panels = [
@@ -138,23 +160,6 @@ class ShowPage(Page):
         return 'dark' if dark_tone else 'light'
 
 
-class ShowAudioSeriesEpisodePage(Page):
-    class Meta:
-        verbose_name = "Show Audio Series Episode"
-
-    description = RichTextField()
-
-    content_panels = Page.content_panels + [
-        FieldPanel('description', classname="full")
-    ]
-
-    promote_panels = [
-        MultiFieldPanel(Page.promote_panels, "Common page configuration")
-    ]
-
-    parent_page_types = ['shows.ShowAudioSeriesIndexPage']
-
-
 class ShowContentPage(Page):
     body = StreamField([
         ('heading', blocks.CharBlock(classname="full title")),
@@ -176,26 +181,31 @@ class ShowAudioSeriesIndexPage(SingletonPage, Page):
         verbose_name = 'Show Audio Series Listing'
         description = 'A chronological list of audio files; for podcasts or previous episodes'
 
+    is_podcast = models.BooleanField(default=False)
+
     content_panels = Page.content_panels + [
-        ]
+    ]
+
+    settings_panels = Page.settings_panels + [
+        FieldPanel('is_podcast')
+    ]
 
     subpage_types = ['shows.ShowAudioSeriesEpisodePage']
 
-    def shows(self):
-        return ShowPage.objects.all()
 
-
-class ShowIndexPage(Page):
+class ShowAudioSeriesEpisodePage(Page):
     class Meta:
-        verbose_name = "Show Listings"
+        verbose_name = "Show Audio Series Episode"
 
-    intro = RichTextField(blank=True)
+    description = RichTextField()
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
+        FieldPanel('description', classname="full")
     ]
 
-    subpage_types = ['shows.ShowPage']
+    promote_panels = [
+        MultiFieldPanel(Page.promote_panels, "Common page configuration")
+    ]
 
-    def shows(self):
-        return ShowPage.objects.all()
+    parent_page_types = ['shows.ShowAudioSeriesIndexPage']
+
