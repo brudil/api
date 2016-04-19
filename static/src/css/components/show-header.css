@@ -2,6 +2,11 @@
   display: flex;
   padding-top: 1.5rem;
   padding-bottom: 1rem;
+  flex-direction: column;
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+  }
 
   &--tone-dark {
     color: var(--show-tone-dark);
@@ -20,11 +25,15 @@
   }
 
   &__title {
-    width: 200px;
     margin-top: 0;
     margin-bottom: 0;
+    text-align: center;
 
-    & > a {
+    @media screen and (min-width: 600px) {
+      text-align: left;
+      width: 200px;
+    }
+      & > a {
       text-decoration: none;
     }
   }
@@ -43,9 +52,12 @@
   &__short-description {
     margin-bottom: 0.5rem;
     padding-top: 0.25rem;
-    padding-right: 20%;
     font-weight: 500;
     font-size: 1.3rem;
+
+    @media screen and (min-width: 600px) {
+      padding-right: 20%;
+    }
 
     & p {
       margin: 0;

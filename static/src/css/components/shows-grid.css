@@ -6,8 +6,16 @@
   list-style: none;
 
   &__item {
-    lost-column: 1/3;
+    lost-column: 1/1;
     margin-bottom: 1.5rem;
+
+    @media screen and (min-width: 560px) {
+      lost-column: 1/2;
+    }
+
+    @media screen and (min-width: 800px) {
+      lost-column: 1/3;
+    }
   }
 
   &__anchor {
@@ -34,6 +42,7 @@
     flex: 1;
     margin: 0;
     text-align: center;
+    font-size: 1.6rem;
   }
 }
 
