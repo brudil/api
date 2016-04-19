@@ -11,18 +11,28 @@
 
 <ul class="shows-grid">
 
-  {% for show in page.shows %}
-    <li class="shows-grid__item shows-grid__item--tone-{{ show.tone_from_accent }}">
-      <a class="shows-grid__anchor" href="{{ show.url }}" style="{{ show.generate_branding_style }}">
-          {% if show.logo %}
-            {% image show.logo width-400 as show_logo %}
-            <img class="shows-grid__logo" src="{{ show_logo.url }}" alt="{{ show.title }}">
-          {% else %}
-            <h1 class="shows-grid__title">{{ show.title }}</h1>
-          {% endif %}
-      </a>
+  {% regroup page.shows.live by name_group as letter_list %}
+
+  {% for group in letter_list %}
+    <li class="shows-grid__group">
+      <h2>{{ group.grouper }}</h2>
+      <ul class="shows-grid__grid">
+        {% for show in group.list %}
+          <li class="shows-grid__item shows-grid__item--tone-{{ show.tone_from_accent }}">
+            <a class="shows-grid__anchor" href="{{ show.url }}" style="{{ show.generate_branding_style }}">
+              {% if show.logo %}
+              {% image show.logo width-400 as show_logo %}
+              <img class="shows-grid__logo" src="{{ show_logo.url }}" alt="{{ show.title }}">
+              {% else %}
+              <h1 class="shows-grid__title">{{ show.title }}</h1>
+              {% endif %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </li>
   {% endfor %}
+
 </ul>
 
 {% endblock %}

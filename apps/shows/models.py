@@ -191,6 +191,9 @@ class ShowPage(Page):
         dark_tone = dark_tone_from_accent(self.accent_color[1:])
         return 'dark' if dark_tone else 'light'
 
+    def name_group(self):
+        return self.title and self.title[0] or ''
+
 
 class ShowContentPage(Page):
     body = StreamField([
