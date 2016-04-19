@@ -5,8 +5,8 @@
   }
 
   &__slide {
-    height: 280px;
     width: 100%;
+    height: 280px;
   }
 
   &__navigation {

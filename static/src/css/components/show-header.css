@@ -41,11 +41,11 @@
   }
 
   &__short-description {
+    margin-bottom: 0.5rem;
+    padding-top: 0.25rem;
+    padding-right: 20%;
     font-weight: 500;
     font-size: 1.3rem;
-    padding-top: 0.25rem;
-    margin-bottom: 0.5rem;
-    padding-right: 20%;
 
     & p {
       margin: 0;

@@ -11,15 +11,15 @@
   }
 
   &__anchor {
+    display: flex;
     width: 100%;
     height: 120px;
+    flex-direction: row;
+    padding: 0.3rem;
     background-color: #ffffff;
     box-shadow: 0 1px 2px 0 rgba(30, 30, 30, 0.2);
     box-sizing: border-box;
-    padding: 0.3rem;
     text-decoration: none;
-    display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
   }
@@ -31,16 +31,16 @@
   }
 
   &__title {
+    flex: 1;
     margin: 0;
     text-align: center;
-    flex: 1;
   }
 }
 
 .shows-grid__item--tone-dark .shows-grid__anchor {
-  color: var(--show-tone-dark)
+  color: var(--show-tone-dark);
 }
 
 .shows-grid__item--tone-light .shows-grid__anchor {
-  color: var(--show-tone-light)
+  color: var(--show-tone-light);
 }

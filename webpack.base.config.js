@@ -5,6 +5,7 @@ var _ = require('lodash');
 
 var NODE_ENV = process.env.NODE_ENV;
 var postcssImport = require('postcss-import');
+var styleLintPlugin = require('stylelint-webpack-plugin');
 
 var env = {
   production: NODE_ENV === 'production',
@@ -44,6 +45,9 @@ module.exports = {
       __STAGING__: env.staging,
       __PRODUCTION__: env.production,
       __CURRENT_ENV__: '\'' + (NODE_ENV) + '\''
+    }),
+    new styleLintPlugin({
+      files: 'static/src/**/*.css'
     })
   ],
 

@@ -1,15 +1,15 @@
 .footer {
-  background: #2F0E07;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  background: #2f0e07;
   color: #ffffff;
 
   &__logo {
     display: block;
     position: absolute;
-    left: -136px;
     width: 136px;
     height: 136px;
+    left: -136px;
     background-image: url('../img/logo.png');
     background-size: contain;
   }
