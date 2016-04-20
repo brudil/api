@@ -37,6 +37,11 @@
     text-decoration: none;
     align-items: center;
     justify-content: center;
+    transition: transform 300ms ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   &__logo {
