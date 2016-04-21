@@ -7,6 +7,7 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
 from apps.search import views as search_views
+from apps.player import urls as player_urls
 
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
+    url(r'^player/', include(player_urls)),
 
     url(r'^search/$', search_views.search, name='search'),
 

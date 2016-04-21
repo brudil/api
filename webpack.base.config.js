@@ -21,13 +21,16 @@ _.assign(env, {
 module.exports = {
   target: 'web',
 
-  entry: './static/src/entry.js',
+  entry: {
+    main: './static/src/entry.js',
+    player: './static/src/js/player/index.js'
+  },
 
   output: {
     path: path.join(__dirname, '/build'),
     pathInfo: true,
     publicPath: 'http://localhost:8080/build/',
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
 
   resolve: {

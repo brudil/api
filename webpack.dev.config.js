@@ -2,11 +2,18 @@ var webpack = require('webpack');
 var config = require('./webpack.base.config.js');
 
 if (process.env.NODE_ENV !== 'test') {
-  config.entry = [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    config.entry
-  ];
+  config.entry = {
+    main: [
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      config.entry.main
+    ],
+    player: [
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      config.entry.player
+    ]
+};
 }
 
 config.devtool = 'eval-source-map';
