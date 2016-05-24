@@ -7,7 +7,7 @@ module.exports = {
         "color-no-invalid-hex": true,
 
         // font family
-        "font-family-name-quotes": "single-unless-keyword",
+        "font-family-name-quotes": "always-unless-keyword",
 
         // font weight
         "font-weight-notation": "numeric",
@@ -17,10 +17,10 @@ module.exports = {
         "function-comma-space-after": "always",
         "function-comma-space-before": "never",
         "function-max-empty-lines": 0,
-        // "function-name-case": "lower",
+        "function-name-case": "lower",
         "function-parentheses-newline-inside": "always-multi-line",
         "function-parentheses-space-inside": "never",
-        "function-url-quotes": "single",
+        "function-url-quotes": "always",
         "function-whitespace-after": "always",
 
         // number
@@ -37,14 +37,14 @@ module.exports = {
         "time-no-imperceptible": true,
 
         // unit
-        // "unit-case": "lower",
+        "unit-case": "lower",
         "unit-no-unknown": true,
 
         // value
         "value-no-vendor-prefix": true,
 
         // value list
-        // "value-keyword-case": "lower",
+        "value-keyword-case": "lower",
         "value-list-comma-newline-before": "never-multi-line",
         "value-list-comma-space-after": "always",
         "value-list-comma-space-before": "never",
@@ -52,7 +52,7 @@ module.exports = {
         "custom-property-no-outside-root": true,
 
         // property
-        // "property-case": "lower",
+        "property-case": "lower",
         "property-no-vendor-prefix": true,
 
         // declaration
