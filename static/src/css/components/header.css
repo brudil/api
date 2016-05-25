@@ -1,7 +1,15 @@
 .header {
   background: #ffffff;
-  box-shadow: 0 0 3px 0 rgba(30, 30, 30, 0.6);
+  /* box-shadow: 0 0 3px 0 rgba(30, 30, 30, 0.6); */
   position: relative;
+
+  &__container {
+    display: flex;
+  }
+
+  &__nav {
+    flex: auto;
+  }
 
   &__logo {
     display: block;
