@@ -23,3 +23,8 @@
 
 @import 'components/slider.css';
 @import 'components/feature-slider.css';
+
+/* schedule */
+@import 'components/ScheduleRow.css';
+@import 'components/ScheduleSlot.css';
+@import 'components/ScheduleTimeline.css';

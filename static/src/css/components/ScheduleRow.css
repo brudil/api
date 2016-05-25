@@ -1,0 +1,10 @@
+.ScheduleRow {
+  overflow-x: scroll;
+
+  &__inner {
+    width: 4800px;
+  }
+
+  &__slots {
+  }
+}

@@ -7,6 +7,7 @@ from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
 from apps.search import views as search_views
+from apps.schedule import views as schedule_views
 from apps.player import urls as player_urls
 
 
@@ -17,6 +18,8 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^player/', include(player_urls)),
 
+    url(r'^schedule/$', schedule_views.schedule, name='schedule'),
+    url(r'^api/schedule$', schedule_views.api_schedule, name='api_schedule'),
     url(r'^search/$', search_views.search, name='search'),
 
     url(r'', include(wagtail_urls)),
