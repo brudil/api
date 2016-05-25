@@ -2,23 +2,16 @@ from datetime import datetime
 
 from apps.server.models import SingletonPage
 from apps.shows.utils import dark_tone_from_accent
-from django.conf.urls import url
 from django.db import models
 from django import forms
-
-from django.shortcuts import render
-from django.template.response import TemplateResponse
-
+from django.utils.dateformat import TimeFormat
 from modelcluster.fields import ParentalKey
-from wagtail.contrib.wagtailroutablepage.models import RoutablePageMixin, route
 from wagtail.wagtailcore import blocks
-
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
-from wagtail.wagtailsearch import index
 import django.db.models.options as options
 options.DEFAULT_NAMES = options.DEFAULT_NAMES + ('description',)
 
@@ -32,55 +25,16 @@ DAY_CHOICES = (
     (6, 'Sunday')
 )
 
-HOUR_CHOICES = (
-    (0, '12 midnight'),
-    (1, '1am'),
-    (2, '2am'),
-    (3, '3am'),
-    (4, '4am'),
-    (5, '5am'),
-    (6, '6am'),
-    (7, '7am'),
-    (8, '8am'),
-    (9, '9am'),
-    (10, '10am'),
-    (11, '11am'),
-    (12, '12pm'),
-    (13, '1pm'),
-    (14, '2pm'),
-    (15, '3pm'),
-    (16, '4pm'),
-    (17, '5pm'),
-    (18, '6pm'),
-    (19, '7pm'),
-    (20, '8pm'),
-    (21, '9pm'),
-    (22, '10pm'),
-    (23, '11pm'),
-)
-
-MINUTES_CHOICES = (
-    (0, '0'),
-    (1, '15'),
-    (2, '30'),
-    (3, '45')
-)
-
-LENGTH_CHOICES = (
-    (0, '15 mins'),
-    (1, '30 mins'),
-    (2, '45 mins'),
-    (3, '1 hour'),
-    (4, '90 mins'),
-    (5, '2 hours'),
-)
-
 
 class Slot(models.Model):
     day = models.SmallIntegerField(choices=DAY_CHOICES)
-    hour = models.SmallIntegerField(choices=HOUR_CHOICES)
-    minutes = models.SmallIntegerField(choices=MINUTES_CHOICES)
-    length = models.SmallIntegerField(choices=LENGTH_CHOICES)
+    from_time = models.TimeField(null=False)
+    to_time = models.TimeField(null=False)
+
+    def clean(self):
+        if self.from_time >= self.to_time:
+            pass
+            # raise ValidationError('Show slot can not exist in negative time')
 
 
 class ShowSlot(Slot):
@@ -153,11 +107,7 @@ class ShowPage(Page):
         slots_human = []
 
         for slot in slots:
-            time_display = '{hour}{mins}{period}'.format(
-                hour=slot.hour % 12,
-                mins=':{}'.format((0, 15, 30, 45)[slot.minutes]) if slot.minutes != 0 else '',
-                period='am' if slot.hour < 12 else 'pm'
-            )
+            time_display = TimeFormat(slot.from_time).format('g:i a')
             relative = ((slot.day - datetime.now().weekday()) + 7) % 7
             relative_word = 'Every'
             if relative == 0:
