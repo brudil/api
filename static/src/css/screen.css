@@ -26,6 +26,7 @@
 @import 'components/feature-slider.css';
 
 /* schedule */
+@import 'components/Schedule.css';
 @import 'components/ScheduleRow.css';
 @import 'components/ScheduleSlot.css';
 @import 'components/ScheduleTimeline.css';

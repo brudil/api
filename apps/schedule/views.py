@@ -1,9 +1,12 @@
 import datetime
+from collections import namedtuple
 
 from django.shortcuts import render
 from django.http import JsonResponse
 from apps.shows.models import ShowSlot
 
+
+AutomationSlot = namedtuple('AutomationSlot', ['day', 'from_time', 'to_time'])
 
 def schedule(request):
     return render(request, 'schedule/schedule.html')
@@ -14,12 +17,22 @@ def serialize_slot(slot):
     from_time = datetime.datetime.combine(now, slot.from_time)
     to_time = datetime.datetime.combine(now, slot.to_time)
 
-    return {
-        'id': slot.pk,
+    serial = {
+        'type': 'LST',
+        'day': slot.day,
+        'sort_key': slot_sort(slot),
         'from_time': from_time.isoformat(),
         'to_time': to_time.isoformat(),
-        'show': slot.page.pk
+        'is_overnight': to_time < from_time,
+        'duration': (to_time - from_time).seconds / 60,
     }
+
+    if isinstance(slot, ShowSlot):
+        serial['type'] = 'AU'
+        serial['show'] = slot.page.pk
+        serial['id'] = slot.pk
+
+    return serial
 
 
 def serialize_show(show):
@@ -32,18 +45,31 @@ def serialize_show(show):
     }
 
 
+def slot_sort(slot):
+    return (slot.day + 1) * 100 + slot.from_time.hour + (slot.from_time.minute / 100.0)
+
+
 def api_schedule(request):
     data = {
-        'slots': {},
+        'slots': [],
         'shows': {}
     }
 
     all_slots = ShowSlot.objects.all()
 
-    for slot in all_slots:
-        if slot.day not in data['slots']:
-            data['slots'][slot.day] = []
-        data['slots'][slot.day].append(serialize_slot(slot))
+    sorted_by_time = sorted(all_slots, key=slot_sort)
+
+    previous_slot_to_time = datetime.time(hour=0, minute=0)
+    previous_slot_day = 0
+    for slot in sorted_by_time:
+        if previous_slot_to_time != slot.from_time:
+            print('adding automation slot')
+            data['slots'].append(serialize_slot(AutomationSlot(from_time=previous_slot_to_time, to_time=slot.from_time, day=previous_slot_day)))
+
+        data['slots'].append(serialize_slot(slot))
+
+        previous_slot_day = slot.day
+        previous_slot_to_time = slot.to_time
         data['shows'][slot.page.pk] = serialize_show(slot.page)
 
     return JsonResponse(data)

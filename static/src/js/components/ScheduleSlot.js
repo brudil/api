@@ -1,4 +1,6 @@
 import React from 'react';
+import moment from 'moment';
+import cx from 'classnames';
 
 export default function ScheduleSlot(props) {
   const slot = props.slot;
@@ -12,11 +14,15 @@ export default function ScheduleSlot(props) {
   }
 
   const time_format = 'h:mma';
+  const momentFrom = moment(slot.from_time),
+    momentTo = moment(slot.to_time);
+
+  let continued = slot.is_overnight ? (props.index === 0 ? 'continued' : 'continues') : null;
 
   return (
-    <div className="ScheduleSlot" style={{width: props.calculateWidth(slot.duration)}}>
+    <div className={cx('ScheduleSlot', {'ScheduleSlot--overnight': slot.is_overnight})} style={{width: props.calculateWidth(slot.duration)}}>
       <a className="ScheduleSlot__inner" style={{backgroundColor: show.accent}} href={show.page_url}>
-        <div className="ScheduleSlot__time">{slot.from_time.format(time_format)}-{slot.to_time.format(time_format)}</div>
+        <div className="ScheduleSlot__time">{}{momentFrom.format(time_format)} - {momentTo.format(time_format)}</div>
         <div className="ScheduleSlot__title">
           {show.title}
         </div>

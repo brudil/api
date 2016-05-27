@@ -5,6 +5,7 @@
   position: relative;
   border-right: 1px solid white;
   opacity: 0.9;
+  height: 85px;
 
   &--active {
     opacity: 1;
@@ -26,6 +27,6 @@
   }
 
   &__time {
-
+    font-size: 0.9em;
   }
 }

@@ -1,0 +1,7 @@
+.Schedule {
+  overflow-x: scroll;
+
+  &__scroll {
+    width: 3600px;
+  }
+}
