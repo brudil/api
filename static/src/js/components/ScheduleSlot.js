@@ -17,12 +17,14 @@ export default function ScheduleSlot(props) {
   const momentFrom = moment(slot.from_time),
     momentTo = moment(slot.to_time);
 
-  let continued = slot.is_overnight ? (props.index === 0 ? 'continued' : 'continues') : null;
+  const fromText = slot.is_overnight && props.index === 0 ? 'continued' : momentFrom.format(time_format);
+  const toText = slot.is_overnight && props.index !== 0 ? 'continues' : momentTo.format(time_format);
+  let times = `${fromText} - ${toText}`;
 
   return (
     <div className={cx('ScheduleSlot', {'ScheduleSlot--overnight': slot.is_overnight})} style={{width: props.calculateWidth(slot.duration)}}>
       <a className="ScheduleSlot__inner" style={{backgroundColor: show.accent}} href={show.page_url}>
-        <div className="ScheduleSlot__time">{}{momentFrom.format(time_format)} - {momentTo.format(time_format)}</div>
+        <div className="ScheduleSlot__time">{times}</div>
         <div className="ScheduleSlot__title">
           {show.title}
         </div>
