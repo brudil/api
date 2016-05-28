@@ -1,55 +1,51 @@
 import React from 'react';
-import Moment from 'moment';
+import moment from 'moment';
 import ScheduleSlot from './ScheduleSlot';
-import ScheduleTimeline from './ScheduleTimeline';
 
-function formatSlot(slot) {
-  const duration = Moment.duration(slot.to_time.diff(slot.from_time)).asMinutes();
-  return {
-    from_time: slot.from_time,
-    to_time: slot.to_time,
-    duration: duration,
-    durationAsRelative: duration / (24 * 60),
-    isGap: !slot.hasOwnProperty('show'),
-    show: slot.show,
-    id: slot.id
-  }
-}
+function DayRowSchedule(props) {
+  const { shows, slots, calculateWidth, title } = props;
 
-export default class DayRowSchedule extends React.Component {
-
-  componentDidMount() {
-    const container = this.refs.container;
-
-    if (container) {
-      container.scrollLeft = 200;
-    }
+  if (slots === undefined) {
+    return (<div>Nothing is scheduled.</div>);
   }
 
-  render() {
-    const {shows, slots, calculateWidth, title} = this.props;
+  //const isOnAir = props.day
 
-    if (slots === undefined) {
-      return (<div>Nothing is scheduled.</div>)
-    }
-
-    return (
-      <div className="ScheduleRow" ref="container">
-        <div className="ScheduleRow__title">
-          <div className="ScheduleRow__title-inner">
-            {title}
-          </div>
-        </div>
-        <div className="ScheduleRow__inner">
-          <div className="ScheduleRow__slots">
-            {slots.map((slot, index) => {
-              const timeKey = `${Moment(slot.from_time).format('hh:mm')}:${Moment(slot.to_time).format('hh:mm')}`;
-              return (
-                <ScheduleSlot key={timeKey} slot={slot} shows={shows} index={index} calculateWidth={calculateWidth}/>);
-            })}
-          </div>
+  return (
+    <div className="ScheduleRow">
+      <div className="ScheduleRow__title">
+        <div className="ScheduleRow__title-inner">
+          {title}
         </div>
       </div>
-    );
-  }
+      <div className="ScheduleRow__inner">
+        <div className="ScheduleRow__slots">
+          {slots.map((slot, index) => {
+            const fromTimeFormatted = moment(slot.from_time).format('hh:mm');
+            const toTimeFormatted = moment(slot.to_time).format('hh:mm');
+            const timeKey = `${fromTimeFormatted}:${toTimeFormatted}`;
+            return (
+              <ScheduleSlot
+                key={timeKey}
+                slot={slot}
+                shows={shows}
+                index={index}
+                onAir={isOnAir}
+                calculateWidth={calculateWidth}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
+
+DayRowSchedule.propTypes = {
+  calculateWidth: React.PropTypes.func.isRequired,
+  title: React.PropTypes.string.isRequired,
+  slots: React.PropTypes.array.isRequired,
+  shows: React.PropTypes.object.isRequired,
+};
+
+export default DayRowSchedule;

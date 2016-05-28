@@ -3,8 +3,8 @@ from collections import namedtuple
 
 from django.shortcuts import render
 from django.http import JsonResponse
-from apps.shows.models import ShowSlot
-
+from apps.shows.models import ShowSlot, ShowPage
+from wagtail.wagtailcore.models import Page
 
 AutomationSlot = namedtuple('AutomationSlot', ['day', 'from_time', 'to_time'])
 
@@ -12,13 +12,12 @@ def schedule(request):
     return render(request, 'schedule/schedule.html')
 
 
-def serialize_slot(slot):
+def serialize_slot(slot, automation_page):
     now = datetime.datetime.now()
     from_time = datetime.datetime.combine(now, slot.from_time)
     to_time = datetime.datetime.combine(now, slot.to_time)
 
     serial = {
-        'type': 'LST',
         'day': slot.day,
         'sort_key': slot_sort(slot),
         'from_time': from_time.isoformat(),
@@ -28,9 +27,10 @@ def serialize_slot(slot):
     }
 
     if isinstance(slot, ShowSlot):
-        serial['type'] = 'AU'
         serial['show'] = slot.page.pk
         serial['id'] = slot.pk
+    else:
+        serial['show'] = automation_page.pk
 
     return serial
 
@@ -61,16 +61,26 @@ def api_schedule(request):
 
     previous_slot_to_time = datetime.time(hour=0, minute=0)
     previous_slot_day = 0
+    slots = []
     for slot in sorted_by_time:
         if previous_slot_to_time != slot.from_time:
             print('adding automation slot')
-            data['slots'].append(serialize_slot(AutomationSlot(from_time=previous_slot_to_time, to_time=slot.from_time, day=previous_slot_day)))
+            slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=slot.from_time, day=previous_slot_day))
 
-        data['slots'].append(serialize_slot(slot))
+        slots.append(slot)
 
         previous_slot_day = slot.day
         previous_slot_to_time = slot.to_time
         data['shows'][slot.page.pk] = serialize_show(slot.page)
+
+    first_slot = slots[0]
+    if previous_slot_to_time != first_slot.from_time:
+        slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=first_slot.from_time, day=previous_slot_day))
+
+    automation_page = ShowPage.objects.live().get(id=30)
+    data['shows'][automation_page.id] = serialize_show(automation_page)
+
+    data['slots'] = [serialize_slot(slot, automation_page=automation_page) for slot in slots]
 
     return JsonResponse(data)
 

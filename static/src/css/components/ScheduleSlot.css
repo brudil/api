@@ -5,7 +5,11 @@
   position: relative;
   border-right: 1px solid white;
   opacity: 0.9;
-  height: 85px;
+  height: 70px;
+
+  &--tone-light {
+    color: var(--show-tone-dark);
+  }
 
   &--active {
     opacity: 1;
@@ -16,7 +20,7 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     display: block;
     color: var(--show-tone-dark);
     text-decoration: none;
@@ -29,4 +33,22 @@
   &__time {
     font-size: 0.9em;
   }
+
+  &__time-item {
+    &--continuation {
+      opacity: 0.6;
+    }
+  }
+
+  &--on-air {
+    transform: scale(1.1);
+    z-index: 2000;
+    box-shadow: 0 0 20px rgba(60, 60, 60, 0.3);
+    position: relative;
+  }
+}
+
+
+.ScheduleSlot--tone-light .ScheduleSlot__inner {
+  color: var(--show-tone-light);
 }

@@ -5,17 +5,19 @@ import moment from 'moment';
 
 function chunkSlotsByDay(slots) {
   const days = [[], [], [], [], [], [], []];
-  for (let [index, slot] of slots.entries()) {
-
-
+  for (const slot of slots) {
     if (slot.is_overnight) {
-
       const midnight = moment().startOf('day').add(1, 'day');
       const slotDurationToMidnight = moment(slot.from_time);
       const diffMins = moment.duration(midnight.diff(slotDurationToMidnight)).asMinutes();
 
-      days[slot.day].push(Object.assign({}, slot, {duration: diffMins}));
-      days[slot.day + 1 % 6].push(Object.assign({}, slot, {duration: slot.duration - diffMins}));
+      days[slot.day].push(Object.assign({}, slot, { duration: diffMins }));
+
+      if (slot.day + 1 < 6) {
+        days[(slot.day + 1) % 6].push(
+          Object.assign({}, slot, { duration: slot.duration - diffMins })
+        );
+      }
     } else {
       days[slot.day].push(slot);
     }
@@ -24,35 +26,54 @@ function chunkSlotsByDay(slots) {
   return days;
 }
 
+class FullSchedule extends React.Component {
 
-export default function FullSchedule(props) {
+  componentDidUpdate() {
+    const container = this.refs.container;
 
-  if (!props.data) {
-    return <h2>Loading</h2>;
+    if (container) {
+      container.scrollLeft = 200;
+    }
   }
 
-  function calculateWidth(number) {
-    const width = 3600;
-    const totalMinutes = 24 * 60;
-    const widthPerMinute = width / totalMinutes;
-    return `${number * widthPerMinute}px`;
-  }
+  render() {
+    if (!this.props.data) {
+      return <h2>Loading</h2>;
+    }
 
-  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const slotsByDay = chunkSlotsByDay(props.data.slots);
-  console.log(slotsByDay);
-  return (
-    <div className="Schedule">
-      <div className="Schedule__scroll">
-        <ScheduleTimeline calculateWidth={calculateWidth}/>
-        {days.map((day, index) => {
-          return (
+    function calculateWidth(number) {
+      const width = 3600;
+      const totalMinutes = 24 * 60;
+      const widthPerMinute = width / totalMinutes;
+      return `${number * widthPerMinute}px`;
+    }
+
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const slotsByDay = chunkSlotsByDay(this.props.data.slots);
+    console.log(slotsByDay);
+    return (
+      <div className="Schedule" ref="container">
+        <div className="Schedule__scroll">
+          <ScheduleTimeline calculateWidth={calculateWidth} />
+          {days.map((day, index) => (
             <div className="Schedule__day-row" key={index}>
-              <ScheduleDayRow title={day} shows={props.data.shows} slots={slotsByDay[index]} calculateWidth={calculateWidth} />
+              <ScheduleDayRow
+                title={day}
+                shows={this.props.data.shows}
+                slots={slotsByDay[index]}
+                calculateWidth={calculateWidth}
+              />
             </div>
-          );
-        })}
+            )
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
+FullSchedule.propTypes = {
+  data: React.PropTypes.object,
+};
+
+export default FullSchedule;
