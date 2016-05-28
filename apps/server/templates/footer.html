@@ -1,45 +1,47 @@
 <footer class="footer">
-  <div class="container">
-    <a href="/">
-      <div class="header__logo"></div>
-    </a>
+  <div class="footer__container container">
+    <div class="footer__one">
+      <a href="/">
+        <div class="footer__logo"></div>
+      </a>
 
-    <div class="footer-nav">
-      <ul class="footer-nav__list">
-        <li class="footer-nav__item">
-          <a href="#">Shows</a>
-        </li>
-        <li class="footer-nav__item">
-          <a href="#">Schedule</a>
-        </li>
-        <li class="footer-nav__item">
-          <a href="#">Playlists</a>
-        </li>
-      </ul>
+      <div class="footer__nav footer-nav">
+        <ul class="footer-nav__list">
+          <li class="footer-nav__item">
+            <a href="#">Shows</a>
+          </li>
+          <li class="footer-nav__item">
+            <a href="#">Schedule</a>
+          </li>
+          <li class="footer-nav__item">
+            <a href="#">Playlists</a>
+          </li>
+        </ul>
 
-      <ul class="footer-nav__list">
-        <li class="footer-nav__item">
-          <a href="#">About us</a>
-        </li>
-        <li class="footer-nav__item">
-          <a href="#">Get involved</a>
-        </li>
-        <li class="footer-nav__item">
-          <a href="#">Contact</a>
-        </li>
-        <li class="footer-nav__item">
-          <a href="#">Terms of use</a>
-        </li>
-      </ul>
+        <ul class="footer-nav__list">
+          <li class="footer-nav__item">
+            <a href="#">About us</a>
+          </li>
+          <li class="footer-nav__item">
+            <a href="#">Get involved</a>
+          </li>
+          <li class="footer-nav__item">
+            <a href="#">Contact</a>
+          </li>
+          <li class="footer-nav__item">
+            <a href="#">Terms of use</a>
+          </li>
+        </ul>
 
-      <ul class="footer-nav__list">
-        <li class="footer-nav__item">
-          <a href="https://twitter.com/{{ settings.server.SocialMediaSettings.twitter_handle }}">Twitter</a>
-        </li>
-        <li class="footer-nav__item">
-          <a href="{{ settings.server.SocialMediaSettings.facebook }}">Facebook</a>
-        </li>
-      </ul>
+        <ul class="footer-nav__list">
+          <li class="footer-nav__item">
+            <a href="https://twitter.com/{{ settings.server.SocialMediaSettings.twitter_handle }}">Twitter</a>
+          </li>
+          <li class="footer-nav__item">
+            <a href="{{ settings.server.SocialMediaSettings.facebook }}">Facebook</a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="footer__copyright">© {% now "Y" %} University Radio Falmer</div>

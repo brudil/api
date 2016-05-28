@@ -4,14 +4,23 @@
   background: #2f0e07;
   color: #ffffff;
 
+  &__one {
+    display: flex;
+  }
+
   &__logo {
     display: block;
-    position: absolute;
-    width: 136px;
-    height: 136px;
-    left: -136px;
-    background-image: url('../img/logo.png');
+    width: 100px;
+    height: 50px;
+    background-image: url('../img/logotype.svg');
     background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 2rem;
+    margin-top: 10px;
+  }
+
+  &__nav {
+    flex: auto;
   }
 
   &__copyright {
