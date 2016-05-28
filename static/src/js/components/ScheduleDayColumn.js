@@ -1,8 +1,9 @@
 import React from 'react';
+import cx from 'classnames';
 
 function ScheduleDayColumn(props) {
   return (
-    <div className="ScheduleDayColumn">
+    <div className={cx('ScheduleDayColumn', props.className)}>
       {props.days.map(day => (
         <div className="ScheduleDayColumn__day" key={day}>
           {day}
@@ -14,8 +15,8 @@ function ScheduleDayColumn(props) {
 }
 
 ScheduleDayColumn.propTypes = {
-  calculateWidth: React.PropTypes.func.isRequired,
   days: React.PropTypes.array.isRequired,
+  className: React.PropTypes.string,
 };
 
 export default ScheduleDayColumn;
