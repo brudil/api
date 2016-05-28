@@ -3,6 +3,7 @@ import moment from 'moment';
 import ScheduleSlot from './ScheduleSlot';
 import momentInternal from '../hoc/MomentInterval';
 import cx from 'classnames';
+import { momentWeekDayMonday } from '../utils/schedule';
 
 function ScheduleDayRow(props) {
   const { shows, slots, calculateWidth } = props;
@@ -11,7 +12,7 @@ function ScheduleDayRow(props) {
     return (<div>Nothing is scheduled.</div>);
   }
 
-  const isToday = props.day === ((props.momentInterval.day() + 5) % 6);
+  const isToday = props.day === momentWeekDayMonday(props.momentInterval);
 
   return (
     <div className={cx('ScheduleRow', props.className)}>
@@ -23,8 +24,6 @@ function ScheduleDayRow(props) {
             const fromTimeFormatted = momentFrom.format('hh:mm');
             const toTimeFormatted = momentTo.format('hh:mm');
             const timeKey = `${fromTimeFormatted}:${toTimeFormatted}`;
-
-            console.log(props.day, ((props.momentInterval.day() + 5) % 6));
 
             return (
               <ScheduleSlot
