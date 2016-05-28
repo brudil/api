@@ -2,17 +2,16 @@ import React from 'react';
 import moment from 'moment';
 
 export default WrappedComponent => class LiveMinutesHigherOrder extends React.Component {
-
   constructor(x, y) {
     super(x, y);
 
     this.state = {
-      minutes: this.getMinutes()
-    }
+      minutes: this.getMinutes(),
+    };
   }
 
   componentDidMount() {
-    setInterval(() => this.setState({minutes: this.getMinutes()}), 60000);
+    setInterval(() => this.setState({ minutes: this.getMinutes() }), 10000);
   }
 
   getMinutes() {
@@ -23,6 +22,6 @@ export default WrappedComponent => class LiveMinutesHigherOrder extends React.Co
   }
 
   render() {
-    return <WrappedComponent minutes={this.state.minutes} {...this.props} />
+    return <WrappedComponent minutes={this.state.minutes} {...this.props} />;
   }
-}
+};

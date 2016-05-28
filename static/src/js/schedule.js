@@ -4,18 +4,16 @@ import FullSchedule from './components/FullSchedule';
 
 export default () => {
   const root = document.querySelector('#ScheduleFullRoot');
+
+  function render(data) {
+    ReactDom.render(<FullSchedule data={data} />, root);
+  }
+
   if (root) {
-
-    function render(data){
-      ReactDom.render(<FullSchedule data={data}/>, root);
-    }
-
     render();
 
     fetch('/api/schedule')
-      .then(data => {
-        return data.json();
-      })
+      .then(data => data.json())
       .then(json => render(json));
   }
-}
+};

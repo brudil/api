@@ -1,4 +1,4 @@
-import {lory} from 'lory.js';
+import { lory } from 'lory.js';
 
 export default () => {
   const slider = document.querySelector('.js_slider');
@@ -7,4 +7,4 @@ export default () => {
       infinite: 1,
     });
   }
-}
+};

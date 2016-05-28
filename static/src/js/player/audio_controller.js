@@ -10,17 +10,17 @@ export default class AudioController {
     this.element = document.body.appendChild(document.createElement('audio'));
     this.element.setAttribute('controls', 'true');
 
-    this.element.addEventListener('playing', data => {
+    this.element.addEventListener('playing', () => {
       this.isPlaying = true;
       this.update();
     });
 
-    this.element.addEventListener('pause', data => {
+    this.element.addEventListener('pause', () => {
       this.isPlaying = false;
       this.update();
     });
 
-    this.element.addEventListener('volumechange', data => {
+    this.element.addEventListener('volumechange', () => {
       this.volume = this.element.volume;
       this.update();
     });
@@ -47,7 +47,7 @@ export default class AudioController {
       this.update();
     });
   }
-  
+
   onChange(func) {
     this.update = func;
   }
@@ -59,7 +59,7 @@ export default class AudioController {
 
   toggleState() {
     if (this.isPlaying) {
-      this.element.pause()
+      this.element.pause();
     } else {
       this.element.play();
     }

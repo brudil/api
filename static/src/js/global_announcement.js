@@ -1,8 +1,11 @@
-
 export default () => {
-  const gaElement = document.querySelector('.global-announcement')
-
-  if (gaElement && localStorage.getItem(`ga:dismissed:${gaElement.getAttribute('data-dismiss-key')}`) != 1) {
-    gaElement.classList.add('global-announcement--visible')
+  const gaElement = document.querySelector('.global-announcement');
+  if (gaElement) {
+    const lsFlag = localStorage.getItem(
+      `ga:dismissed:${gaElement.getAttribute('data-dismiss-key')}`
+    );
+    if (lsFlag !== 1) {
+      gaElement.classList.add('global-announcement--visible');
+    }
   }
-}
+};

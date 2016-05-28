@@ -1,10 +1,14 @@
 import React from 'react';
 
-export default class PlayPauseButton extends React.Component {
-
-  render() {
-    return (
-      <button onClick={this.props.onToggle}>{ this.props.isPlaying ? 'Stop' : 'Play' }</button>
-    );
-  }
+function PlayPauseButton(props) {
+  return (
+    <button onClick={props.onToggle}>{props.isPlaying ? 'Stop' : 'Play'}</button>
+  );
 }
+
+PlayPauseButton.propTypes = {
+  onToggle: React.PropTypes.func.isRequired,
+  isPlaying: React.PropTypes.bool.isRequired,
+};
+
+export default PlayPauseButton;
