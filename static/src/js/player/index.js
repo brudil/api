@@ -1,4 +1,4 @@
-import styles from '../../css/player/screen.css';
+require('../../css/player/screen.css');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AudioControler from './audio_controller';
