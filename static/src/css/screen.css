@@ -28,5 +28,6 @@
 /* schedule */
 @import 'components/Schedule.css';
 @import 'components/ScheduleRow.css';
+@import 'components/ScheduleDayColumn.css';
 @import 'components/ScheduleSlot.css';
 @import 'components/ScheduleTimeline.css';

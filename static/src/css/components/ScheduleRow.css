@@ -2,28 +2,3 @@
   lost-utility: clearfix;
   margin-bottom: 1px;
 }
-
-.ScheduleRow__title {
-  position: absolute;
-  left: 2rem;
-  height: 1.6rem;
-  overflow: hidden;
-  opacity: 1;
-  margin-top: -1.6rem;
-}
-
-.ScheduleRow__title-inner {
-  background: #262626;
-  text-transform: uppercase;
-  color: #f4f4f4;
-  position: relative;
-  top: 1.6rem;
-  height: 1.6rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  transition: top 200ms ease;
-}
-
-.ScheduleRow:hover .ScheduleRow__title-inner {
-  top: 0;
-}

@@ -1,6 +1,7 @@
 .ScheduleTimeline {
   display: flex;
   position: relative;
+  height: 25px;
 
   &__hour {
     box-sizing: border-box;

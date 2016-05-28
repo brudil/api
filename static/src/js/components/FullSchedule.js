@@ -1,6 +1,7 @@
 import React from 'react';
 import ScheduleTimeline from './ScheduleTimeline';
 import ScheduleDayRow from './ScheduleDayRow';
+import ScheduleDayColumn from './ScheduleDayColumn';
 import moment from 'moment';
 
 function chunkSlotsByDay(slots) {
@@ -53,19 +54,23 @@ class FullSchedule extends React.Component {
     console.log(slotsByDay);
     return (
       <div className="Schedule" ref="container">
-        <div className="Schedule__scroll">
-          <ScheduleTimeline calculateWidth={calculateWidth} />
-          {days.map((day, index) => (
-            <div className="Schedule__day-row" key={index}>
-              <ScheduleDayRow
-                title={day}
-                shows={this.props.data.shows}
-                slots={slotsByDay[index]}
-                calculateWidth={calculateWidth}
-              />
-            </div>
-            )
-          )}
+        <ScheduleDayColumn className="Schedule__days" days={days} />
+        <div className="Schedule__scroll-container">
+          <div className="Schedule__scroll">
+            <ScheduleTimeline calculateWidth={calculateWidth} />
+            {days.map((day, index) => (
+              <div className="Schedule__day-row" key={index}>
+                <ScheduleDayRow
+                  title={day}
+                  day={index}
+                  shows={this.props.data.shows}
+                  slots={slotsByDay[index]}
+                  calculateWidth={calculateWidth}
+                />
+              </div>
+              )
+            )}
+          </div>
         </div>
       </div>
     );

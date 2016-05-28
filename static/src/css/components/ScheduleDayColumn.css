@@ -1,0 +1,12 @@
+.ScheduleDayColumn {
+  padding-top: 25px;
+
+  &__day {
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    border-right: 1px solid white;
+    height: 70px;
+    padding: 0.5rem;
+  }
+}

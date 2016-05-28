@@ -1,7 +1,15 @@
 .Schedule {
-  overflow-x: scroll;
+  display: flex;
+
+  &__days {
+    flex: auto;
+  }
 
   &__scroll {
     width: 3600px;
+  }
+
+  &__scroll-container {
+    overflow-x: scroll;
   }
 }
