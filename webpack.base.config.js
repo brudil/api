@@ -6,6 +6,7 @@ var _ = require('lodash');
 var NODE_ENV = process.env.NODE_ENV;
 var postcssImport = require('postcss-import');
 var styleLintPlugin = require('stylelint-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var env = {
   production: NODE_ENV === 'production',
@@ -51,13 +52,17 @@ module.exports = {
     }),
     new styleLintPlugin({
       files: 'static/src/**/*.css'
-    })
+    }),
+    new ExtractTextPlugin('[name].css')
   ],
 
   module: {
+    preLoaders: [
+      {test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/},
+    ],
     loaders: [
-      {test: /\.js$/, loaders: ['babel-loader', 'eslint-loader'], exclude: /node_modules/},
-      {test: /\.css/, loader: 'style-loader!css-loader!postcss-loader'},
+      {test: /\.js$/, loader: 'babel', exclude: /node_modules/},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')},
       {test: /\.svg|\.png$/, loader: 'file'}
     ],
 

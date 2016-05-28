@@ -22,8 +22,5 @@ config.plugins = config.plugins.concat([
   new webpack.NoErrorsPlugin()
 ]);
 
-config.module.loaders = config.module.loaders.concat([
-  {test: /\.js?$/, loaders: ['babel-loader'], exclude: /node_modules/}
-]);
 
 module.exports = config;

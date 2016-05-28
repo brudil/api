@@ -25,9 +25,6 @@ config.plugins = config.plugins.concat([
   })
 ]);
 
-config.module.loaders = config.module.loaders.concat([
-  {test: /\.js?$/, loaders: [ 'babel'], exclude: /node_modules/}
-]);
 
 module.exports = config;
 
