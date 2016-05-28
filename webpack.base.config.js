@@ -62,7 +62,9 @@ module.exports = {
     ],
     loaders: [
       {test: /\.js$/, loader: 'babel', exclude: /node_modules/},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader')},
+      {test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader', {
+        publicPath: '/build/',
+      })},
       {test: /\.svg|\.png$/, loader: 'file'}
     ],
 
