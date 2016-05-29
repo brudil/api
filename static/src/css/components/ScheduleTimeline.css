@@ -1,18 +1,18 @@
 .ScheduleTimeline {
   display: flex;
-  position: relative;
   height: 25px;
+  position: relative;
 
   &__hour {
     box-sizing: border-box;
-    color: gray;
-    border-left: 1px solid lightgrey;
     padding-left: 0.5rem;
+    color: #848484;
+    border-left: 1px solid #d1d1d1;
   }
 
   &__bookmark {
-    border-left: 1px solid red;
     height: 20px;
     position: absolute;
+    border-left: 1px solid #ff3d35;
   }
 }

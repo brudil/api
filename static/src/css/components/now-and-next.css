@@ -1,9 +1,9 @@
 .now-and-next {
-  background-color: #f04c37;
-  color: #ffffff;
   display: block;
   padding-left: 1rem;
   padding-right: 1rem;
+  background-color: #f04c37;
+  color: #ffffff;
   text-decoration: none;
 
   &__heading {
