@@ -1,0 +1,14 @@
+.content {
+
+  &__title {
+    text-align: center;
+  }
+
+  &__body {
+    max-width: 46rem;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6em;
+    -webkit-font-smoothing: antialiased;
+  }
+}

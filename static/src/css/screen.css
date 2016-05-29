@@ -10,6 +10,8 @@
 @import 'components/body.css';
 @import 'components/container.css';
 
+@import 'components/content.css';
+
 @import 'components/header.css';
 @import 'components/header-nav.css';
 @import 'components/now-and-next.css';
