@@ -4,7 +4,12 @@ import ScheduleDayRow from './ScheduleDayRow';
 import ScheduleDayColumn from './ScheduleDayColumn';
 import Spinner from './Spinner';
 import moment from 'moment';
-import { chunkSlotsByDay, calculateWidth, getOnAirSlot } from '../utils/schedule';
+import {
+  chunkSlotsByDay,
+  calculateWidth,
+  getOnAirSlot,
+  momentWeekDayMonday,
+} from '../utils/schedule';
 
 class FullSchedule extends React.Component {
 
@@ -13,6 +18,13 @@ class FullSchedule extends React.Component {
 
     if (container && container.scrollLeft === 0) {
       const onAirSlot = getOnAirSlot(this.props.data.slots);
+      const slotStartedToday = onAirSlot.day === momentWeekDayMonday(moment());
+
+      if (onAirSlot.is_overnight && !slotStartedToday) {
+        container.scrollLeft = 0;
+        return;
+      }
+
       const onAirStartTime = moment(onAirSlot.from_time);
       const startOfDay = moment().startOf('day');
       const duration = moment.duration(onAirStartTime.diff(startOfDay)).asMinutes();

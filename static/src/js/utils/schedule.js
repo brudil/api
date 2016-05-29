@@ -36,18 +36,46 @@ export function calculateWidth(number, includeUnit = true) {
 }
 
 export function momentWeekDayMonday(momentObject) {
-  return ((momentObject.day() + 5) % 6);
+  const shiftedDates = [6, 5, 4, 3, 2, 1, 0];
+  return shiftedDates[momentObject.day()];
 }
 
 export function getOnAirSlot(slots) {
   const byDay = chunkSlotsByDay(slots);
   const todaySlots = byDay[momentWeekDayMonday(moment())];
+  console.log(todaySlots);
+  for (const [index, slot] of todaySlots.entries()) {
+    const fromTime = moment(slot.from_time);
+    const toTime = moment(slot.to_time);
 
-  for (const slot of todaySlots) {
-    if (moment().isBetween(moment(slot.from_time), moment(slot.to_time))) {
+    if (slot.is_overnight && index === 0) {
+      fromTime.subtract(1, 'days');
+    }
+
+    if (slot.is_overnight && index === todaySlots.length - 1) {
+      toTime.add(1, 'days');
+    }
+
+    if (moment().isBetween(fromTime, toTime)) {
       return slot;
     }
   }
 
   return null;
+}
+
+
+export function slotIsOnAt(slot, momentObject, listPosition) {
+  const fromTime = moment(slot.from_time);
+  const toTime = moment(slot.to_time);
+
+  if (slot.is_overnight && listPosition === 0) {
+    fromTime.subtract(1, 'days');
+  }
+
+  if (slot.is_overnight && listPosition === 1) {
+    toTime.add(1, 'days');
+  }
+
+  return momentObject.isBetween(fromTime, toTime);
 }

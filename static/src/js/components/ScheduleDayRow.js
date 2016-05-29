@@ -3,7 +3,7 @@ import moment from 'moment';
 import ScheduleSlot from './ScheduleSlot';
 import momentInternal from '../hoc/MomentInterval';
 import cx from 'classnames';
-import { momentWeekDayMonday } from '../utils/schedule';
+import { momentWeekDayMonday, slotIsOnAt } from '../utils/schedule';
 
 function ScheduleDayRow(props) {
   const { shows, slots, calculateWidth } = props;
@@ -13,6 +13,8 @@ function ScheduleDayRow(props) {
   }
 
   const isToday = props.day === momentWeekDayMonday(props.momentInterval);
+
+  console.log(momentWeekDayMonday(props.momentInterval));
 
   return (
     <div className={cx('ScheduleRow', props.className)}>
@@ -31,7 +33,7 @@ function ScheduleDayRow(props) {
                 slot={slot}
                 shows={shows}
                 index={index}
-                onAir={isToday && props.momentInterval.isBetween(momentFrom, momentTo)}
+                onAir={isToday && slotIsOnAt(slot, props.momentInterval, index / slots.length)}
                 calculateWidth={calculateWidth}
               />
             );
