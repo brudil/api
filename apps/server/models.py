@@ -16,3 +16,10 @@ class SocialMediaSettings(BaseSetting):
     twitter_handle = models.CharField(
         max_length=30,
         help_text='@twitter handel (sans @)')
+
+
+@register_setting
+class AnalyticsSettings(BaseSetting):
+    ga_property_id = models.CharField(
+        max_length=20,
+        help_text='UA-XXXXX-X')

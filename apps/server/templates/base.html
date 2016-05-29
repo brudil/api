@@ -30,6 +30,17 @@
 
     {% include 'footer.html' %}
 
+    {% if settings.server.AnalyticsSettings.ga_property_id != '' %}
+    <script type="text/javascript">
+      !function(U,R,F){U.GoogleAnalyticsObject=F;U[F]||(U[F]=function(){
+        (U[F].q=U[F].q||[]).push(arguments)});U[F].l=+new Date;var s=R.createElement('script'),
+        e=R.scripts[0];s.src='//www.google-analytics.com/analytics.js';
+        e.parentNode.insertBefore(s,e)}(window,document,'ga');
+
+      ga('create', '{{ settings.server.AnalyticsSettings.ga_property_id }}', 'auto');
+      ga('send', 'pageview');
+    </script>
+    {% endif %}
     <script type="text/javascript" src="http://localhost:8080/build/main.js"></script>
   </body>
 </html>
