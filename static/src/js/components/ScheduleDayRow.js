@@ -14,8 +14,6 @@ function ScheduleDayRow(props) {
 
   const isToday = props.day === momentWeekDayMonday(props.momentInterval);
 
-  console.log(momentWeekDayMonday(props.momentInterval));
-
   return (
     <div className={cx('ScheduleRow', props.className)}>
       <div className="ScheduleRow__inner">
@@ -26,14 +24,15 @@ function ScheduleDayRow(props) {
             const fromTimeFormatted = momentFrom.format('hh:mm');
             const toTimeFormatted = momentTo.format('hh:mm');
             const timeKey = `${fromTimeFormatted}:${toTimeFormatted}`;
-
+            const isOnAir = isToday &&
+              slotIsOnAt(slot, props.momentInterval, index / (slots.length - 1));
             return (
               <ScheduleSlot
                 key={timeKey}
                 slot={slot}
                 shows={shows}
                 index={index}
-                onAir={isToday && slotIsOnAt(slot, props.momentInterval, index / slots.length)}
+                onAir={isOnAir}
                 calculateWidth={calculateWidth}
               />
             );
@@ -49,7 +48,6 @@ ScheduleDayRow.propTypes = {
   calculateWidth: React.PropTypes.func.isRequired,
   day: React.PropTypes.number.isRequired,
   className: React.PropTypes.string,
-  title: React.PropTypes.string.isRequired,
   slots: React.PropTypes.array.isRequired,
   shows: React.PropTypes.object.isRequired,
 };

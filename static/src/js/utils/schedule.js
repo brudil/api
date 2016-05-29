@@ -43,7 +43,7 @@ export function momentWeekDayMonday(momentObject) {
 export function getOnAirSlot(slots) {
   const byDay = chunkSlotsByDay(slots);
   const todaySlots = byDay[momentWeekDayMonday(moment())];
-  console.log(todaySlots);
+
   for (const [index, slot] of todaySlots.entries()) {
     const fromTime = moment(slot.from_time);
     const toTime = moment(slot.to_time);
