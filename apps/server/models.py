@@ -59,4 +59,6 @@ class MenuItem(Orderable, models.Model):
 
 @register_setting
 class MenuSettings(BaseSetting):
-    header_menu = ParentalKey(Menu, null=True)
+    header_menu = ParentalKey(Menu, null=True, related_name='header_menu')
+    footer_one_menu = ParentalKey(Menu, null=True, related_name='footer_one_menu')
+    footer_two_menu = ParentalKey(Menu, null=True, related_name='footer_two_menu')
