@@ -61,6 +61,7 @@ class FullSchedule extends React.Component {
               </div>
               )
             )}
+            <ScheduleTimeline calculateWidth={calculateWidth} />
           </div>
         </div>
       </div>
