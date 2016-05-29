@@ -8,10 +8,6 @@ from wagtail.wagtailcore.models import Page
 
 AutomationSlot = namedtuple('AutomationSlot', ['day', 'from_time', 'to_time'])
 
-def schedule(request):
-    return render(request, 'schedule/schedule.html')
-
-
 def serialize_slot(slot, automation_page):
     now = datetime.datetime.now()
     from_time = datetime.datetime.combine(now, slot.from_time)

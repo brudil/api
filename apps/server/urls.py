@@ -18,7 +18,6 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^player/', include(player_urls)),
 
-    url(r'^schedule/$', schedule_views.schedule, name='schedule'),
     url(r'^api/schedule$', schedule_views.api_schedule, name='api_schedule'),
     url(r'^search/$', search_views.search, name='search'),
 
