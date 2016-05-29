@@ -17,12 +17,12 @@
   &__prev {
     left: 0;
     position: absolute;
-    z-index: 100;
+    z-index: var(--layer-slider-arrows);
   }
 
   &__next {
     right: 0;
     position: absolute;
-    z-index: 100;
+    z-index: var(--layer-slider-arrows);
   }
 }

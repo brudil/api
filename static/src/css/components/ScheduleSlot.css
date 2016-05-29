@@ -43,8 +43,7 @@
   }
 
   &--on-air {
-    //transform: scale(1.1);
-    z-index: 2000;
+    z-index: var(--layer-on-air);
     box-shadow: 0 0 20px 3px rgba(60, 60, 60, 0.3);
     position: relative;
     border: 0;
