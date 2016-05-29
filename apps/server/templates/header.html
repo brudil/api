@@ -6,21 +6,11 @@
 
         <nav class="header__nav">
             <ul class="header-nav">
+              {% for item in settings.server.MenuSettings.header_menu.items.all %}
                 <li class="header-nav__item">
-                    <a class="header-nav__link" href="/shows">Shows</a>
+                    <a class="header-nav__link" href="{{ item.page.url }}">{{ item.title }}</a>
                 </li>
-                <li class="header-nav__item">
-                    <a class="header-nav__link" href="/schedule">Schedule</a>
-                </li>
-                <li class="header-nav__item">
-                    <a class="header-nav__link" href="/news-and-events">News & events</a>
-                </li>
-                <li class="header-nav__item">
-                    <a class="header-nav__link" href="/about-us">About us</a>
-                </li>
-                <li class="header-nav__item">
-                    <a class="header-nav__link" href="/get-involved">Get involved</a>
-                </li>
+              {% endfor %}
             </ul>
         </nav>
 
