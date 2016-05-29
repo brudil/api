@@ -2,6 +2,7 @@ import React from 'react';
 import ScheduleTimeline from './ScheduleTimeline';
 import ScheduleDayRow from './ScheduleDayRow';
 import ScheduleDayColumn from './ScheduleDayColumn';
+import Spinner from './Spinner';
 import moment from 'moment';
 import { chunkSlotsByDay, calculateWidth, getOnAirSlot } from '../utils/schedule';
 
@@ -24,7 +25,7 @@ class FullSchedule extends React.Component {
 
   render() {
     if (!this.props.data) {
-      return <h2>Loading</h2>;
+      return <Spinner />;
     }
 
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];

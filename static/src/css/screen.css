@@ -25,6 +25,8 @@
 @import 'components/slider.css';
 @import 'components/feature-slider.css';
 
+@import 'components/Spinner.css';
+
 /* schedule */
 @import 'components/Schedule.css';
 @import 'components/ScheduleRow.css';
