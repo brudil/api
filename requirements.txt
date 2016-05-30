@@ -1,2 +1,14 @@
-Django>=1.9,<1.10
-wagtail>=1.4.3,<1.5
+beautifulsoup4==4.4.1
+Django==1.9.5
+django-modelcluster==1.1
+django-taggit==0.18.1
+django-treebeard==4.0
+djangorestframework==3.3.3
+gunicorn==19.6.0
+html5lib==0.9999999
+Pillow==3.2.0
+pytz==2016.3
+six==1.10.0
+Unidecode==0.4.19
+wagtail==1.4.3
+Willow==0.3
