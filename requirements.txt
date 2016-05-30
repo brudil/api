@@ -1,8 +1,10 @@
 beautifulsoup4==4.4.1
+boto==2.40.0
 contextlib2==0.5.3
 dj-database-url==0.4.1
 Django==1.9.6
 django-modelcluster==1.1
+django-storages==1.4.1
 django-taggit==0.18.3
 django-treebeard==4.0.1
 djangorestframework==3.3.3
