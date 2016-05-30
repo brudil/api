@@ -12,6 +12,8 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 SECRET_KEY = os.environ['APP_SECRET_KEY']
 
+ALLOWED_HOSTS = ['.herokuapp.com', ]
+
 try:
     from .local import *
 except ImportError:
