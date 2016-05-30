@@ -9,6 +9,8 @@ DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+SECRET_KEY = os.environ['APP_SECRET_KEY']
+
 try:
     from .local import *
 except ImportError:
