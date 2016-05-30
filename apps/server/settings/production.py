@@ -1,6 +1,7 @@
 from .base import *
 import dj_database_url
 import os
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 DEBUG = False
 
@@ -45,7 +46,7 @@ MEDIA_URL = '{}/media/'.format(os.environ['ASSETS_URL'])
 
 def asset_resolver(name):
     bundle, file = name.split('.')
-    return WEBPACK_ASSET_MANIFEST[bundle][file]
+    return static(WEBPACK_ASSET_MANIFEST[bundle][file])
 
 
 WEBPACK_ASSET_RESOLVER = asset_resolver

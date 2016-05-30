@@ -11,7 +11,7 @@ config.devtool = '#source-map';
 config.output = {
   path: './assets/dist',
   pathInfo: true,
-  publicPath: '/static/assets/',
+  publicPath: '/assets/',
   filename: 'bundle.[hash].min.js',
 };
 
