@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+
+<h1>{{ page.title }}</h1>
+<div>
+  {{ page.intro|richtext }}
+</div>
+
+<ul class="team-list">
+
+  {% for team_member in page.team_members.all %}
+  <li class="team-list__item team-member">
+    {% if team_member.picture %}
+    {% image team_member.picture width-400 as picture %}
+    <img class="team-member__picture" src="{{ picture.url }}" alt="{{ team_member.name }}">
+    {% else %}
+    {% endif %}
+    <div class="team-member__name">{{ team_member.name }}</div>
+    <div class="team-member__job-title">{{ team_member.job_title }}</div>
+    <div class="team-member__bio">{{ team_member.bio }}</div>
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}
