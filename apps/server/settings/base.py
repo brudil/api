@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import json
 import os
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,6 +32,8 @@ INSTALLED_APPS = [
     'apps.shows',
     'apps.news',
     'apps.schedule',
+    'apps.team',
+    'apps.feed',
     'apps.player',
     'apps.globalannouncement',
 
@@ -133,7 +136,6 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static'),
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')

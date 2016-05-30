@@ -1,4 +1,5 @@
 {% load static wagtailuserbar %}
+{% load webpack_asset %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -14,7 +15,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% include 'branding-meta.html' %}
-    <link href="http://localhost:8080/build/main.css" rel="stylesheet" />
+    <link href="{% webpack_asset 'main.css' %}" rel="stylesheet" />
   </head>
 
   <body class="core {% block body_class %}{% endblock %}">
@@ -41,6 +42,6 @@
       ga('send', 'pageview');
     </script>
     {% endif %}
-    <script type="text/javascript" src="http://localhost:8080/build/main.js"></script>
+    <script type="text/javascript" src="{% webpack_asset 'main.js' %}"></script>
   </body>
 </html>

@@ -23,7 +23,7 @@ config.plugins = config.plugins.concat([
   }),
   new webpack.optimize.UglifyJsPlugin({ output: { comments: false } }),
   new SaveAssetsJson({
-    path: process.cwd(),
+    path: './assets/dist/',
     filename: 'assets.json',
   }),
 ]);
