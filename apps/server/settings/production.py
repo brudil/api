@@ -27,7 +27,7 @@ RAVEN_CONFIG = {
     'dsn': 'https://bd9d7b99d3ab42888922c50d4e72e195:85e192d037ef4c66836436cedc4d74b9@app.getsentry.com/80573',
     # If you are using git, you can also automatically configure the
     # release based on the git info.
-    'release': os.environ['HEROKU_SLUG_COMMIT'],
+    'release': os.environ.get('HEROKU_SLUG_COMMIT', 'unknown'),
 }
 
 manifest = open(os.path.join(BASE_DIR, 'assets/dist/assets.json'))
