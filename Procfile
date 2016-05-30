@@ -1,1 +1,1 @@
-web: gunicorn apps.core.lowdown.wsgi --log-file -
+web: gunicorn apps.server.wsgi --log-file -
