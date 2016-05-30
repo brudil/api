@@ -53,7 +53,7 @@ module.exports = {
       files: 'assets/src/**/*.css',
     }),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin('[name].[hash].min.css'),
   ],
 
   module: {

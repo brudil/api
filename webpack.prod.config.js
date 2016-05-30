@@ -12,7 +12,7 @@ config.output = {
   path: './assets/dist',
   pathInfo: true,
   publicPath: '/assets/',
-  filename: 'bundle.[hash].min.js',
+  filename: '[name].[hash].min.js',
 };
 
 config.plugins = config.plugins.concat([
