@@ -194,3 +194,7 @@ class ShowAudioSeriesEpisodePage(Page):
 
     parent_page_types = ['shows.ShowAudioSeriesIndexPage']
 
+    def get_show(self):
+        for page in Page.objects.ancestor_of(self).specific():
+            if isinstance(page, ShowPage):
+                return page
