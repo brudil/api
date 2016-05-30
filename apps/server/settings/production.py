@@ -1,7 +1,7 @@
 from .base import *
 import dj_database_url
 import os
-
+import raven
 
 DEBUG = False
 
@@ -19,6 +19,16 @@ SECRET_KEY = os.environ['APP_SECRET_KEY']
 ALLOWED_HOSTS = ['.herokuapp.com', ]
 
 
+INSTALLED_APPS += (
+    'raven.contrib.django.raven_compat',
+)
+
+RAVEN_CONFIG = {
+    'dsn': 'https://bd9d7b99d3ab42888922c50d4e72e195:85e192d037ef4c66836436cedc4d74b9@app.getsentry.com/80573',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': os.environ['HEROKU_SLUG_COMMIT'],
+}
 
 manifest = open(os.path.join(BASE_DIR, 'assets/dist/assets.json'))
 WEBPACK_ASSET_MANIFEST = json.load(manifest)
