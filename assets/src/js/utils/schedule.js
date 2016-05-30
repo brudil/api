@@ -36,7 +36,7 @@ export function calculateWidth(number, includeUnit = true) {
 }
 
 export function momentWeekDayMonday(momentObject) {
-  const shiftedDates = [6, 5, 4, 3, 2, 1, 0];
+  const shiftedDates = [6, 0, 1, 2, 3, 4, 5];
   return shiftedDates[momentObject.day()];
 }
 

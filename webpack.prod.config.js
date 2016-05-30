@@ -9,9 +9,9 @@ config.profile = false;
 config.devtool = '#source-map';
 
 config.output = {
-  path: './dist',
+  path: './assets/dist',
   pathInfo: true,
-  publicPath: '/dist/',
+  publicPath: '/static/assets/',
   filename: 'bundle.[hash].min.js',
 };
 

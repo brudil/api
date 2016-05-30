@@ -25,6 +25,10 @@
 @import 'components/footer.css';
 @import 'components/footer-nav.css';
 
+@import 'components/team-list.css';
+@import 'components/team-member.css';
+
+
 @import 'components/slider.css';
 @import 'components/feature-slider.css';
 

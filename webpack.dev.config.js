@@ -6,14 +6,9 @@ if (process.env.NODE_ENV !== 'test') {
     main: [
       'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
-      config.entry.main
+      config.entry.main,
     ],
-    player: [
-      'webpack-dev-server/client?http://localhost:8080',
-      'webpack/hot/only-dev-server',
-      config.entry.player
-    ]
-};
+  };
 }
 
 config.devtool = 'eval-source-map';
