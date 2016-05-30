@@ -12,17 +12,20 @@ config.output = {
   path: './dist',
   pathInfo: true,
   publicPath: '/dist/',
-  filename: 'bundle.[hash].min.js'
+  filename: 'bundle.[hash].min.js',
 };
 
 config.plugins = config.plugins.concat([
   new webpack.optimize.OccurenceOrderPlugin(true),
   new webpack.optimize.DedupePlugin(),
-  new webpack.optimize.UglifyJsPlugin({ output: {comments: false} }),
+  new webpack.DefinePlugin({
+    'process.env': { NODE_ENV: '"production"' },
+  }),
+  new webpack.optimize.UglifyJsPlugin({ output: { comments: false } }),
   new SaveAssetsJson({
     path: process.cwd(),
-    filename: 'assets.json'
-  })
+    filename: 'assets.json',
+  }),
 ]);
 
 

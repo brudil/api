@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "`npm bin`/webpack-dev-server --config webpack.dev.config --history-api-fallback --hot"
+    "serve": "`npm bin`/webpack-dev-server --config webpack.dev.config --history-api-fallback --hot",
+    "dist": "`npm bin`/webpack --config webpack.prod.config",
+    "postinstall": "npm run dist"
   },
   "author": "James Canning <james@jamescanning.com> (http://brudil.com)",
   "license": "ISC",
@@ -36,6 +38,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "assets-webpack-plugin": "^3.4.0",
     "babel-core": "^6.7.7",
     "classnames": "^2.2.5",
     "extract-text-webpack-plugin": "^1.0.1",

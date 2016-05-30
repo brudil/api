@@ -51,9 +51,10 @@ module.exports = {
       __CURRENT_ENV__: '\'' + (NODE_ENV) + '\''
     }),
     new styleLintPlugin({
-      files: 'static/src/**/*.css'
+      files: 'static/src/**/*.css',
     }),
-    new ExtractTextPlugin('[name].css')
+    new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
+    new ExtractTextPlugin('[name].css'),
   ],
 
   module: {
