@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "`npm bin`/webpack-dev-server --config webpack.dev.config --history-api-fallback --hot",
-    "dist": "`npm bin`/webpack --config webpack.prod.config",
+    "serve": "`npm bin`/webpack-dev-server --config webpack.dev.config.js --history-api-fallback --hot",
+    "dist": "`npm bin`/webpack --config webpack.prod.config.js",
     "postinstall": "npm run dist"
+  },
+  "engines": {
+    "node": "6.2.0"
   },
   "author": "James Canning <james@jamescanning.com> (http://brudil.com)",
   "license": "ISC",
