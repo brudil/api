@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var config = require('./webpack.base.config.js');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var SaveAssetsJson = require('assets-webpack-plugin');
 
@@ -16,6 +17,7 @@ config.output = {
 };
 
 config.plugins = config.plugins.concat([
+  new ExtractTextPlugin('[name].[hash].min.css'),
   new webpack.optimize.OccurenceOrderPlugin(true),
   new webpack.optimize.DedupePlugin(),
   new webpack.DefinePlugin({
