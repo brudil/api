@@ -1,8 +1,9 @@
-.player-body {
+.Player {
   width: 100%;
   max-width: 300px;
   height: 425px;
   box-sizing: border-box;
   margin: 0 auto;
+  padding: 1rem;
   box-shadow: 0 0 6px 0 rgba(30, 30, 30, 0.3);
 }

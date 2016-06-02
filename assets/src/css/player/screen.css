@@ -1,2 +1,3 @@
 /* components */
-@import './app.css';
+@import './player-core.css';
+@import './player.css';

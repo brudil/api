@@ -6,7 +6,7 @@ import VolumeControl from './VolumeControl';
 function Player(props) {
   const controller = props.ac;
   return (
-    <div className="player">
+    <div className="Player">
       <div className="">
         <div>State: {props.state.playState}</div>
         <PlayPauseButton isPlaying={props.state.isPlaying} onToggle={controller.toggleState} />
