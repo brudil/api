@@ -4,10 +4,12 @@
 @import 'core/variables.css';
 @import 'core/layers.css';
 
+/* player */
+@import 'player/screen.css';
+
 /* components */
 @import 'components/global-announcement.css';
 @import 'components/core.css';
-@import 'components/body.css';
 @import 'components/container.css';
 
 @import 'components/content.css';

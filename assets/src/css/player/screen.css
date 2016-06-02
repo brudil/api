@@ -1,7 +1,2 @@
-@import 'normalize.css';
-
-/* core */
-@import '../core/variables.css';
-
 /* components */
 @import './app.css';

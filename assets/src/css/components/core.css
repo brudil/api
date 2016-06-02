@@ -1,7 +1,12 @@
 .core {
   display: flex;
-  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  font-family: 'freight-sans-pro', sans-serif;
   flex-direction: column;
+  font-weight: 500;
+  min-height: 100vh;
 
   &__content {
     display: flex;

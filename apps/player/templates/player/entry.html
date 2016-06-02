@@ -1,12 +1,13 @@
+{% load webpack_asset %}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>URF Player</title>
-    <link href="http://localhost:8080/build/player.css" rel="stylesheet">
+    <link href="{% webpack_asset 'main.css' %}" rel="stylesheet" />
   </head>
   <body>
-    <div class="app"></div>
-    <script type="text/javascript" src="http://localhost:8080/build/player.js"></script>
+    <div id="player"></div>
+    <script type="text/javascript" src="{% webpack_asset 'main.js' %}"></script>
   </body>
 </html>

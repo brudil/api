@@ -1,32 +1,9 @@
-require('../../css/player/screen.css');
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AudioControler from './audio_controller';
-import PlayPauseButton from './components/PlayPauseButton';
-import VolumeControl from './components/VolumeControl';
+import AudioController from './audio_controller';
+import Player from '../components/Player';
 
-const ac = new AudioControler();
-ac.stream('http://uk2.internet-radio.com:30764/stream');
-
-function Player(props) {
-  const controller = props.ac;
-  return (
-    <div className="player">
-      <div className="">
-        <div>State: {props.state.playState}</div>
-        <PlayPauseButton isPlaying={props.state.isPlaying} onToggle={controller.toggleState} />
-        <VolumeControl value={props.state.volume} onChange={controller.setVolume} />
-      </div>
-    </div>
-  );
-}
-
-Player.propTypes = {
-  state: React.PropTypes.object,
-  ac: React.PropTypes.object,
-};
-
-function getState() {
+function getState(ac) {
   return {
     isPlaying: ac.isPlaying,
     volume: ac.volume,
@@ -34,10 +11,16 @@ function getState() {
   };
 }
 
-function render() {
-  ReactDOM.render(<Player state={getState()} ac={ac} />, document.querySelector('.app'));
+
+export function init() {
+  const ac = new AudioController();
+  ac.stream('http://uk2.internet-radio.com:30764/stream');
+
+  function render() {
+    ReactDOM.render(<Player state={getState(ac)} ac={ac} />, document.querySelector('#player'));
+  }
+
+  ac.onChange(render);
+
+  render();
 }
-
-ac.onChange(render);
-
-render();
