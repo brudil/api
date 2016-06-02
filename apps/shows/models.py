@@ -80,8 +80,11 @@ class ShowPage(Page):
         related_name='+'
     )
 
-    facebook_url = models.TextField(blank=True, null=True)
-    twitter_handle = models.TextField(blank=True, null=True)
+    social_facebook_url = models.TextField(blank=True, null=True)
+    social_twitter_handle = models.TextField(blank=True, null=True)
+    social_mixcloud_handle = models.TextField(blank=True, null=True)
+    social_soundcloud_handle = models.TextField(blank=True, null=True)
+    social_youtube_url = models.TextField(blank=True, null=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('description', classname="full"),
@@ -96,13 +99,23 @@ class ShowPage(Page):
             FieldPanel('accent_color', widget=forms.TextInput(attrs={'type': 'color', 'style': 'height: 50px'}))
         ], 'Show branding'),
         MultiFieldPanel([
-            FieldPanel('facebook_url'),
-            FieldPanel('twitter_handle')
+            FieldPanel('social_facebook_url'),
+            FieldPanel('social_twitter_handle'),
+            FieldPanel('social_mixcloud_handle'),
+            FieldPanel('social_soundcloud_handle'),
+            FieldPanel('social_youtube_url'),
         ], 'Social Pages')
     ]
 
     parent_page_types = ['shows.ShowIndexPage']
     subpage_types = ['shows.ShowAudioSeriesIndexPage', 'shows.ShowContentPage']
+
+    def has_social(self):
+        return self.social_facebook_url\
+            or self.social_twitter_handle\
+            or self.social_mixcloud_handle\
+            or self.social_soundcloud_handle\
+            or self.social_youtube_url
 
     def get_human_time(self):
         slots = self.slots.all()

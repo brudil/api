@@ -37,4 +37,22 @@
       color: twitter-color;
     }
   }
+
+  &__social-youtube {
+    & > a {
+      color: youtube-color;
+    }
+  }
+
+  &__social-mixcloud {
+    & > a {
+      color: mixcloud-color;
+    }
+  }
+
+  &__social-soundcloud {
+    & > a {
+      color: soundcloud-color;
+    }
+  }
 }

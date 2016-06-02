@@ -40,17 +40,35 @@
           {% endfor %}
         </ul>
 
-          {% if show.twitter_handle or show.facebook_url %}
+          {% if show.has_social %}
             <ul class="show-nav">
-              {% if show.twitter_handle %}
+              {% if show.social_twitter_handle %}
                 <li class="show-nav__item show-nav__social-twitter">
-                  <a href="https://twitter.com/{{ show.twitter_handle }}">Follow the show</a>
+                  <a href="https://twitter.com/{{ show.social_twitter_handle }}">Follow the show</a>
                 </li>
               {% endif %}
 
-              {% if show.facebook_url %}
+              {% if show.social_facebook_url %}
               <li class="show-nav__item show-nav__social-facebook">
-                <a href="{{ show.facebook_url }}">Like the show</a>
+                <a href="{{ show.social_facebook_url }}">Like the show</a>
+              </li>
+              {% endif %}
+
+              {% if show.social_youtube_url %}
+              <li class="show-nav__item show-nav__social-youtube">
+                <a href="{{ show.social_youtube_url }}">Watch on YouTube</a>
+              </li>
+              {% endif %}
+
+              {% if show.social_mixcloud_handle %}
+              <li class="show-nav__item show-nav__social-mixcloud">
+                <a href="https://www.mixcloud.com/{{ show.social_mixcloud_handle }}">Listen on Mixcloud</a>
+              </li>
+              {% endif %}
+
+              {% if show.social_soundcloud_handle %}
+              <li class="show-nav__item show-nav__social-soundcloud">
+                <a href="https://soundcloud.com/{{ show.social_soundcloud_handle }}">Listen on Soundcloud</a>
               </li>
               {% endif %}
             </ul>
