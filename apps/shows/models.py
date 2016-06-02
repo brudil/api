@@ -30,8 +30,8 @@ DAY_CHOICES = (
 
 class Slot(models.Model):
     day = models.SmallIntegerField(choices=DAY_CHOICES)
-    from_time = models.TimeField(null=False)
-    to_time = models.TimeField(null=False)
+    from_time = models.TimeField(null=False, verbose_name='From')
+    to_time = models.TimeField(null=False, verbose_name='To')
 
     def clean(self):
         if self.from_time >= self.to_time:
@@ -40,6 +40,9 @@ class Slot(models.Model):
 
 
 class ShowSlot(Slot):
+    class Meta:
+        verbose_name = 'Slot'
+
     page = ParentalKey('ShowPage', related_name='slots')
 
 
@@ -65,7 +68,7 @@ class ShowPage(Page):
         description = 'A show microsite'
 
     description = models.CharField(max_length=140, help_text='Describe the show in a tweet (140 characters)')
-    accent_color = models.CharField(max_length=7, blank=True, null=True)
+    accent_color = models.CharField(max_length=7, blank=True, null=True, verbose_name='Accent color')
 
     about_content = StreamField([
         ('paragraph', blocks.RichTextBlock()),
@@ -80,11 +83,11 @@ class ShowPage(Page):
         related_name='+'
     )
 
-    social_facebook_url = models.TextField(blank=True, null=True)
-    social_twitter_handle = models.TextField(blank=True, null=True)
-    social_mixcloud_handle = models.TextField(blank=True, null=True)
-    social_soundcloud_handle = models.TextField(blank=True, null=True)
-    social_youtube_url = models.TextField(blank=True, null=True)
+    social_facebook_url = models.TextField(blank=True, null=True, verbose_name='Facebook URL')
+    social_twitter_handle = models.TextField(blank=True, null=True, verbose_name='Twitter handle')
+    social_mixcloud_handle = models.TextField(blank=True, null=True, verbose_name='Mixcloud handle')
+    social_soundcloud_handle = models.TextField(blank=True, null=True, verbose_name='Soundcloud handle')
+    social_youtube_url = models.TextField(blank=True, null=True, verbose_name='YouTube URL')
 
     content_panels = Page.content_panels + [
         FieldPanel('description', classname="full"),
@@ -93,18 +96,18 @@ class ShowPage(Page):
 
     promote_panels = [
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
-        InlinePanel('slots'),
+        InlinePanel('slots', label='Scheduling Slots'),
         MultiFieldPanel([
             ImageChooserPanel('logo'),
             FieldPanel('accent_color', widget=forms.TextInput(attrs={'type': 'color', 'style': 'height: 50px'}))
-        ], 'Show branding'),
+        ], 'Branding & design'),
         MultiFieldPanel([
             FieldPanel('social_facebook_url'),
             FieldPanel('social_twitter_handle'),
             FieldPanel('social_mixcloud_handle'),
             FieldPanel('social_soundcloud_handle'),
             FieldPanel('social_youtube_url'),
-        ], 'Social Pages')
+        ], heading='Social Pages')
     ]
 
     parent_page_types = ['shows.ShowIndexPage']
