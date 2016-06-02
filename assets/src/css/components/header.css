@@ -20,5 +20,6 @@
     left: calc(-1 * (136px + 20px));
     background-image: url('../img/logo.png');
     background-size: contain;
+    z-index: var(--layer-logo);
   }
 }

@@ -1,8 +1,8 @@
 .core {
   display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
-  flex-direction: column;
   background: var(--background);
   font-family: 'freight-sans-pro', sans-serif;
   font-weight: 500;

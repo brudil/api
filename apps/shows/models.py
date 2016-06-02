@@ -82,6 +82,15 @@ class ShowPage(Page):
         related_name='+'
     )
 
+    cover_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name='Cover Image'
+    )
+
     social_facebook_url = models.TextField(blank=True, null=True, verbose_name='Facebook URL')
     social_twitter_handle = models.TextField(blank=True, null=True, verbose_name='Twitter handle')
     social_mixcloud_handle = models.TextField(blank=True, null=True, verbose_name='Mixcloud handle')
@@ -104,6 +113,7 @@ class ShowPage(Page):
         InlinePanel('slots', label='Scheduling Slots'),
         MultiFieldPanel([
             ImageChooserPanel('logo'),
+            ImageChooserPanel('cover_image'),
             FieldPanel('accent_color', widget=forms.TextInput(attrs={'type': 'color', 'style': 'height: 50px'}))
         ], 'Branding & design'),
         MultiFieldPanel([

@@ -43,3 +43,7 @@
 @import 'components/ScheduleDayColumn.css';
 @import 'components/ScheduleSlot.css';
 @import 'components/ScheduleTimeline.css';
+
+
+/* utils */
+@import 'components/srt.css';
