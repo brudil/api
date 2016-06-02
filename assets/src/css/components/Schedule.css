@@ -11,5 +11,6 @@
 
   &__scroll-container {
     overflow-x: scroll;
+    padding-bottom: 1.3rem;
   }
 }
