@@ -89,6 +89,12 @@ class ShowPage(Page):
     social_soundcloud_handle = models.TextField(blank=True, null=True, verbose_name='Soundcloud handle')
     social_youtube_url = models.TextField(blank=True, null=True, verbose_name='YouTube URL')
 
+    feature_interaction = models.BooleanField(
+        default=False,
+        verbose_name='Interaction',
+        help_text='Interaction promotes the URF Text number and @urfstudio in the Player.',
+    )
+
     content_panels = Page.content_panels + [
         FieldPanel('description', classname="full"),
         StreamFieldPanel('about_content')
@@ -101,6 +107,9 @@ class ShowPage(Page):
             ImageChooserPanel('logo'),
             FieldPanel('accent_color', widget=forms.TextInput(attrs={'type': 'color', 'style': 'height: 50px'}))
         ], 'Branding & design'),
+        MultiFieldPanel([
+            FieldPanel('feature_interaction'),
+        ], heading='Features'),
         MultiFieldPanel([
             FieldPanel('social_facebook_url'),
             FieldPanel('social_twitter_handle'),
