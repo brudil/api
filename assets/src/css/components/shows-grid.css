@@ -48,6 +48,8 @@
     font-size: 0.9em;
     color: #757575;
     text-align: center;
+    padding-right: 0.8em;
+    padding-left: 0.8em;
   }
 
   &__logo {
