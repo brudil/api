@@ -58,8 +58,8 @@ class EventPage(Page):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
 
-    facebook_event = models.URLField(null=True, blank=True)
-    ussu_event = models.URLField(null=True, blank=True)
+    facebook_event = models.URLField(null=True, blank=True, verbose_name='Facebook Event URL')
+    ussu_event = models.URLField(null=True, blank=True, verbose_name='Students Union Event Page URL')
 
     featured_image = models.ForeignKey(
         'wagtailimages.Image',
