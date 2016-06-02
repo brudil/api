@@ -6,6 +6,7 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
+from apps.server import views as sever_views
 from apps.search import views as search_views
 from apps.schedule import views as schedule_views
 from apps.player import urls as player_urls
@@ -18,6 +19,7 @@ urlpatterns = [
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^player/', include(player_urls)),
 
+    url(r'^404/$', sever_views.four_oh_four, name='404'),
     url(r'^api/schedule$', schedule_views.api_schedule, name='api_schedule'),
     url(r'^search/$', search_views.search, name='search'),
 
