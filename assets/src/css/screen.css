@@ -3,6 +3,7 @@
 /* core */
 @import 'core/variables.css';
 @import 'core/layers.css';
+@import 'core/iconfont.css';
 
 /* player */
 @import 'player/screen.css';

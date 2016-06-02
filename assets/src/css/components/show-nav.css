@@ -23,7 +23,12 @@
     &--active-child {
       font-weight: 600;
     }
+  }
 
+  &__item-icon {
+    display: inline-block;
+    width: 1.5rem;
+    font-size: 1rem;
   }
 
   &__social-facebook {

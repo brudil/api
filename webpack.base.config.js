@@ -64,7 +64,7 @@ module.exports = {
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader', {
         publicPath: '',
       })},
-      { test: /\.svg|\.png$/, loader: 'file' },
+      { test: /\.(woff|woff2|eot|ttf|svg|png)(\?[a-z0-9=&.]+)?$/, loader: 'url-loader?limit=100000' },
     ],
 
     noParse: /\.min\.js/,

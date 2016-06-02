@@ -44,31 +44,46 @@
             <ul class="show-nav">
               {% if show.social_twitter_handle %}
                 <li class="show-nav__item show-nav__social-twitter">
-                  <a href="https://twitter.com/{{ show.social_twitter_handle }}">Follow the show</a>
+                  <a href="https://twitter.com/{{ show.social_twitter_handle }}">
+                    <i class="icon-twitter show-nav__item-icon"></i>
+                    Twitter
+                  </a>
                 </li>
               {% endif %}
 
               {% if show.social_facebook_url %}
               <li class="show-nav__item show-nav__social-facebook">
-                <a href="{{ show.social_facebook_url }}">Like the show</a>
+                <a href="{{ show.social_facebook_url }}">
+                  <i class="icon-facebook show-nav__item-icon"></i>
+                  Facebook
+                </a>
               </li>
               {% endif %}
 
               {% if show.social_youtube_url %}
               <li class="show-nav__item show-nav__social-youtube">
-                <a href="{{ show.social_youtube_url }}">Watch on YouTube</a>
+                <a href="{{ show.social_youtube_url }}">
+                  <i class="icon-youtube show-nav__item-icon"></i>
+                  YouTube
+                </a>
               </li>
               {% endif %}
 
               {% if show.social_mixcloud_handle %}
               <li class="show-nav__item show-nav__social-mixcloud">
-                <a href="https://www.mixcloud.com/{{ show.social_mixcloud_handle }}">Listen on Mixcloud</a>
+                <a href="https://www.mixcloud.com/{{ show.social_mixcloud_handle }}">
+                  <i class="icon-mixcloud show-nav__item-icon"></i>
+                  Mixcloud
+                </a>
               </li>
               {% endif %}
 
               {% if show.social_soundcloud_handle %}
               <li class="show-nav__item show-nav__social-soundcloud">
-                <a href="https://soundcloud.com/{{ show.social_soundcloud_handle }}">Listen on Soundcloud</a>
+                <a href="https://soundcloud.com/{{ show.social_soundcloud_handle }}">
+                  <i class="icon-soundcloud show-nav__item-icon"></i>
+                  Soundcloud
+                </a>
               </li>
               {% endif %}
             </ul>
