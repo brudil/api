@@ -44,6 +44,12 @@
     }
   }
 
+  &__description {
+    font-size: 0.9em;
+    color: #757575;
+    text-align: center;
+  }
+
   &__logo {
     display: block;
     max-width: 100%;

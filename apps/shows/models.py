@@ -58,9 +58,8 @@ class ShowIndexPage(Page):
 
     subpage_types = ['shows.ShowPage']
 
-    def shows(self):
-        return ShowPage.objects.all()
-
+    def active_shows(self):
+        return self.get_children().live().specific().order_by('title')
 
 class ShowPage(Page):
     class Meta:
