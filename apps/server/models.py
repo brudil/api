@@ -4,7 +4,6 @@ from modelcluster.models import ClusterableModel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.wagtailadmin.edit_handlers import InlinePanel, FieldPanel, PageChooserPanel
 from wagtail.wagtailcore.models import Orderable, Page
-from wagtail.wagtailsearch import index
 from wagtail.wagtailsnippets.models import register_snippet
 
 

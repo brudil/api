@@ -3,7 +3,7 @@ from collections import namedtuple
 
 from django.shortcuts import render
 from django.http import JsonResponse
-from apps.shows.models import ShowSlot, ShowPage
+from apps.shows.models import ShowSlot, ShowPage, ShowSettings
 from wagtail.wagtailcore.models import Page
 
 AutomationSlot = namedtuple('AutomationSlot', ['day', 'from_time', 'to_time'])
@@ -72,7 +72,7 @@ def api_schedule(request):
     if previous_slot_to_time != first_slot.from_time:
         slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=first_slot.from_time, day=previous_slot_day))
 
-    automation_page = ShowPage.objects.live().get(id=30)
+    automation_page = ShowSettings.for_site(request.site).automation_show
     data['shows'][automation_page.id] = serialize_show(automation_page)
 
     data['slots'] = [serialize_slot(slot, automation_page=automation_page) for slot in slots]

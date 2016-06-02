@@ -6,13 +6,15 @@ from django.db import models
 from django import forms
 from django.utils.dateformat import TimeFormat
 from modelcluster.fields import ParentalKey
+from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.wagtailcore import blocks
-from wagtail.wagtailcore.models import Page, Orderable
+from wagtail.wagtailcore.models import Page
 from wagtail.wagtailcore.fields import RichTextField, StreamField
 from wagtail.wagtailadmin.edit_handlers import FieldPanel, MultiFieldPanel, InlinePanel, StreamFieldPanel
 from wagtail.wagtailimages.blocks import ImageChooserBlock
 from wagtail.wagtailimages.edit_handlers import ImageChooserPanel
 import django.db.models.options as options
+
 options.DEFAULT_NAMES = options.DEFAULT_NAMES + ('description',)
 
 DAY_CHOICES = (
@@ -198,3 +200,8 @@ class ShowAudioSeriesEpisodePage(Page):
         for page in Page.objects.ancestor_of(self).specific():
             if isinstance(page, ShowPage):
                 return page
+
+
+@register_setting
+class ShowSettings(BaseSetting):
+    automation_show = ParentalKey(ShowPage, null=True, related_name='automation')
