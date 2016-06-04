@@ -29,7 +29,7 @@ function ScheduleSlot(props) {
         style={{ backgroundColor: show.accent }}
         href={show.page_url}
       >
-        <ScheduleSlotTime slot={slot} index={props.index} />
+        <ScheduleSlotTime slot={slot} onAir={props.onAir} index={props.index} />
         <div className="ScheduleSlot__title">
           {show.title}
         </div>

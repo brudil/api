@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import moment from 'moment';
+import OnAirBadge from './OnAirBadge';
 
 function ScheduleSlotTime(props) {
   const { slot } = props;
@@ -29,13 +30,17 @@ function ScheduleSlotTime(props) {
   );
 
   return (
-    <div className="ScheduleSlot__time">{fromElement} - {toElement}</div>
+    <div className="ScheduleSlot__time">
+      {fromElement} - {toElement}
+      {props.onAir ? <OnAirBadge /> : null}
+    </div>
   );
 }
 
 ScheduleSlotTime.propTypes = {
   slot: React.PropTypes.object.isRequired,
   index: React.PropTypes.number.isRequired,
+  onAir: React.PropTypes.bool.isRequired,
 };
 
 export default ScheduleSlotTime;

@@ -1,0 +1,31 @@
+@keyframes pulsate {
+  0% {opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {opacity: 0.0;}
+}
+
+.OnAirBadge {
+  display: inline-block;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #df1c1d;
+  margin-left: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: 600;
+  border-radius: 2px;
+
+  &:after {
+    display: inline-block;
+    position: relative;
+    color: #ffffff;
+    content: '⬤';
+    font-size: 7px;
+    top: -3px;
+    animation: pulsate 1s ease-out 0s infinite;
+  }
+
+  &__label {
+    padding-right: 0.4rem;
+  }
+}
