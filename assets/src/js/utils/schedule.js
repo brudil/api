@@ -4,13 +4,14 @@ export function chunkSlotsByDay(slots) {
   const days = [[], [], [], [], [], [], []];
   for (const slot of slots) {
     if (slot.is_overnight) {
-      const midnight = moment().startOf('day').add(1, 'day');
-      const slotDurationToMidnight = moment(slot.from_time);
+      const midnight = moment.utc().startOf('day').add(1, 'day');
+      const slotDurationToMidnight = moment.utc(slot.from_time);
       const diffMins = moment.duration(midnight.diff(slotDurationToMidnight)).asMinutes();
 
       days[slot.day].push(Object.assign({}, slot, { duration: diffMins }));
 
       if (slot.day !== 6) {
+        console.log({ duration: slot.duration, diffMins, slotDurationToMidnight, midnight });
         days[(slot.day + 1)].push(
           Object.assign({}, slot, { duration: slot.duration - diffMins })
         );
@@ -42,11 +43,11 @@ export function momentWeekDayMonday(momentObject) {
 
 export function getOnAirSlot(slots) {
   const byDay = chunkSlotsByDay(slots);
-  const todaySlots = byDay[momentWeekDayMonday(moment())];
-
+  const now = moment();
+  const todaySlots = byDay[momentWeekDayMonday(now)];
   for (const [index, slot] of todaySlots.entries()) {
-    const fromTime = moment(slot.from_time);
-    const toTime = moment(slot.to_time);
+    const fromTime = moment.utc(slot.from_time);
+    const toTime = moment.utc(slot.to_time);
 
     if (slot.is_overnight && index === 0) {
       fromTime.subtract(1, 'days');
@@ -56,7 +57,7 @@ export function getOnAirSlot(slots) {
       toTime.add(1, 'days');
     }
 
-    if (moment().isBetween(fromTime, toTime)) {
+    if (now.isBetween(fromTime, toTime)) {
       return slot;
     }
   }
@@ -66,6 +67,7 @@ export function getOnAirSlot(slots) {
 
 
 export function slotIsOnAt(slot, momentObject, listPosition) {
+  const utcMoment = momentObject.clone().utc();
   const fromTime = moment(slot.from_time);
   const toTime = moment(slot.to_time);
 
@@ -77,5 +79,5 @@ export function slotIsOnAt(slot, momentObject, listPosition) {
     toTime.add(1, 'days');
   }
 
-  return momentObject.isBetween(fromTime, toTime);
+  return utcMoment.isBetween(fromTime, toTime);
 }
