@@ -37,72 +37,70 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="show-card {% if show.cover_image %} show-card--has-cover {% endif %}">
-        <div class="show-card__sidebar">
-          <ul class="show-nav">
-            <li class="show-nav__item {% if page.url == show.url %} show-nav__item--active{% endif %}">
-              <a href="{{ show.url }}">About</a>
+    <div class="container show-card {% if show.cover_image %} show-card--has-cover {% endif %}">
+      <div class="show-card__sidebar">
+        <ul class="show-nav">
+          <li class="show-nav__item {% if page.url == show.url %} show-nav__item--active{% endif %}">
+            <a href="{{ show.url }}">About</a>
+          </li>
+          {% for child in show.get_children.live %}
+            <li class="show-nav__item {% if page.url == child.url %} show-nav__item--active{% endif %}">
+              <a href="{{ child.url }}">{{ child.title }}</a>
             </li>
-            {% for child in show.get_children.live %}
-              <li class="show-nav__item {% if page.url == child.url %} show-nav__item--active{% endif %}">
-                <a href="{{ child.url }}">{{ child.title }}</a>
+          {% endfor %}
+        </ul>
+
+          {% if show.has_social %}
+            <ul class="show-nav">
+              {% if show.social_twitter_handle %}
+                <li class="show-nav__item show-nav__social-twitter">
+                  <a href="https://twitter.com/{{ show.social_twitter_handle }}">
+                    <i class="icon-twitter show-nav__item-icon"></i>
+                    Twitter
+                  </a>
+                </li>
+              {% endif %}
+
+              {% if show.social_facebook_url %}
+              <li class="show-nav__item show-nav__social-facebook">
+                <a href="{{ show.social_facebook_url }}">
+                  <i class="icon-facebook show-nav__item-icon"></i>
+                  Facebook
+                </a>
               </li>
-            {% endfor %}
-          </ul>
+              {% endif %}
 
-            {% if show.has_social %}
-              <ul class="show-nav">
-                {% if show.social_twitter_handle %}
-                  <li class="show-nav__item show-nav__social-twitter">
-                    <a href="https://twitter.com/{{ show.social_twitter_handle }}">
-                      <i class="icon-twitter show-nav__item-icon"></i>
-                      Twitter
-                    </a>
-                  </li>
-                {% endif %}
+              {% if show.social_youtube_url %}
+              <li class="show-nav__item show-nav__social-youtube">
+                <a href="{{ show.social_youtube_url }}">
+                  <i class="icon-youtube show-nav__item-icon"></i>
+                  YouTube
+                </a>
+              </li>
+              {% endif %}
 
-                {% if show.social_facebook_url %}
-                <li class="show-nav__item show-nav__social-facebook">
-                  <a href="{{ show.social_facebook_url }}">
-                    <i class="icon-facebook show-nav__item-icon"></i>
-                    Facebook
-                  </a>
-                </li>
-                {% endif %}
+              {% if show.social_mixcloud_handle %}
+              <li class="show-nav__item show-nav__social-mixcloud">
+                <a href="https://www.mixcloud.com/{{ show.social_mixcloud_handle }}">
+                  <i class="icon-mixcloud show-nav__item-icon"></i>
+                  Mixcloud
+                </a>
+              </li>
+              {% endif %}
 
-                {% if show.social_youtube_url %}
-                <li class="show-nav__item show-nav__social-youtube">
-                  <a href="{{ show.social_youtube_url }}">
-                    <i class="icon-youtube show-nav__item-icon"></i>
-                    YouTube
-                  </a>
-                </li>
-                {% endif %}
-
-                {% if show.social_mixcloud_handle %}
-                <li class="show-nav__item show-nav__social-mixcloud">
-                  <a href="https://www.mixcloud.com/{{ show.social_mixcloud_handle }}">
-                    <i class="icon-mixcloud show-nav__item-icon"></i>
-                    Mixcloud
-                  </a>
-                </li>
-                {% endif %}
-
-                {% if show.social_soundcloud_handle %}
-                <li class="show-nav__item show-nav__social-soundcloud">
-                  <a href="https://soundcloud.com/{{ show.social_soundcloud_handle }}">
-                    <i class="icon-soundcloud show-nav__item-icon"></i>
-                    Soundcloud
-                  </a>
-                </li>
-                {% endif %}
-              </ul>
-            {% endif %}
-        </div>
-        <div class="show-card__content">
-            {% block card_content %}{% endblock %}
-        </div>
+              {% if show.social_soundcloud_handle %}
+              <li class="show-nav__item show-nav__social-soundcloud">
+                <a href="https://soundcloud.com/{{ show.social_soundcloud_handle }}">
+                  <i class="icon-soundcloud show-nav__item-icon"></i>
+                  Soundcloud
+                </a>
+              </li>
+              {% endif %}
+            </ul>
+          {% endif %}
+      </div>
+      <div class="show-card__content">
+          {% block card_content %}{% endblock %}
       </div>
     </div>
   </div>
