@@ -1,7 +1,7 @@
 @keyframes pulsate {
-  0% {opacity: 0.0;}
+  0% {opacity: 0.2;}
   50% {opacity: 1.0;}
-  100% {opacity: 0.0;}
+  100% {opacity: 0.2;}
 }
 
 .OnAirBadge {
@@ -22,7 +22,7 @@
     content: '⬤';
     font-size: 7px;
     top: -3px;
-    animation: pulsate 1s ease-out 0s infinite;
+    animation: pulsate 900ms ease-out 0s infinite;
   }
 
   &__label {
