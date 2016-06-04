@@ -1,4 +1,4 @@
-.show-header {
+.ShowHeader {
   position: relative;
   padding-top: 1.5rem;
   padding-bottom: 1rem;
@@ -35,7 +35,7 @@
   &--tone-dark {
     color: var(--show-tone-dark);
 
-    & .show-header__title a {
+    & .ShowHeader__title a {
       color: var(--show-tone-dark);
     }
   }
@@ -43,7 +43,7 @@
   &--tone-light {
     color: var(--show-tone-light);
 
-    & .show-header__title a {
+    & .ShowHeader__title a {
       color: var(--show-tone-light);
     }
   }

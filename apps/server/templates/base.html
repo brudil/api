@@ -18,13 +18,13 @@
     <link href="{% webpack_asset 'main.css' %}" rel="stylesheet" />
   </head>
 
-  <body class="core {% block body_class %}{% endblock %}">
+  <body class="Core {% block body_class %}{% endblock %}">
     {% wagtailuserbar %}
     {% include 'global-announcement.html' %}
     {% include 'header.html' %}
 
     {% block bespoke_content %}
-      <div class="container core__content">
+      <div class="Container Core__content">
         {% block content %}{% endblock %}
       </div>
     {% endblock %}

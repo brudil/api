@@ -1,6 +1,6 @@
 {% with ga=settings.globalannouncement.GlobalAnnouncementSettings %}
 {% if ga.is_enabled %}
-  <a class="global-announcement" href="{{ ga.link_page.url }}" data-dismiss-key="{{ ga.dismiss_key }}">
+  <a class="GlobalAnnouncement" href="{{ ga.link_page.url }}" data-dismiss-key="{{ ga.dismiss_key }}">
     {{ ga.content }}
   </a>
 {% endif %}

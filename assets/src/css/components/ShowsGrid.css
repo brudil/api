@@ -1,6 +1,6 @@
 @lost gutter 30px;
 
-.shows-grid {
+.ShowsGrid {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -66,10 +66,10 @@
   }
 }
 
-.shows-grid__item--tone-dark .shows-grid__anchor {
+.ShowsGrid__item--tone-dark .ShowsGrid__anchor {
   color: var(--show-tone-dark);
 }
 
-.shows-grid__item--tone-light .shows-grid__anchor {
+.ShowsGrid__item--tone-light .ShowsGrid__anchor {
   color: var(--show-tone-light);
 }

@@ -9,24 +9,24 @@
     {{ page.intro|richtext }}
 </div>
 
-<ul class="shows-grid">
+<ul class="ShowsGrid">
 
   {% regroup page.active_shows by name_group as letter_list %}
 
   {% for group in letter_list %}
-    <li class="shows-grid__group">
+    <li class="ShowsGrid__group">
       <h2>{{ group.grouper }}</h2>
-      <ul class="shows-grid__grid">
+      <ul class="ShowsGrid__grid">
         {% for show in group.list %}
-          <li class="shows-grid__item shows-grid__item--tone-{{ show.tone_from_accent }}">
-            <a class="shows-grid__anchor" href="{{ show.url }}" style="{{ show.generate_branding_style }}">
+          <li class="ShowsGrid__item ShowsGrid__item--tone-{{ show.tone_from_accent }}">
+            <a class="ShowsGrid__anchor" href="{{ show.url }}" style="{{ show.generate_branding_style }}">
               {% if show.logo %}
               {% image show.logo width-400 as show_logo %}
-              <img class="shows-grid__logo" src="{{ show_logo.url }}" alt="{{ show.title }}">
+              <img class="ShowsGrid__logo" src="{{ show_logo.url }}" alt="{{ show.title }}">
               {% endif %}
-              <h1 class="shows-grid__title {% if show.logo %} srt {% endif %}">{{ show.title }}</h1>
+              <h1 class="ShowsGrid__title {% if show.logo %} srt {% endif %}">{{ show.title }}</h1>
             </a>
-            <p class="shows-grid__description">{{ show.description }}</p>
+            <p class="ShowsGrid__description">{{ show.description }}</p>
           </li>
         {% endfor %}
       </ul>

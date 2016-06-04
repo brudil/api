@@ -6,92 +6,92 @@
 
 {% block bespoke_content %}
 {% get_show page as show %}
-<div class="core__content" style="{{ show.generate_branding_style }}">
-  <div class="core__content TODO-THISISWEIRD">
-    <div class="show-header {% if not show.cover_image %}show-header--tone-{{ show.tone_from_accent }} {% else %}show-header--tone-light show-header--has-cover{% endif %}">
+<div class="Core__content" style="{{ show.generate_branding_style }}">
+  <div class="Core__content TODO-THISISWEIRD">
+    <div class="ShowHeader {% if not show.cover_image %}ShowHeader--tone-{{ show.tone_from_accent }} {% else %}ShowHeader--tone-light ShowHeader--has-cover{% endif %}">
       {% if show.cover_image %}
       {% image show.cover_image width-1500 as show_cover %}
-      <div class="show-header__cover">
+      <div class="ShowHeader__cover">
         <div
-          class="show-header__cover-gradient"
+          class="ShowHeader__cover-gradient"
           style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,{{ show.accent_color }} 100%);"></div>
-        <img class="show-header__cover-image" src="{{ show_cover.url }}" alt="{{ show.title }}">
+        <img class="ShowHeader__cover-image" src="{{ show_cover.url }}" alt="{{ show.title }}">
       </div>
       {% endif %}
-      <div class="show-header__container container">
+      <div class="ShowHeader__container Container">
         {% if show.logo %}
           {% image show.logo width-400 as show_logo %}
-          <h1 class="show-header__title show-header__title--logo">
+          <h1 class="ShowHeader__title ShowHeader__title--logo">
             <a href="{{ show.url }}">
               <img src="{{ show_logo.url }}" alt="{{ show.title }}">
             </a>
           </h1>
         {% else %}
-          <h1 class="show-header__title show-header__title--text">
+          <h1 class="ShowHeader__title ShowHeader__title--text">
             <a href="{{ show.url }}">{{ show.title }}</a>
           </h1>
         {% endif %}
-        <div class="show-header__details">
-          <div class="show-header__short-description">{{ show.description }}</div>
-          <div class="show-header__schedule">{{ show.get_human_time }}</div>
+        <div class="ShowHeader__details">
+          <div class="ShowHeader__short-description">{{ show.description }}</div>
+          <div class="ShowHeader__schedule">{{ show.get_human_time }}</div>
         </div>
       </div>
     </div>
-    <div class="container show-card {% if show.cover_image %} show-card--has-cover {% endif %}">
-      <div class="show-card__sidebar">
-        <ul class="show-nav">
-          <li class="show-nav__item {% if page.url == show.url %} show-nav__item--active{% endif %}">
+    <div class="Container ShowCard {% if show.cover_image %} ShowCard--has-cover {% endif %}">
+      <div class="ShowCard__sidebar">
+        <ul class="ShowNav">
+          <li class="ShowNav__item {% if page.url == show.url %} ShowNav__item--active{% endif %}">
             <a href="{{ show.url }}">About</a>
           </li>
           {% for child in show.get_children.live %}
-            <li class="show-nav__item {% if page.url == child.url %} show-nav__item--active{% endif %}">
+            <li class="ShowNav__item {% if page.url == child.url %} ShowNav__item--active{% endif %}">
               <a href="{{ child.url }}">{{ child.title }}</a>
             </li>
           {% endfor %}
         </ul>
 
           {% if show.has_social %}
-            <ul class="show-nav">
+            <ul class="ShowNav">
               {% if show.social_twitter_handle %}
-                <li class="show-nav__item show-nav__social-twitter">
+                <li class="ShowNav__item ShowNav__social-twitter">
                   <a href="https://twitter.com/{{ show.social_twitter_handle }}">
-                    <i class="icon-twitter show-nav__item-icon"></i>
+                    <i class="icon-twitter ShowNav__item-icon"></i>
                     Twitter
                   </a>
                 </li>
               {% endif %}
 
               {% if show.social_facebook_url %}
-              <li class="show-nav__item show-nav__social-facebook">
+              <li class="ShowNav__item ShowNav__social-facebook">
                 <a href="{{ show.social_facebook_url }}">
-                  <i class="icon-facebook show-nav__item-icon"></i>
+                  <i class="icon-facebook ShowNav__item-icon"></i>
                   Facebook
                 </a>
               </li>
               {% endif %}
 
               {% if show.social_youtube_url %}
-              <li class="show-nav__item show-nav__social-youtube">
+              <li class="ShowNav__item ShowNav__social-youtube">
                 <a href="{{ show.social_youtube_url }}">
-                  <i class="icon-youtube show-nav__item-icon"></i>
+                  <i class="icon-youtube ShowNav__item-icon"></i>
                   YouTube
                 </a>
               </li>
               {% endif %}
 
               {% if show.social_mixcloud_handle %}
-              <li class="show-nav__item show-nav__social-mixcloud">
+              <li class="ShowNav__item ShowNav__social-mixcloud">
                 <a href="https://www.mixcloud.com/{{ show.social_mixcloud_handle }}">
-                  <i class="icon-mixcloud show-nav__item-icon"></i>
+                  <i class="icon-mixcloud ShowNav__item-icon"></i>
                   Mixcloud
                 </a>
               </li>
               {% endif %}
 
               {% if show.social_soundcloud_handle %}
-              <li class="show-nav__item show-nav__social-soundcloud">
+              <li class="ShowNav__item ShowNav__social-soundcloud">
                 <a href="https://soundcloud.com/{{ show.social_soundcloud_handle }}">
-                  <i class="icon-soundcloud show-nav__item-icon"></i>
+                  <i class="icon-soundcloud ShowNav__item-icon"></i>
                   Soundcloud
                 </a>
               </li>
@@ -99,7 +99,7 @@
             </ul>
           {% endif %}
       </div>
-      <div class="show-card__content">
+      <div class="ShowCard__content">
           {% block card_content %}{% endblock %}
       </div>
     </div>

@@ -1,22 +1,22 @@
-  <header class="header">
-    <div class="container header__container">
+  <header class="Header">
+    <div class="Container Header__container">
         <a href="/">
-            <div class="header__logo"></div>
+            <div class="Header__logo"></div>
         </a>
 
-        <nav class="header__nav">
-            <ul class="header-nav">
+        <nav class="Header__nav">
+            <ul class="HeaderNav">
               {% for item in settings.server.MenuSettings.header_menu.items.all %}
-                <li class="header-nav__item">
-                    <a class="header-nav__link" href="{{ item.page.url }}">{{ item.title }}</a>
+                <li class="HeaderNav__item">
+                    <a class="HeaderNav__link" href="{{ item.page.url }}">{{ item.title }}</a>
                 </li>
               {% endfor %}
             </ul>
         </nav>
 
-        <a class="now-and-next" href="/player">
-          <div class="now-and-next__heading">Listen</div>
-          <div class="now-and-next__now">Now: Punch The Line</div>
+        <a class="NowAndNext" href="/player">
+          <div class="NowAndNext__heading">Listen</div>
+          <div class="NowAndNext__now">Now: Punch The Line</div>
         </a>
   </div>
 </header>

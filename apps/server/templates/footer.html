@@ -1,38 +1,38 @@
-<footer class="footer">
-  <div class="footer__container container">
-    <div class="footer__one">
+<footer class="Footer">
+  <div class="Footer__container Container">
+    <div class="Footer__one">
       <a href="/">
-        <div class="footer__logo"></div>
+        <div class="Footer__logo"></div>
       </a>
 
-      <div class="footer__nav footer-nav">
-        <ul class="footer-nav__list">
+      <div class="Footer__nav footer-nav">
+        <ul class="FooterNav__list">
           {% for item in settings.server.MenuSettings.footer_one_menu.items.all %}
-          <li class="footer-nav__item">
+          <li class="FooterNav__item">
             <a href="{{ item.page.url }}">{{ item.title }}</a>
           </li>
           {% endfor %}
         </ul>
 
-        <ul class="footer-nav__list">
+        <ul class="FooterNav__list">
           {% for item in settings.server.MenuSettings.footer_two_menu.items.all %}
-          <li class="footer-nav__item">
+          <li class="FooterNav__item">
             <a href="{{ item.page.url }}">{{ item.title }}</a>
           </li>
           {% endfor %}
         </ul>
 
-        <ul class="footer-nav__list">
-          <li class="footer-nav__item">
+        <ul class="FooterNav__list">
+          <li class="FooterNav__item">
             <a href="https://twitter.com/{{ settings.server.SocialMediaSettings.twitter_handle }}">Twitter</a>
           </li>
-          <li class="footer-nav__item">
+          <li class="FooterNav__item">
             <a href="{{ settings.server.SocialMediaSettings.facebook }}">Facebook</a>
           </li>
         </ul>
       </div>
     </div>
 
-    <div class="footer__copyright">© {% now "Y" %} University Radio Falmer</div>
+    <div class="Footer__copyright">© {% now "Y" %} University Radio Falmer</div>
   </div>
 </footer>

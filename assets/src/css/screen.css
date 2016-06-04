@@ -9,31 +9,31 @@
 @import 'player/screen.css';
 
 /* components */
-@import 'components/global-announcement.css';
-@import 'components/core.css';
-@import 'components/container.css';
+@import 'components/GlobalAnnouncement.css';
+@import 'components/Core.css';
+@import 'components/Container.css';
 
-@import 'components/content.css';
+@import 'components/Content.css';
 
-@import 'components/header.css';
-@import 'components/header-nav.css';
-@import 'components/now-and-next.css';
+@import 'components/Header.css';
+@import 'components/HeaderNav.css';
+@import 'components/NowAndNext.css';
 
-@import 'components/shows-grid.css';
+@import 'components/ShowsGrid.css';
 
-@import 'components/show-header.css';
-@import 'components/show-card.css';
-@import 'components/show-nav.css';
+@import 'components/ShowHeader.css';
+@import 'components/ShowCard.css';
+@import 'components/ShowNav.css';
 
-@import 'components/footer.css';
-@import 'components/footer-nav.css';
+@import 'components/Footer.css';
+@import 'components/FooterNav.css';
 
-@import 'components/team-list.css';
-@import 'components/team-member.css';
+@import 'components/TeamList.css';
+@import 'components/TeamMember.css';
 
 
-@import 'components/slider.css';
-@import 'components/feature-slider.css';
+@import 'components/Slider.css';
+@import 'components/FeatureSlider.css';
 
 @import 'components/Spinner.css';
 

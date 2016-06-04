@@ -1,13 +1,13 @@
-<div class="feature-slider slider js_slider">
-  <div class="slider__frame js_frame">
-    <div class="container feature-slider__navigation">
-      <button type="button" class="feature-slider__prev js_prev">Previous Slide</button>
-      <button type="button" class="feature-slider__next js_next">Next Slide</button>
+<div class="FeatureSlider Slider js_slider">
+  <div class="Slider__frame js_frame">
+    <div class="Container FeatureSlider__navigation">
+      <button type="button" class="FeatureSlider__prev js_prev">Previous Slide</button>
+      <button type="button" class="FeatureSlider__next js_next">Next Slide</button>
     </div>
-    <ul class="feature-slider__slides slider__slides js_slides">
+    <ul class="FeatureSlider__slides Slider__slides js_slides">
       {% for slide in page.slides.all %}
-        <li class="feature-slider__slide js_slide" style="">
-          <div class="container">
+        <li class="FeatureSlider__slide js_slide" style="">
+          <div class="Container">
             <h1>{{ slide.title }}</h1>
             <div>{{ slide.copy }}</div>
           </div>
