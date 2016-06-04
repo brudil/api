@@ -2,7 +2,7 @@
   display: flex;
 
   &__days {
-    flex: auto;
+    flex: 1 0 auto;
   }
 
   &__scroll {
