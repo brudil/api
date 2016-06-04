@@ -1,6 +1,6 @@
 import React from 'react';
-import moment from 'moment';
 import cx from 'classnames';
+import ScheduleSlotTime from './ScheduleSlotTime';
 
 function ScheduleSlot(props) {
   const slot = props.slot;
@@ -12,30 +12,6 @@ function ScheduleSlot(props) {
       title: 'Playlist',
     };
   }
-
-  const timeFormat = 'h:mma';
-  const momentFrom = moment(slot.from_time);
-  const momentTo = moment(slot.to_time);
-
-  const fromElement = (
-    <span
-      className={cx('ScheduleSlot__time-item', {
-        'ScheduleSlot__time-item--continuation': slot.is_overnight && props.index === 0,
-      })}
-    >
-      {momentFrom.format(timeFormat)}
-    </span>
-  );
-
-  const toElement = (
-    <span
-      className={cx('ScheduleSlot__time-item', {
-        'ScheduleSlot__time-item--continuation': slot.is_overnight && props.index !== 0,
-      })}
-    >
-      {momentTo.format(timeFormat)}
-    </span>
-  );
 
   const scheduleSlotClasses = cx(
     'ScheduleSlot',
@@ -53,7 +29,7 @@ function ScheduleSlot(props) {
         style={{ backgroundColor: show.accent }}
         href={show.page_url}
       >
-        <div className="ScheduleSlot__time">{fromElement} - {toElement}</div>
+        <ScheduleSlotTime slot={slot} index={props.index} />
         <div className="ScheduleSlot__title">
           {show.title}
         </div>

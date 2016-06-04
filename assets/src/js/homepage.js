@@ -11,7 +11,7 @@ export default () => {
     });
   }
 
-  const root = document.querySelector('#ScheduleTodayRoot');
+  const root = document.querySelector('.ScheduleSingleContainer');
 
   function render(data) {
     ReactDom.render(<TodaySchedule data={data} />, root);

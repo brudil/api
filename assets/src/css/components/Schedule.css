@@ -14,3 +14,7 @@
     padding-bottom: 1.3rem;
   }
 }
+
+.ScheduleSingleContainer {
+  min-height: 132px;
+}

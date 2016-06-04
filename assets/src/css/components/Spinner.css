@@ -10,7 +10,7 @@
 .Spinner {
   width: 11em;
   height: 11em;
-  margin: 50px auto;
+  margin: 0 auto;
   font-size: 10px;
   text-indent: -9999em;
   border-radius: 50%;

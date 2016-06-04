@@ -34,29 +34,32 @@ class TodaySchedule extends React.Component {
     }
   }
 
-  render() {
-    if (!this.props.data) {
-      return <Spinner />;
-    }
-
+  renderSchedule() {
     const slotsByDay = chunkSlotsByDay(this.props.data.slots);
     const today = momentWeekDayMonday(moment());
 
+    console.log(slotsByDay[today]);
+
     return (
-      <div className="Schedule">
-        <div className="Schedule__scroll-container" ref="container">
-          <div className="Schedule__scroll">
-            <ScheduleTimeline calculateWidth={calculateWidth} />
-            <div className="Schedule__day-row">
-              <ScheduleDayRow
-                day={today}
-                shows={this.props.data.shows}
-                slots={slotsByDay[today]}
-                calculateWidth={calculateWidth}
-              />
-            </div>
+      <div className="Schedule__scroll-container" ref="container">
+        <div className="Schedule__scroll">
+          <ScheduleTimeline calculateWidth={calculateWidth} />
+          <div className="Schedule__day-row">
+            <ScheduleDayRow
+              day={today}
+              shows={this.props.data.shows}
+              slots={slotsByDay[today]}
+              calculateWidth={calculateWidth}
+            />
           </div>
         </div>
+      </div>
+    );
+  }
+  render() {
+    return (
+      <div className="Schedule">
+        {!this.props.data ? <Spinner /> : this.renderSchedule()}
       </div>
     );
   }
