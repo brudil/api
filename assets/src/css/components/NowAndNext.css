@@ -1,13 +1,20 @@
 .NowAndNext {
-  display: block;
   padding-left: 1rem;
   padding-right: 1rem;
+  position: relative;
   background-color: #f04c37;
   color: #ffffff;
   text-decoration: none;
+  cursor: pointer;
+  height: 100%;
 
   &__heading {
     text-transform: uppercase;
     font-weight: 600;
   }
+}
+
+.NowAndNextRoot {
+  display: block;
+
 }

@@ -12,4 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('player')) {
     initPlayer();
   }
+
+  [...document.querySelectorAll('.js-open-player')].forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+    });
+  });
 });
