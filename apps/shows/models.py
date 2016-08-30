@@ -196,6 +196,9 @@ class ShowContentPage(Page):
         MultiFieldPanel(Page.promote_panels, "Common page configuration")
     ]
 
+    subpage_types = []
+    parent_page_types = ['shows.ShowPage']
+
 
 class ShowAudioSeriesIndexPage(SingletonPage, Page):
     class Meta:
@@ -212,6 +215,7 @@ class ShowAudioSeriesIndexPage(SingletonPage, Page):
     ]
 
     subpage_types = ['shows.ShowAudioSeriesEpisodePage']
+    parent_page_types = ['shows.ShowPage']
 
 
 class ShowAudioSeriesEpisodePage(Page):
@@ -228,6 +232,7 @@ class ShowAudioSeriesEpisodePage(Page):
         MultiFieldPanel(Page.promote_panels, "Common page configuration")
     ]
 
+    subpage_types = []
     parent_page_types = ['shows.ShowAudioSeriesIndexPage']
 
     def get_show(self):

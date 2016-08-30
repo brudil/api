@@ -42,3 +42,6 @@ class TeamPage(Page):
     promote_panels = [
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
     ]
+
+    parent_page_types = ['home.HomePage']
+    subpage_types = []
