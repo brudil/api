@@ -11,7 +11,6 @@ export function chunkSlotsByDay(slots) {
       days[slot.day].push(Object.assign({}, slot, { duration: diffMins }));
 
       if (slot.day !== 6) {
-        console.log({ duration: slot.duration, diffMins, slotDurationToMidnight, midnight });
         days[(slot.day + 1)].push(
           Object.assign({}, slot, { duration: slot.duration - diffMins })
         );
@@ -43,7 +42,7 @@ export function momentWeekDayMonday(momentObject) {
 
 export function getOnAirSlot(slots) {
   const byDay = chunkSlotsByDay(slots);
-  const now = moment();
+  const now = moment().utc();
   const todaySlots = byDay[momentWeekDayMonday(now)];
   for (const [index, slot] of todaySlots.entries()) {
     const fromTime = moment.utc(slot.from_time);

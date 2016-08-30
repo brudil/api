@@ -4,7 +4,6 @@ import ScheduleDayRow from './ScheduleDayRow';
 import Spinner from './Spinner';
 import moment from 'moment';
 import {
-  chunkSlotsByDay,
   calculateWidth,
   getOnAirSlot,
   momentWeekDayMonday,
@@ -35,10 +34,8 @@ class TodaySchedule extends React.Component {
   }
 
   renderSchedule() {
-    const slotsByDay = chunkSlotsByDay(this.props.data.slots);
+    const slotsByDay = this.props.data.chunked;
     const today = momentWeekDayMonday(moment());
-
-    console.log(slotsByDay[today]);
 
     return (
       <div className="Schedule__scroll-container" ref="container">

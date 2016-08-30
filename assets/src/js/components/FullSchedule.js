@@ -5,7 +5,6 @@ import ScheduleDayColumn from './ScheduleDayColumn';
 import Spinner from './Spinner';
 import moment from 'moment';
 import {
-  chunkSlotsByDay,
   calculateWidth,
   getOnAirSlot,
   momentWeekDayMonday,
@@ -41,7 +40,7 @@ class FullSchedule extends React.Component {
     }
 
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const slotsByDay = chunkSlotsByDay(this.props.data.slots);
+    const slotsByDay = this.props.data.chunked;
 
     return (
       <div className="Schedule">
