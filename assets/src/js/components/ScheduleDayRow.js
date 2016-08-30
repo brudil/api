@@ -1,8 +1,8 @@
 import React from 'react';
+import cx from 'classnames';
 import moment from 'moment';
 import ScheduleSlot from './ScheduleSlot';
 import momentInternal from '../hoc/MomentInterval';
-import cx from 'classnames';
 import { momentWeekDayMonday, slotIsOnAt } from '../utils/schedule';
 
 function ScheduleDayRow(props) {

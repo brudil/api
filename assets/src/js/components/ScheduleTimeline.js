@@ -35,8 +35,7 @@ function ScheduleTimeline(props) {
       <div
         className="ScheduleTimeline__bookmark"
         style={{ left: props.calculateWidth(props.minutes) }}
-      >
-      </div>
+      />
       {hours.map(hour => (
         <div className="ScheduleTimeline__hour" key={hour} style={{ width: hourWidth }}>
           {hour}

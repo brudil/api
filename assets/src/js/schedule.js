@@ -1,9 +1,9 @@
+import 'whatwg-fetch';
 import React from 'react';
-import FullSchedule from './components/FullSchedule';
 import ReactDom from 'react-dom';
+import FullSchedule from './components/FullSchedule';
 import TodaySchedule from './components/TodaySchedule';
 import NowAndNext from './components/NowAndNext';
-import 'whatwg-fetch';
 import { chunkSlotsByDay } from './utils/schedule';
 
 function reactInjector(rootSelector, Element) {

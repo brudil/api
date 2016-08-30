@@ -1,9 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 import ScheduleTimeline from './ScheduleTimeline';
 import ScheduleDayRow from './ScheduleDayRow';
 import ScheduleDayColumn from './ScheduleDayColumn';
 import Spinner from './Spinner';
-import moment from 'moment';
 import {
   calculateWidth,
   getOnAirSlot,
@@ -13,7 +13,7 @@ import {
 class FullSchedule extends React.Component {
 
   componentDidUpdate() {
-    const container = this.refs.container;
+    const container = this.containerRef;
 
     if (container && container.scrollLeft === 0) {
       const onAirSlot = getOnAirSlot(this.props.data.slots);
@@ -45,7 +45,12 @@ class FullSchedule extends React.Component {
     return (
       <div className="Schedule">
         <ScheduleDayColumn className="Schedule__days" days={days} />
-        <div className="Schedule__scroll-container" ref="container">
+        <div
+          className="Schedule__scroll-container"
+          ref={ref => {
+            this.containerRef = ref;
+          }}
+        >
           <div className="Schedule__scroll">
             <ScheduleTimeline calculateWidth={calculateWidth} />
             {days.map((day, index) => (

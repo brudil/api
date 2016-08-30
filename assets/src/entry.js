@@ -1,8 +1,9 @@
-require('./css/screen.css');
 import globalAnnouncement from './js/global_announcement';
 import homepage from './js/homepage';
 import schedule from './js/schedule';
-import { init as initPlayer } from './js/player';
+import initPlayer from './js/player';
+
+require('./css/screen.css');
 
 document.addEventListener('DOMContentLoaded', () => {
   globalAnnouncement();

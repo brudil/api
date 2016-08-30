@@ -9,6 +9,7 @@ export default class AudioController {
     this.volume = 1;
     this.element = document.body.appendChild(document.createElement('audio'));
     this.element.setAttribute('controls', 'true');
+    this.element.style = { display: 'none' };
 
     this.element.addEventListener('playing', () => {
       this.isPlaying = true;

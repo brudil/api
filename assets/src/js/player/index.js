@@ -11,8 +11,7 @@ function getState(ac) {
   };
 }
 
-
-export function init() {
+export default function init() {
   const ac = new AudioController();
   ac.stream('http://uk2.internet-radio.com:30764/stream');
 
