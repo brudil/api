@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "`npm bin`/webpack-dev-server --config webpack.dev.config.js --history-api-fallback --hot",
     "dist": "`npm bin`/webpack --config webpack.prod.config.js",
+    "lint": "eslint --ext .js ./assets/src",
+    "lintfix": "eslint --fix --ext .js ./assets/src",
     "postinstall": "npm run dist"
   },
   "engines": {
