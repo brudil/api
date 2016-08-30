@@ -15,6 +15,7 @@
   "author": "James Canning <james@jamescanning.com> (http://brudil.com)",
   "license": "ISC",
   "devDependencies": {
+    "stylelint-selector-bem-pattern": "^1.0.0",
     "webpack-dev-server": "^1.15.0"
   },
   "dependencies": {
