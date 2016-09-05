@@ -1,15 +1,15 @@
 .GlobalAnnouncement {
-  display: none;
-  width: 100%;
-  padding: 0.5rem;
   background-color: #2e9a7f;
+  box-sizing: border-box;
+  color: #fff;
+  display: none;
   font-size: 1.4rem;
   font-weight: 600;
-  color: #ffffff;
+  padding: 0.5rem;
+  position: relative;
   text-align: center;
   text-decoration: none;
-  position: relative;
-  box-sizing: border-box;
+  width: 100%;
   z-index: var(--layer-global-anouncement);
 
   &--visible {

@@ -5,7 +5,7 @@ var _ = require('lodash');
 
 var NODE_ENV = process.env.NODE_ENV;
 var postcssImport = require('postcss-import');
-var styleLintPlugin = require('stylelint-webpack-plugin');
+var StyleLintPlugin = require('stylelint-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var env = {
@@ -49,7 +49,8 @@ module.exports = {
       __PRODUCTION__: env.production,
       __CURRENT_ENV__: '\'' + (NODE_ENV) + '\'',
     }),
-    new styleLintPlugin({
+    new StyleLintPlugin({
+      configFile: './stylelint.config.js',
       files: 'assets/src/**/*.css',
     }),
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),

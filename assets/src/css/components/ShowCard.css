@@ -1,11 +1,11 @@
 .ShowCard {
-  display: flex;
-  flex: 1;
-  padding: 1.4rem;
-  overflow: hidden;
-  background: #ffffff;
+  background: #fff;
   box-shadow: 0 2px 6px rgba(30, 30, 30, 0.4);
   box-sizing: border-box;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 1.4rem;
   z-index: var(--layer-show-card);
 
   &--has-cover {
@@ -13,11 +13,11 @@
   }
 
   &__sidebar {
-    width: 150px;
+    border-right: 1px solid var(--ui-grey);
     flex: 0 0 150px;
     margin-right: 1.4rem;
     padding-right: 1.4rem;
-    border-right: 1px solid var(--ui-grey);
+    width: 150px;
   }
 
   &__content {
@@ -25,15 +25,15 @@
     min-width: 0;
 
     & .block-image {
-      padding: 1rem;
       box-sizing: border-box;
+      padding: 1rem;
 
       & > img {
         display: block;
-        width: auto;
-        max-width: 100%;
         height: auto;
         margin: 0 auto;
+        max-width: 100%;
+        width: auto;
       }
     }
   }

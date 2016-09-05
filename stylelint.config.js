@@ -86,7 +86,9 @@ module.exports = {
     'block-no-empty': true,
     'block-no-single-line': true,
     'block-opening-brace-newline-after': 'always',
-    'at-rule-empty-line-before': 'never',
+    'at-rule-empty-line-before': ['always', {
+      except: 'blockless-group',
+    }],
     'block-opening-brace-space-before': 'always',
     'comment-empty-line-before': ['always', {
       ignore: ['stylelint-commands'],

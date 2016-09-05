@@ -1,5 +1,6 @@
 .Header {
-  background: #ffffff;
+  background: #fff;
+
   /* box-shadow: 0 0 3px 0 rgba(30, 30, 30, 0.6); */
   position: relative;
 
@@ -12,14 +13,14 @@
   }
 
   &__logo {
-    display: block;
-    width: 136px;
-    height: 136px;
-    top: 4px;
-    position: absolute;
-    left: calc(-1 * (136px + 20px));
     background-image: url('../img/logo.png');
     background-size: contain;
+    display: block;
+    height: 136px;
+    left: calc(-1 * (136px + 20px));
+    position: absolute;
+    top: 4px;
+    width: 136px;
     z-index: var(--layer-logo);
   }
 }

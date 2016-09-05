@@ -1,10 +1,10 @@
 .Slider {
 
   &__frame {
-    position: relative;
     font-size: 0;
     line-height: 0;
     overflow: hidden;
+    position: relative;
     white-space: nowrap;
   }
 
@@ -15,10 +15,10 @@
   }
 
   & li {
-    position: relative;
     display: inline-block;
     font-size: 15px;
     line-height: 30px;
+    position: relative;
     white-space: normal;
   }
 

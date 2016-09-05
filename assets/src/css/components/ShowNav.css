@@ -1,17 +1,17 @@
 .ShowNav {
+  font-size: 1.2rem;
+  list-style: none;
   margin: 0 0 1rem;
   padding: 0;
-  list-style: none;
-  font-size: 1.2rem;
 
   &__item {
     margin-bottom: 0.2rem;
 
     & > a {
-      display: block;
-      text-decoration: none;
-      padding: 0.25rem 0;
       color: #212121;
+      display: block;
+      padding: 0.25rem 0;
+      text-decoration: none;
     }
 
     &--active {
@@ -27,8 +27,8 @@
 
   &__item-icon {
     display: inline-block;
-    width: 1.5rem;
     font-size: 1rem;
+    width: 1.5rem;
   }
 
   &__social-facebook {

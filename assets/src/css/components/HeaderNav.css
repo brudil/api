@@ -1,12 +1,12 @@
 .HeaderNav {
+  font-size: 1.2rem;
+  list-style: none;
   margin: 0;
+  overflow: hidden;
+  padding-bottom: 0.8rem;
   padding-left: 0;
   padding-right: 0;
   padding-top: 2rem;
-  padding-bottom: 0.8rem;
-  list-style: none;
-  overflow: hidden;
-  font-size: 1.2rem;
 
   &__item {
     float: left;
@@ -15,10 +15,10 @@
   }
 
   &__link {
+    color: var(--header-grey);
+    font-weight: 600;
     padding-left: 0.2em;
     padding-right: 0.2em;
-    font-weight: 600;
     text-decoration: none;
-    color: var(--header-grey);
   }
 }

@@ -1,22 +1,22 @@
 .Footer {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   background: #2f0e07;
-  color: #ffffff;
+  color: #fff;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
 
   &__one {
     display: flex;
   }
 
   &__logo {
+    background-image: url('../img/logotype.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
     display: block;
-    width: 100px;
     height: 50px;
     margin-right: 2rem;
     margin-top: 10px;
-    background-image: url('../img/logotype.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
+    width: 100px;
   }
 
   &__nav {
