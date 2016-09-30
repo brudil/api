@@ -47,7 +47,7 @@ module.exports = {
       __DEV__: env.development,
       __STAGING__: env.staging,
       __PRODUCTION__: env.production,
-      __CURRENT_ENV__: '\'' + (NODE_ENV) + '\'',
+      __CURRENT_ENV__: `'${(NODE_ENV)}'`,
     }),
     new StyleLintPlugin({
       configFile: './stylelint.config.js',
