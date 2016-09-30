@@ -1,8 +1,10 @@
 .TeamMember {
   display: flex;
+
   &__name {
     font-size: 1.3rem;
   }
+
 
   &__job-title {
     font-style: italic;
