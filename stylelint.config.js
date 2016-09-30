@@ -1,11 +1,6 @@
 module.exports = {
-  plugins: [
-    'stylelint-selector-bem-pattern',
-  ],
+  plugins: [],
   rules: {
-    'plugin/selector-bem-pattern': {
-      preset: 'bem',
-    },
 
     // color
     'color-hex-case': 'lower',
