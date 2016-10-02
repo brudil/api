@@ -17,10 +17,10 @@ function NowAndNext(props) {
   const slot = getOnAirSlot(props.data.slots);
   const show = props.data.shows[slot.show];
   return (
-    <div className="NowAndNext" onClick={launchPlayer}>
+    <a className="NowAndNext" onClick={launchPlayer} href="">
       <div className="NowAndNext__heading">Listen</div>
       <div className="NowAndNext__now">Now: {show.title}</div>
-    </div>
+    </a>
   );
 }
 

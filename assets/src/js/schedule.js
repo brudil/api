@@ -34,7 +34,7 @@ export default () => {
     const scheduleData = data;
     scheduleData.chunked = chunkSlotsByDay(data.slots);
 
-    scheduleElements.forEach(element => {
+    scheduleElements.forEach((element) => {
       if (element !== false) {
         element(scheduleData);
       }

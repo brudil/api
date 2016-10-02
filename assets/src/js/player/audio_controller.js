@@ -26,23 +26,23 @@ export default class AudioController {
       this.update();
     });
 
-    this.element.addEventListener('error', data => {
+    this.element.addEventListener('error', (data) => {
       console.log('error', data);
     });
 
-    this.element.addEventListener('ended', data => {
+    this.element.addEventListener('ended', (data) => {
       console.log('ended', data);
       this.playState = playStates.STOPPED;
       this.update();
     });
 
-    this.element.addEventListener('waiting', data => {
+    this.element.addEventListener('waiting', (data) => {
       console.log('waiting', data);
       this.playState = playStates.CONNECTING;
       this.update();
     });
 
-    this.element.addEventListener('canplay', data => {
+    this.element.addEventListener('canplay', (data) => {
       this.playState = playStates.PLAYING;
       console.log('canplay', data);
       this.update();

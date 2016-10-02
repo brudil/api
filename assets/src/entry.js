@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initPlayer();
   }
 
-  [...document.querySelectorAll('.js-open-player')].forEach(el => {
-    el.addEventListener('click', e => {
+  [...document.querySelectorAll('.js-open-player')].forEach((el) => {
+    el.addEventListener('click', (e) => {
       e.preventDefault();
     });
   });

@@ -41,13 +41,12 @@ class FullSchedule extends React.Component {
 
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     const slotsByDay = this.props.data.chunked;
-
     return (
       <div className="Schedule">
         <ScheduleDayColumn className="Schedule__days" days={days} />
         <div
           className="Schedule__scroll-container"
-          ref={ref => {
+          ref={(ref) => {
             this.containerRef = ref;
           }}
         >
