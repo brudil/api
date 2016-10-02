@@ -52,7 +52,7 @@ export function getOnAirSlot(slots) {
       fromTime.subtract(1, 'days');
     }
 
-    if (slot.is_overnight && index === todaySlots.length - 1) {
+    if (((toTime.get('hour') === 0 && toTime.get('minute') === 0) || slot.is_overnight) && index === todaySlots.length - 1) {
       toTime.add(1, 'days');
     }
 

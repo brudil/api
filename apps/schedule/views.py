@@ -63,11 +63,8 @@ def api_schedule(request):
     slots = []
     for slot in sorted_by_time:
         if previous_slot_to_time != slot.from_time:
-            print('Adding AutomationSlot because prev end: {} != current start: {}... day: {}'.format(previous_slot_to_time, slot.from_time, previous_slot_day))
-
             slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=slot.from_time, day=previous_slot_day if previous_slot_to_time != midnight.time() else slot.day))
 
-        print('Adding Slot')
         slots.append(slot)
 
         previous_slot_day = slot.day
