@@ -7,19 +7,21 @@ from apps.shows.models import ShowSlot, ShowPage, ShowSettings
 from wagtail.wagtailcore.models import Page
 
 AutomationSlot = namedtuple('AutomationSlot', ['day', 'from_time', 'to_time'])
+midnight = datetime.datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
 
 def serialize_slot(slot, automation_page):
     now = datetime.datetime.now(datetime.timezone.utc)
     from_time = datetime.datetime.combine(now, slot.from_time)
     to_time = datetime.datetime.combine(now, slot.to_time)
+    is_overnight = to_time < from_time and to_time != midnight
 
     serial = {
         'day': slot.day,
         'sort_key': slot_sort(slot),
         'from_time': from_time.isoformat(),
         'to_time': to_time.isoformat(),
-        'is_overnight': to_time < from_time,
+        'is_overnight': is_overnight,
         'duration': (to_time - from_time).seconds / 60,
     }
 
@@ -61,8 +63,11 @@ def api_schedule(request):
     slots = []
     for slot in sorted_by_time:
         if previous_slot_to_time != slot.from_time:
-            slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=slot.from_time, day=previous_slot_day))
+            print('Adding AutomationSlot because prev end: {} != current start: {}... day: {}'.format(previous_slot_to_time, slot.from_time, previous_slot_day))
 
+            slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=slot.from_time, day=previous_slot_day if previous_slot_to_time != midnight.time() else slot.day))
+
+        print('Adding Slot')
         slots.append(slot)
 
         previous_slot_day = slot.day
@@ -88,4 +93,3 @@ def api_schedule(request):
 
 
 # day schedule
-
