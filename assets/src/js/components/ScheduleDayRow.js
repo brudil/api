@@ -52,4 +52,9 @@ ScheduleDayRow.propTypes = {
   shows: React.PropTypes.object.isRequired,
 };
 
+ScheduleDayRow.defaultProps = {
+  className: '',
+};
+
+
 export default momentInternal({ interval: 60000 }, ScheduleDayRow);

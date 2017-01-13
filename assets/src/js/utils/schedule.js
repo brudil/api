@@ -2,6 +2,7 @@ import moment from 'moment';
 
 export function chunkSlotsByDay(slots) {
   const days = [[], [], [], [], [], [], []];
+  // eslint-disable-next-line
   for (const slot of slots) {
     if (slot.is_overnight) {
       const midnight = moment.utc().startOf('day').add(1, 'day');
@@ -12,7 +13,7 @@ export function chunkSlotsByDay(slots) {
 
       if (slot.day !== 6) {
         days[(slot.day + 1)].push(
-          Object.assign({}, slot, { duration: slot.duration - diffMins })
+          Object.assign({}, slot, { duration: slot.duration - diffMins }),
         );
       }
     } else {
@@ -42,8 +43,9 @@ export function momentWeekDayMonday(momentObject) {
 
 export function getOnAirSlot(slots) {
   const byDay = chunkSlotsByDay(slots);
-  const now = moment().utc();
+  const now = moment();
   const todaySlots = byDay[momentWeekDayMonday(now)];
+  // eslint-disable-next-line
   for (const [index, slot] of todaySlots.entries()) {
     const fromTime = moment.utc(slot.from_time);
     const toTime = moment.utc(slot.to_time);
@@ -52,7 +54,10 @@ export function getOnAirSlot(slots) {
       fromTime.subtract(1, 'days');
     }
 
-    if (((toTime.get('hour') === 0 && toTime.get('minute') === 0) || slot.is_overnight) && index === todaySlots.length - 1) {
+    if (
+      (
+        (toTime.get('hour') === 0 && toTime.get('minute') === 0) || slot.is_overnight)
+          && index === todaySlots.length - 1) {
       toTime.add(1, 'days');
     }
 

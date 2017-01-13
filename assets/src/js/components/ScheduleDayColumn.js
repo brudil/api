@@ -8,7 +8,7 @@ function ScheduleDayColumn(props) {
         <div className="ScheduleDayColumn__day" key={day}>
           {day}
         </div>
-        )
+        ),
       )}
     </div>
   );
@@ -17,6 +17,10 @@ function ScheduleDayColumn(props) {
 ScheduleDayColumn.propTypes = {
   days: React.PropTypes.array.isRequired,
   className: React.PropTypes.string,
+};
+
+ScheduleDayColumn.defaultProps = {
+  className: '',
 };
 
 export default ScheduleDayColumn;

@@ -40,7 +40,7 @@ function ScheduleTimeline(props) {
         <div className="ScheduleTimeline__hour" key={hour} style={{ width: hourWidth }}>
           {hour}
         </div>
-        )
+        ),
       )}
     </div>
   );

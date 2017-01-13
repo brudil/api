@@ -19,7 +19,7 @@ function ScheduleSlot(props) {
     {
       'ScheduleSlot--overnight': slot.is_overnight,
       'ScheduleSlot--on-air': props.onAir,
-    }
+    },
   );
 
   return (
