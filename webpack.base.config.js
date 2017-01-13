@@ -1,22 +1,26 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
 
-var path = require('path');
-var _ = require('lodash');
+const path = require('path');
+const _ = require('lodash');
 
-var NODE_ENV = process.env.NODE_ENV;
-var postcssImport = require('postcss-import');
-var StyleLintPlugin = require('stylelint-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const NODE_ENV = process.env.NODE_ENV;
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var env = {
+const env = {
   production: NODE_ENV === 'production',
   staging: NODE_ENV === 'staging',
   test: NODE_ENV === 'test',
-  development: NODE_ENV === 'development' || typeof NODE_ENV === 'undefined'
+  development: NODE_ENV === 'development' || typeof NODE_ENV === 'undefined',
 };
 
 _.assign(env, {
-  build: (env.production || env.staging)
+  build: (env.production || env.staging),
+});
+
+const extractCSS = new ExtractTextPlugin({
+  filename: env.production ? 'urf.[contenthash].css' : 'main.css',
+  allChunks: true,
 });
 
 module.exports = {
@@ -28,18 +32,17 @@ module.exports = {
 
   output: {
     path: path.join(__dirname, '/build'),
-    pathInfo: true,
     publicPath: 'http://localhost:8080/build/',
     filename: '[name].js',
   },
 
   resolve: {
-    modulesDirectories: [
+    modules: [
       'web_modules',
       'node_modules',
       './src/images',
     ],
-    extentions: ['js', 'css', 'svg'],
+    extensions: ['.js', '.css', '.svg'],
   },
 
   plugins: [
@@ -53,32 +56,25 @@ module.exports = {
       configFile: './stylelint.config.js',
       files: 'assets/src/**/*.css',
     }),
+    extractCSS,
     new webpack.ContextReplacementPlugin(/moment[\\\/]locale$/, /^\.\/(en)$/),
   ],
 
   module: {
-    preLoaders: [
-      { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ },
-    ],
-    loaders: [
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader', {
-        publicPath: '',
-      })},
+    rules: [
+      { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/, enforce: 'pre' },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+      {
+        test: /\.css$/,
+        loader: extractCSS.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?importLoaders=1!postcss-loader',
+          publicPath: '',
+        }),
+      },
       { test: /\.(woff|woff2|eot|ttf|svg|png)(\?[a-z0-9=&.]+)?$/, loader: 'url-loader?limit=100000' },
     ],
 
     noParse: /\.min\.js/,
   },
-  postcss: function (webpack) {
-    return [
-      postcssImport({
-        addDependencyTo: webpack,
-      }),
-      require('postcss-cssnext'),
-      require('lost'),
-      require('postcss-brand-colors'),
-    ];
-  }
-
 };

@@ -5,7 +5,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var SaveAssetsJson = require('assets-webpack-plugin');
 
 config.bail = true;
-config.debug = false;
 config.profile = false;
 config.devtool = '#source-map';
 
@@ -18,8 +17,6 @@ config.output = {
 
 config.plugins = config.plugins.concat([
   new ExtractTextPlugin('[name].[hash].min.css'),
-  new webpack.optimize.OccurenceOrderPlugin(true),
-  new webpack.optimize.DedupePlugin(),
   new webpack.DefinePlugin({
     'process.env': { NODE_ENV: '"production"' },
   }),
@@ -32,4 +29,3 @@ config.plugins = config.plugins.concat([
 
 
 module.exports = config;
-

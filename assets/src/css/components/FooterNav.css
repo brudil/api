@@ -2,14 +2,8 @@
 
   &__list {
     list-style: none;
-    lost-column: 1/1;
     margin: 0 0 1rem;
     padding: 0;
-
-    @media screen and (min-width: 600px) {
-      lost-column: 1/3;
-      margin-bottom: 0;
-    }
   }
 
   &__item {

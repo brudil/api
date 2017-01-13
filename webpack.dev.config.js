@@ -15,7 +15,6 @@ if (process.env.NODE_ENV !== 'test') {
 config.devtool = 'eval-source-map';
 
 config.plugins = config.plugins.concat([
-  new ExtractTextPlugin('[name].css'),
   new webpack.NoErrorsPlugin(),
 ]);
 

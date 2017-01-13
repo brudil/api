@@ -1,5 +1,3 @@
-@lost gutter 30px;
-
 .ShowsGrid {
   list-style: none;
   margin: 0;
@@ -7,22 +5,26 @@
 
   &__grid {
     list-style: none;
-    lost-utility: clearfix;
     margin: 0;
     padding: 0;
-  }
-
-  &__item {
-    lost-column: 1/1;
-    margin-bottom: 1.5rem;
+    gg: columns(1/1);
 
     @media screen and (min-width: 560px) {
-      lost-column: 1/2;
+      & {
+        gg: columns(1/2 1/2);
+      }
     }
 
     @media screen and (min-width: 800px) {
-      lost-column: 1/3;
+      & {
+        gg: columns(1/3 1/3 1/3);
+      }
     }
+
+  }
+
+  &__item {
+    margin-bottom: 1.5rem;
   }
 
   &__anchor {
