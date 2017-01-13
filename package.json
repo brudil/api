@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "`npm bin`/webpack-dev-server --config webpack.dev.config.js --history-api-fallback --hot",
-    "dist": "`npm bin`/webpack --config webpack.prod.config.js",
+    "serve": "export NODE_ENV=development && `npm bin`/webpack-dev-server --config webpack.dev.config.js --history-api-fallback --hot",
+    "dist": "export NODE_ENV=production && `npm bin`/webpack --config webpack.prod.config.js",
     "lint": "eslint --ext .js ./assets/src",
     "lintfix": "eslint --fix --ext .js ./assets/src",
     "postinstall": "npm run dist"
@@ -56,7 +56,11 @@
     "precss": "^1.4.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.2",
     "react-responsive": "^1.1.5",
+    "redux": "^3.6.0",
+    "redux-logger": "^2.7.4",
+    "redux-thunk": "^2.1.0",
     "style-loader": "^0.13.1",
     "stylelint": "^7.7.1",
     "stylelint-webpack-plugin": "^0.5.1",

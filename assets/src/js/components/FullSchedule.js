@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { connect } from 'react-redux';
 import ScheduleTimeline from './ScheduleTimeline';
 import ScheduleDayRow from './ScheduleDayRow';
 import ScheduleDayColumn from './ScheduleDayColumn';
@@ -16,7 +17,7 @@ class FullSchedule extends React.Component {
     const container = this.containerRef;
 
     if (container && container.scrollLeft === 0) {
-      const onAirSlot = getOnAirSlot(this.props.data.slots);
+      const onAirSlot = getOnAirSlot(this.props.schedule.data.slots);
       const slotStartedToday = onAirSlot.day === momentWeekDayMonday(moment());
 
       if (onAirSlot.is_overnight && !slotStartedToday) {
@@ -35,12 +36,12 @@ class FullSchedule extends React.Component {
   }
 
   render() {
-    if (!this.props.data) {
+    if (this.props.schedule.isLoading) {
       return <Spinner />;
     }
 
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const slotsByDay = this.props.data.chunked;
+    const slotsByDay = this.props.schedule.chunked;
     return (
       <div className="Schedule">
         <ScheduleDayColumn className="Schedule__days" days={days} />
@@ -53,16 +54,16 @@ class FullSchedule extends React.Component {
           <div className="Schedule__scroll">
             <ScheduleTimeline calculateWidth={calculateWidth} />
             {days.map((day, index) => (
-              <div className="Schedule__day-row" key={index}>
+              <div className="Schedule__day-row" key={day}>
                 <ScheduleDayRow
                   title={day}
                   day={index}
-                  shows={this.props.data.shows}
+                  shows={this.props.schedule.data.shows}
                   slots={slotsByDay[index]}
                   calculateWidth={calculateWidth}
                 />
               </div>
-              )
+              ),
             )}
             <ScheduleTimeline calculateWidth={calculateWidth} />
           </div>
@@ -73,7 +74,9 @@ class FullSchedule extends React.Component {
 }
 
 FullSchedule.propTypes = {
-  data: React.PropTypes.object,
+  schedule: React.PropTypes.object.isRequired,
 };
 
-export default FullSchedule;
+export default connect(state => ({
+  schedule: state.schedule,
+}))(FullSchedule);

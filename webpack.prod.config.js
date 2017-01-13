@@ -10,17 +10,12 @@ config.devtool = '#source-map';
 
 config.output = {
   path: './assets/dist',
-  pathInfo: true,
   publicPath: '/assets/',
   filename: '[name].[hash].min.js',
 };
 
 config.plugins = config.plugins.concat([
-  new ExtractTextPlugin('[name].[hash].min.css'),
-  new webpack.DefinePlugin({
-    'process.env': { NODE_ENV: '"production"' },
-  }),
-  new webpack.optimize.UglifyJsPlugin({ output: { comments: false } }),
+  new webpack.optimize.UglifyJsPlugin(),
   new SaveAssetsJson({
     path: './assets/dist/',
     filename: 'assets.json',

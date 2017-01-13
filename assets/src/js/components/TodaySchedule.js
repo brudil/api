@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import ScheduleTimeline from './ScheduleTimeline';
 import ScheduleDayRow from './ScheduleDayRow';
@@ -15,7 +16,7 @@ class TodaySchedule extends React.Component {
     const container = this.containerRef;
 
     if (container && container.scrollLeft === 0) {
-      const onAirSlot = getOnAirSlot(this.props.data.slots);
+      const onAirSlot = getOnAirSlot(this.props.schedule.data.slots);
       const slotStartedToday = onAirSlot.day === momentWeekDayMonday(moment());
 
       if (onAirSlot.is_overnight && !slotStartedToday) {
@@ -34,7 +35,7 @@ class TodaySchedule extends React.Component {
   }
 
   renderSchedule() {
-    const slotsByDay = this.props.data.chunked;
+    const slotsByDay = this.props.schedule.chunked;
     const today = momentWeekDayMonday(moment());
 
     return (
@@ -49,7 +50,7 @@ class TodaySchedule extends React.Component {
           <div className="Schedule__day-row">
             <ScheduleDayRow
               day={today}
-              shows={this.props.data.shows}
+              shows={this.props.schedule.data.shows}
               slots={slotsByDay[today]}
               calculateWidth={calculateWidth}
             />
@@ -61,14 +62,16 @@ class TodaySchedule extends React.Component {
   render() {
     return (
       <div className="Schedule">
-        {!this.props.data ? <Spinner /> : this.renderSchedule()}
+        {this.props.schedule.isLoading ? <Spinner /> : this.renderSchedule()}
       </div>
     );
   }
 }
 
 TodaySchedule.propTypes = {
-  data: React.PropTypes.object,
+  schedule: React.PropTypes.object.isRequired,
 };
 
-export default TodaySchedule;
+export default connect(state => ({
+  schedule: state.schedule,
+}))(TodaySchedule);
