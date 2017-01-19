@@ -1,6 +1,5 @@
-var webpack = require('webpack');
-var config = require('./webpack.base.config.js');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const config = require('./webpack.base.config.js');
 
 if (process.env.NODE_ENV !== 'test') {
   config.entry = {

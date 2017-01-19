@@ -1,8 +1,8 @@
-var webpack = require('webpack');
-var config = require('./webpack.base.config.js');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const config = require('./webpack.base.config.js');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var SaveAssetsJson = require('assets-webpack-plugin');
+const SaveAssetsJson = require('assets-webpack-plugin');
 
 config.bail = true;
 config.profile = false;
