@@ -1,5 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
+import Link from './Link';
 import ScheduleSlotTime from './ScheduleSlotTime';
 
 function ScheduleSlot(props) {
@@ -24,7 +25,7 @@ function ScheduleSlot(props) {
 
   return (
     <div className={scheduleSlotClasses} style={{ width: props.calculateWidth(slot.duration) }}>
-      <a
+      <Link
         className="ScheduleSlot__inner"
         style={{ backgroundColor: show.accent }}
         href={show.page_url}
@@ -33,7 +34,7 @@ function ScheduleSlot(props) {
         <div className="ScheduleSlot__title">
           {show.title}
         </div>
-      </a>
+      </Link>
     </div>
   );
 }

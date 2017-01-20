@@ -5,6 +5,7 @@ import initPlayer from './player';
 import FullSchedule from './components/FullSchedule';
 import TodaySchedule from './components/TodaySchedule';
 import NowAndNext from './components/NowAndNext';
+import InlinePlayer from './components/InlinePlayer';
 import Handler from './handler';
 
 const handler = new Handler();
@@ -12,11 +13,18 @@ const handler = new Handler();
 handler.component(FullSchedule, '#ScheduleFullRoot');
 handler.component(TodaySchedule, '.ScheduleSingleContainer');
 handler.component(NowAndNext, '.NowAndNextRoot');
+handler.component(InlinePlayer, '.js__inline-player-root');
 
 document.addEventListener('DOMContentLoaded', () => {
   globalAnnouncement();
   handler.onPage();
-  window.P = new Pjax({ selectors: ['title', '.Core__content'] });
+  const pjax = new Pjax({ selectors: ['title', '.Core__content'] });
+
+  window.P = pjax;
+  window.loadUrl = (url) => {
+    console.log(url);
+    pjax.loadUrl(url, pjax.options);
+  };
 
   if (document.getElementById('player')) {
     initPlayer();

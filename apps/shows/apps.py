@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class ShowsConfig(AppConfig):
-    name = 'shows'
+class ShowsConfig(AppConfig):pm 
+    name = 'apps.shows'

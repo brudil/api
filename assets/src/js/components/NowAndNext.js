@@ -1,34 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import BroadcastingIcon from '../components/BroadcastingIcon';
 import { getOnAirSlot } from '../utils/schedule';
+import { playLive } from '../actions';
 
-function launchPlayer() {
-  window.open(
-    '/player',
-    'URF Player',
-    'height=425,width=300,status=yes,toolbar=no,menubar=no',
-  );
-}
-
-function NowAndNext({ schedule }) {
-  if (schedule.isLoading) {
+function NowAndNext({ schedule, player, playLiveAction }) {
+  if (schedule.isLoading || player.stream !== null) {
     return null;
   }
 
   const slot = getOnAirSlot(schedule.data.slots);
   const show = schedule.data.shows[slot.show];
+
   return (
-    <a className="NowAndNext" onClick={launchPlayer} href="">
-      <div className="NowAndNext__heading">Listen</div>
+    <button className="NowAndNext" onClick={playLiveAction} href="">
+      <div className="NowAndNext__heading">
+        <div className="NowAndNext__icon">
+          <BroadcastingIcon animate />
+        </div>
+        Listen Live
+      </div>
       <div className="NowAndNext__now">Now: {show.title}</div>
-    </a>
+    </button>
   );
 }
 
 NowAndNext.propTypes = {
   schedule: React.PropTypes.object.isRequired,
+  player: React.PropTypes.object.isRequired,
+  playLiveAction: React.PropTypes.func.isRequired,
 };
 
 export default connect(state => ({
   schedule: state.schedule,
-}))(NowAndNext);
+  player: state.player,
+}), dispatch => bindActionCreators({
+  playLiveAction: playLive,
+}, dispatch))(NowAndNext);

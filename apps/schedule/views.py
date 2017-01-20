@@ -15,7 +15,7 @@ def serialize_slot(slot, automation_page):
     from_time = datetime.datetime.combine(now, slot.from_time)
     to_time = datetime.datetime.combine(now, slot.to_time)
     is_overnight = to_time < from_time and to_time != midnight
-
+    print(is_overnight, to_time, midnight)
     serial = {
         'day': slot.day,
         'sort_key': slot_sort(slot),
@@ -48,6 +48,10 @@ def slot_sort(slot):
     return (slot.day + 1) * 100 + slot.from_time.hour + (slot.from_time.minute / 100.0)
 
 
+def api_current_show(request):
+    return JsonResponse({ 'show_infomation': True })
+
+
 def api_schedule(request):
     data = {
         'slots': [],
@@ -62,8 +66,9 @@ def api_schedule(request):
     previous_slot_day = 0
     slots = []
     for slot in sorted_by_time:
+
         if previous_slot_to_time != slot.from_time:
-            slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=slot.from_time, day=previous_slot_day if previous_slot_to_time != midnight.time() else slot.day))
+            slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=slot.from_time, day=previous_slot_day if previous_slot_to_time > midnight.time() else slot.day))
 
         slots.append(slot)
 
@@ -73,7 +78,7 @@ def api_schedule(request):
 
     first_slot = slots[0]
     if previous_slot_to_time != first_slot.from_time:
-        slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=first_slot.from_time, day=previous_slot_day))
+        slots.append(AutomationSlot(from_time=previous_slot_to_time, to_time=first_slot.from_time.replace(hour=23, minute=59, second=59), day=previous_slot_day))
 
     automation_page = ShowSettings.for_site(request.site).automation_show
     data['shows'][automation_page.id] = serialize_show(automation_page)

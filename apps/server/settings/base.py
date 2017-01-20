@@ -16,7 +16,8 @@ import os
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(os.path.dirname(PROJECT_DIR))
-
+print('PROJECT_DIR', PROJECT_DIR)
+print('BASE_DIR', BASE_DIR)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -50,6 +51,8 @@ INSTALLED_APPS = [
     'wagtail.wagtailcore',
 
     'wagtail.contrib.settings',
+    'wagtail.api.v2',
+    'rest_framework',
 
     'modelcluster',
     'taggit',

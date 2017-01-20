@@ -1,24 +1,39 @@
 import React from 'react';
-import PlayPauseButton from './PlayPauseButton';
-import VolumeControl from './VolumeControl';
-
+import urfLogoWhite from '../../img/logotype.svg';
+import urfLogoBlack from '../../img/logotype-dark.svg';
 
 function Player(props) {
-  const controller = props.ac;
+  if (props.isLoading) {
+    return null;
+  }
+
+  const show = props.shows[props.slot.show];
+
   return (
-    <div className="Player">
+    <div className="Player" style={{ backgroundColor: show.accent }}>
+      <header>
+        <img src={show.tone === 'dark' ? urfLogoBlack : urfLogoWhite} height="40" alt="URF" />
+        <span>Player</span>
+      </header>
       <div className="">
-        <div>State: {props.state.playState}</div>
-        <PlayPauseButton isPlaying={props.state.isPlaying} onToggle={controller.toggleState} />
-        <VolumeControl value={props.state.volume} onChange={controller.setVolume} />
+        {show.logo ? (<img src={show.logo} alt={show.title} />) : <h1>{show.title}</h1>}
+
+        <audio className="Player__audio" src="http://uk2.internet-radio.com:30764/stream" controls autoPlay />
       </div>
     </div>
   );
 }
 
 Player.propTypes = {
-  state: React.PropTypes.object,
-  ac: React.PropTypes.object,
+  isLoading: React.PropTypes.bool,
+  shows: React.PropTypes.object,
+  slot: React.PropTypes.object,
+};
+
+Player.defaultProps = {
+  isLoading: true,
+  shows: null,
+  slot: null,
 };
 
 export default Player;

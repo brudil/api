@@ -23,12 +23,13 @@
     {% include 'global-announcement.html' %}
     {% include 'header.html' %}
 
+<div class="js__inline-player-root"></div>
     {% block bespoke_content %}
-      <div class="Container Core__content">
-        {% block content %}{% endblock %}
-      </div>
-    {% endblock %}
+    <main class="Core__content">
 
+        {% block content %}{% endblock %}
+      </main>
+    {% endblock %}
     {% include 'footer.html' %}
 
     {% if settings.server.AnalyticsSettings.ga_property_id != '' %}

@@ -66,6 +66,13 @@ class ShowPage(Page):
         verbose_name = 'Show'
         description = 'A show microsite'
 
+    api_fields = [
+      'description',
+      'accent_color',
+      'about_content',
+      'logo',
+    ]
+
     description = models.CharField(max_length=140, help_text='Describe the show in a tweet (140 characters)')
     accent_color = models.CharField(max_length=7, blank=True, null=True, verbose_name='Accent color')
 
@@ -141,6 +148,11 @@ class ShowPage(Page):
     def get_human_time(self):
         slots = self.slots.all()
         slots_human = []
+
+        # TODO: Clean up, inprove english.
+        # Fridays 9pm to 10pm
+        # Mondays & Wednesdays 10:30am to 11am
+        # Weekdays 10:30am to 11am and 10pm to 11pm
 
         for slot in slots:
             time_display = TimeFormat(slot.from_time).format('g:i a')

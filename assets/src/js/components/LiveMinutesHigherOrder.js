@@ -1,11 +1,12 @@
 import React from 'react';
-import moment from 'moment';
+import startOfToday from 'date-fns/start_of_today';
+import differenceInMinutes from 'date-fns/difference_in_minutes';
 
 function getMinutes() {
-  const midnight = moment().startOf('day');
-  const now = moment();
+  const midnight = startOfToday();
+  const now = new Date();
 
-  return moment.duration(now.diff(midnight)).asMinutes();
+  return differenceInMinutes(now, midnight);
 }
 
 export default WrappedComponent => class LiveMinutesHigherOrder extends React.Component {

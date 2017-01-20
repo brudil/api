@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import ScheduleTimeline from './ScheduleTimeline';
 import ScheduleDayRow from './ScheduleDayRow';
@@ -8,7 +7,8 @@ import Spinner from './Spinner';
 import {
   calculateWidth,
   getOnAirSlot,
-  momentWeekDayMonday,
+  getTodayDayMonday,
+  getScrollPositionForSlot,
 } from '../utils/schedule';
 
 class FullSchedule extends React.Component {
@@ -18,17 +18,14 @@ class FullSchedule extends React.Component {
 
     if (container && container.scrollLeft === 0) {
       const onAirSlot = getOnAirSlot(this.props.schedule.data.slots);
-      const slotStartedToday = onAirSlot.day === momentWeekDayMonday(moment());
+      const slotStartedToday = onAirSlot.day === getTodayDayMonday();
 
       if (onAirSlot.is_overnight && !slotStartedToday) {
         container.scrollLeft = 0;
         return;
       }
 
-      const onAirStartTime = moment(onAirSlot.from_time);
-      const startOfDay = moment().startOf('day');
-      const duration = moment.duration(onAirStartTime.diff(startOfDay)).asMinutes();
-      const onAirPosition = calculateWidth(duration, false) - 40;
+      const onAirPosition = getScrollPositionForSlot(onAirSlot) - 40;
       if (onAirPosition > 0) {
         container.scrollLeft = onAirPosition;
       }

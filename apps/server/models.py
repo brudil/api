@@ -29,6 +29,7 @@ class AnalyticsSettings(BaseSetting):
         max_length=20,
         help_text='UA-XXXXX-X')
 
+
 @register_snippet
 class Menu(ClusterableModel):
     name = models.CharField(max_length=40)

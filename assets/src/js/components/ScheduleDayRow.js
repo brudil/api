@@ -2,8 +2,8 @@ import React from 'react';
 import cx from 'classnames';
 import moment from 'moment';
 import ScheduleSlot from './ScheduleSlot';
-import momentInternal from '../hoc/MomentInterval';
-import { momentWeekDayMonday, slotIsOnAt } from '../utils/schedule';
+import dateInterval from '../hoc/DateInterval';
+import { getTodayDayMonday, slotIsOnAt } from '../utils/schedule';
 
 function ScheduleDayRow(props) {
   const { shows, slots, calculateWidth } = props;
@@ -12,7 +12,7 @@ function ScheduleDayRow(props) {
     return (<div>Nothing is scheduled.</div>);
   }
 
-  const isToday = props.day === momentWeekDayMonday(props.momentInterval);
+  const isToday = props.day === getTodayDayMonday(props.dateInterval);
 
   return (
     <div className={cx('ScheduleRow', props.className)}>
@@ -25,7 +25,7 @@ function ScheduleDayRow(props) {
             const toTimeFormatted = momentTo.format('hh:mm');
             const timeKey = `${fromTimeFormatted}:${toTimeFormatted}`;
             const isOnAir = isToday &&
-              slotIsOnAt(slot, props.momentInterval, index / (slots.length - 1));
+              slotIsOnAt(slot, props.dateInterval, index / (slots.length - 1));
             return (
               <ScheduleSlot
                 key={timeKey}
@@ -44,7 +44,7 @@ function ScheduleDayRow(props) {
 }
 
 ScheduleDayRow.propTypes = {
-  momentInterval: React.PropTypes.object.isRequired,
+  dateInterval: React.PropTypes.object.isRequired,
   calculateWidth: React.PropTypes.func.isRequired,
   day: React.PropTypes.number.isRequired,
   className: React.PropTypes.string,
@@ -56,5 +56,4 @@ ScheduleDayRow.defaultProps = {
   className: '',
 };
 
-
-export default momentInternal({ interval: 60000 }, ScheduleDayRow);
+export default dateInterval({ interval: 60000 }, ScheduleDayRow);

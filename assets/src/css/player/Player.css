@@ -6,4 +6,8 @@
   max-width: 300px;
   padding: 1rem;
   width: 100%;
+
+  &__audio {
+    width: 100%;
+  }
 }
