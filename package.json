@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "export NODE_ENV=development && `npm bin`/webpack-dev-server --config webpack.dev.config.js --history-api-fallback --hot",
-    "dist": "export NODE_ENV=production && `npm bin`/webpack --config webpack.prod.config.js",
+    "serve": "export NODE_ENV=development && `npm bin`/webpack-dev-server --config webpack.config.js --history-api-fallback --hot",
+    "dist": "export NODE_ENV=production && `npm bin`/webpack --config webpack.config.js",
     "lint": "eslint --ext .js ./assets/src",
     "lintfix": "eslint --fix --ext .js ./assets/src",
     "postinstall": "npm run dist"
