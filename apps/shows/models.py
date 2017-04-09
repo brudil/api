@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from colour import Color
 from apps.server.models import SingletonPage
 from apps.shows.utils import dark_tone_from_accent
 from django.db import models
@@ -157,7 +157,7 @@ class ShowPage(Page):
         for slot in slots:
             time_display = TimeFormat(slot.from_time).format('g:i a')
             relative = ((slot.day - datetime.now().weekday()) + 7) % 7
-            relative_word = 'Every'
+            relative_word = ''
             if relative == 0:
                 relative_word = 'Today, and every'
             elif relative == 1:
@@ -171,23 +171,44 @@ class ShowPage(Page):
 
         return ', '.join(slots_human)
 
+    def css_style(self, styles):
+      return ''.join(['{}:{};'.format(prop, val) for (prop, val) in styles.items()])
+
+    @property
+    def safe_accent_color(self):
+      if not self.has_accent_color():
+        return '#A50027'
+
+      return self.accent_color
+
     def generate_branding_style(self):
         styles = []
 
-        if self.accent_color is not None and self.accent_color != '#000000':
-            styles.append('background-color:{}'.format(self.accent_color))
+        styles.append('background-color:{}'.format(self.safe_accent_color))
 
         return ';'.join(styles)
+
+    def generate_branding_style_secondary(self):
+      styles = dict();
+
+      if self.has_accent_color:
+        accent = Color(self.safe_accent_color)
+        accent.luminance = accent.luminance * 0.9 if accent.luminance * 0.9 >= 0 else 0;
+        accent.saturation = accent.saturation * 1.1 if accent.saturation * 1.1 <= 1 else 1
+        styles['background-color'] = accent.hex
+
+      return self.css_style(styles);
 
     def has_accent_color(self):
         return self.accent_color is not None and self.accent_color != '#000000'
 
     def tone_from_accent(self):
-        if self.has_accent_color() is False:
-            return 'dark'
-
-        dark_tone = dark_tone_from_accent(self.accent_color[1:])
+        dark_tone = dark_tone_from_accent(self.safe_accent_color[1:])
         return 'dark' if dark_tone else 'light'
+
+    @property
+    def tone(self):
+      return self.tone_from_accent()
 
     def name_group(self):
         return self.title and self.title[0] or ''

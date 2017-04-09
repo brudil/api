@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.settings',
     'wagtail.api.v2',
     'rest_framework',
+    "graphene_django",
 
     'modelcluster',
     'taggit',
@@ -64,6 +65,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'apps.schema.schema.schema' # Where your Graphene schema lives
+}
 
 MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',

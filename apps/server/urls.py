@@ -1,11 +1,13 @@
 from django.conf.urls import include, url
 from django.conf import settings
 from django.contrib import admin
+from django.views.decorators.csrf import csrf_exempt
 
 from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 from .api import api_router
+from graphene_django.views import GraphQLView
 
 from apps.server import views as sever_views
 from apps.search import views as search_views
@@ -16,7 +18,7 @@ from apps.shows import urls as show_urls
 
 urlpatterns = [
     url(r'^django-admin/', include(admin.site.urls)),
-
+    url(r'^graphql', csrf_exempt(GraphQLView.as_view(graphiql=True))),
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^player/', include(player_urls)),
