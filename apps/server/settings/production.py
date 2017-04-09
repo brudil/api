@@ -23,7 +23,10 @@ STATICFILES_DIRS = [
 SECRET_KEY = os.environ['APP_SECRET_KEY']
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-ALLOWED_HOSTS = ['.herokuapp.com', ]
+ALLOWED_HOSTS = [
+  '.herokuapp.com',
+  'api.urfonline.com',
+]
 
 INSTALLED_APPS += (
     'raven.contrib.django.raven_compat',
