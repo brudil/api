@@ -6,17 +6,8 @@
 
 {% block bespoke_content %}
 {% get_show page as show %}
-<div class="Core__content" style="{{ show.generate_branding_style }}">
-  <div class="ShowHeader {% if not show.cover_image %}ShowHeader--tone-{{ show.tone_from_accent }} {% else %}ShowHeader--tone-light ShowHeader--has-cover{% endif %}">
-    {% if show.cover_image %}
-    {% image show.cover_image width-1500 as show_cover %}
-    <div class="ShowHeader__cover">
-      <div
-        class="ShowHeader__cover-gradient"
-        style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,{{ show.accent_color }} 100%);"></div>
-      <img class="ShowHeader__cover-image" src="{{ show_cover.url }}" alt="{{ show.title }}">
-    </div>
-    {% endif %}
+<div class="Core__content">
+  <div class="ShowHeader ShowHeader--tone-{{ show.tone_from_accent }}" style="{{ show.generate_branding_style }}">
     <div class="ShowHeader__container Container">
       {% if show.logo %}
         {% image show.logo width-400 as show_logo %}
@@ -31,75 +22,30 @@
         </h1>
       {% endif %}
       <div class="ShowHeader__details">
-        <div class="ShowHeader__short-description">{{ show.description }}</div>
         <div class="ShowHeader__schedule">{{ show.get_human_time }}</div>
       </div>
     </div>
-  </div>
-  <div class="Container ShowCard {% if show.cover_image %} ShowCard--has-cover {% endif %}">
-    <div class="ShowCard__sidebar">
-      <ul class="ShowNav">
-        <li class="ShowNav__item {% if page.url == show.url %} ShowNav__item--active{% endif %}">
-          <a href="{{ show.url }}">About</a>
-        </li>
-        {% for child in show.get_children.live %}
-          <li class="ShowNav__item {% if page.url == child.url %} ShowNav__item--active{% endif %}">
-            <a href="{{ child.url }}">{{ child.title }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-
-        {% if show.has_social %}
-          <ul class="ShowNav">
-            {% if show.social_twitter_handle %}
-              <li class="ShowNav__item ShowNav__social-twitter">
-                <a href="https://twitter.com/{{ show.social_twitter_handle }}">
-                  <i class="icon-twitter ShowNav__item-icon"></i>
-                  Twitter
-                </a>
+    <div class="ShowHeader__nav ShowNav"  style="{{ show.generate_branding_style_secondary }}">
+      <div class="Container ShowNav__container">
+        <div class="ShowNav__main">
+          <ul class="ShowNav__list">
+            <li class="ShowNav__item {% if page.url == show.url %} ShowNav__item--active{% endif %}">
+              <a href="{{ show.url }}">About</a>
+            </li>
+            {% for child in show.get_children.live %}
+              <li class="ShowNav__item {% if page.url == child.url %} ShowNav__item--active{% endif %}">
+                <a href="{{ child.url }}">{{ child.title }}</a>
               </li>
-            {% endif %}
-
-            {% if show.social_facebook_url %}
-            <li class="ShowNav__item ShowNav__social-facebook">
-              <a href="{{ show.social_facebook_url }}">
-                <i class="icon-facebook ShowNav__item-icon"></i>
-                Facebook
-              </a>
-            </li>
-            {% endif %}
-
-            {% if show.social_youtube_url %}
-            <li class="ShowNav__item ShowNav__social-youtube">
-              <a href="{{ show.social_youtube_url }}">
-                <i class="icon-youtube ShowNav__item-icon"></i>
-                YouTube
-              </a>
-            </li>
-            {% endif %}
-
-            {% if show.social_mixcloud_handle %}
-            <li class="ShowNav__item ShowNav__social-mixcloud">
-              <a href="https://www.mixcloud.com/{{ show.social_mixcloud_handle }}">
-                <i class="icon-mixcloud ShowNav__item-icon"></i>
-                Mixcloud
-              </a>
-            </li>
-            {% endif %}
-
-            {% if show.social_soundcloud_handle %}
-            <li class="ShowNav__item ShowNav__social-soundcloud">
-              <a href="https://soundcloud.com/{{ show.social_soundcloud_handle }}">
-                <i class="icon-soundcloud ShowNav__item-icon"></i>
-                Soundcloud
-              </a>
-            </li>
-            {% endif %}
+            {% endfor %}
           </ul>
-        {% endif %}
+        </div>
+        {% include 'shows/show_social_partial.html' %}
+      </div>
     </div>
-    <div class="ShowCard__content">
-        {% block card_content %}{% endblock %}
+  </div>
+  <div class="ShowContent">
+    <div class="Container">
+      {% block card_content %}{% endblock %}
     </div>
   </div>
 </div>

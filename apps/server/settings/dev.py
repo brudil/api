@@ -13,13 +13,6 @@ SECRET_KEY = '-gkm71@qund10=%&wiosj@rt@#4z9g1dpck^ws(=jz36atdpxg'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-def asset_resolver(name):
-    return 'http://localhost:8080/build/{}'.format(name)
-
-
-WEBPACK_ASSET_RESOLVER = asset_resolver
-
 try:
     from .local import *
 except ImportError:

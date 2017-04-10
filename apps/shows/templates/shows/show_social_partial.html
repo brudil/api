@@ -1,0 +1,45 @@
+{% if show.has_social %}
+<div class="ShowNav__social">
+  <ul class="ShowNav__list">
+    {% if show.social_twitter_handle %}
+      <li class="ShowNav__item ShowNav__social-twitter">
+        <a href="https://twitter.com/{{ show.social_twitter_handle }}">
+          <i class="icon-twitter ShowNav__item-icon"></i>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if show.social_facebook_url %}
+    <li class="ShowNav__item ShowNav__social-facebook">
+      <a href="{{ show.social_facebook_url }}">
+        <i class="icon-facebook ShowNav__item-icon"></i>
+      </a>
+    </li>
+    {% endif %}
+
+    {% if show.social_youtube_url %}
+    <li class="ShowNav__item ShowNav__social-youtube">
+      <a href="{{ show.social_youtube_url }}">
+        <i class="icon-youtube ShowNav__item-icon"></i>
+      </a>
+    </li>
+    {% endif %}
+
+    {% if show.social_mixcloud_handle %}
+    <li class="ShowNav__item ShowNav__social-mixcloud">
+      <a href="https://www.mixcloud.com/{{ show.social_mixcloud_handle }}">
+        <i class="icon-mixcloud ShowNav__item-icon"></i>
+      </a>
+    </li>
+    {% endif %}
+
+    {% if show.social_soundcloud_handle %}
+    <li class="ShowNav__item ShowNav__social-soundcloud">
+      <a href="https://soundcloud.com/{{ show.social_soundcloud_handle }}">
+        <i class="icon-soundcloud ShowNav__item-icon"></i>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</div>
+{% endif %}
