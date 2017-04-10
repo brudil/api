@@ -30,7 +30,7 @@ ALLOWED_HOSTS = [
 
 CORS_ORIGIN_WHITELIST = [
   'urfonline.com',
-  'api.urfonline.com',
+  'next.urfonline.com',
 ]
 
 INSTALLED_APPS += (
