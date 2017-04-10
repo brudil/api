@@ -28,6 +28,11 @@ ALLOWED_HOSTS = [
   'api.urfonline.com',
 ]
 
+CORS_ORIGIN_WHITELIST = [
+  'urfonline.com',
+  'api.urfonline.com',
+]
+
 INSTALLED_APPS += (
     'raven.contrib.django.raven_compat',
     'storages',

@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'corsheaders',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -71,6 +72,8 @@ GRAPHENE = {
 }
 
 MIDDLEWARE_CLASSES = [
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
