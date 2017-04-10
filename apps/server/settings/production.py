@@ -28,10 +28,7 @@ ALLOWED_HOSTS = [
   'api.urfonline.com',
 ]
 
-CORS_ORIGIN_WHITELIST = [
-  'urfonline.com',
-  'next.urfonline.com',
-]
+CORS_ORIGIN_ALLOW_ALL = True
 
 INSTALLED_APPS += (
     'raven.contrib.django.raven_compat',
